@@ -1,5 +1,4 @@
 {
-
   description = "System configuration";
 
   inputs = {
@@ -27,11 +26,10 @@
         };
       };
       homeConfigurations = {
-        yehor = home-manager.lib.homeManagerConfiguration {
+        yehorkhod = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./hosts/lemon/home.nix ];
         };
       };
   };
-
 }

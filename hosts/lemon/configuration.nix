@@ -1,8 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 let
-  username = "yehor";
-  userDescription = "Yehor Khodysko"; homeDirectory = "/home/${username}";
+  username = "yehorkhod";
+  userDescription = "Yehor Khodysko";
+  homeDirectory = "/home/${username}";
   hostName = "lemon";
   timeZone = "Europe/Kyiv";
 in
@@ -52,7 +53,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = userDescription;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -92,6 +93,19 @@ in
     grim slurp waybar dunst wl-clipboard swaylock
     swaynotificationcenter swaybg rofi-wayland
   ];
+
+  users.extraGroups.docker.members = [ "yehorkhod" ];
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    daemon.settings = {
+      data-root = "/home/yehorkhod/docker-data";
+      userland-proxy = false;
+    };
+  };
 
   fonts.packages = with pkgs; [
     corefonts

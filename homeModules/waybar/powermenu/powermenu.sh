@@ -1,5 +1,5 @@
 # Current Theme
-dir="/home/yehor/System/homeModules/waybar/powermenu/"
+dir="/home/yehorkhod/System/homeModules/waybar/powermenu/"
 theme='style'
 
 # CMDs
