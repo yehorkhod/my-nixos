@@ -9,7 +9,7 @@ in
 
     settings = {
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "kitty ~/Desktop";
       "$fileManager" = "thunar";
       "$menu" = "rofi -show run";
       "$browser" = "zen";

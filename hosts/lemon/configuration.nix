@@ -71,7 +71,7 @@ in
     btop
 
     # Version control and development
-    git devenv
+    git devenv conda
 
     # Shell and terminal
     starship kitty zoxide fzf tmux wget
