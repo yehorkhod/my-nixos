@@ -23,23 +23,11 @@ in
         "swaybg -o \\* -i ${directory}/wallpapers/space.png -m fill"
       ];
 
-      env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE, 24"
-      ];
-
       general = {
           gaps_in = 5;
           gaps_out = 5;
       
-          border_size = 2;
-      
-          "col.active_border" = "rgba(ffd1b3ff) rgba(00ff99ff) 45deg";
-          "col.inactive_border" = "rgba(ffd1b3bf) rgba(00ff99bf) 45deg";
-      
-          resize_on_border = false;
-      
-          allow_tearing = false;
+          border_size = 0;
       
           layout = "dwindle";
       };
@@ -48,12 +36,9 @@ in
           rounding = 10;
       
           active_opacity = 1.0;
-          inactive_opacity = 0.9;
+          inactive_opacity = 0.95;
       
-          drop_shadow = true;
-          shadow_range = 3;
-          shadow_render_power = 0;
-          "col.shadow" = "rgba(ffffffff)";
+          drop_shadow = false;
       
           blur = {
               enabled = false;
@@ -61,18 +46,7 @@ in
       };
 
       animations = {
-          enabled = true;
-      
-          bezier = "overshot, 0.13, 0.99, 0.29, 1.1";
-      
-          animation = [
-            "windows, 1, 5, overshot, slide"
-            "windowsOut, 1, 7, default, popin 80%"
-            "border, 1, 14, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 10, default"
-            "workspaces, 1, 9, overshot, slide"
-          ];
+          enabled = false;
       };
 
       dwindle = {
@@ -106,7 +80,6 @@ in
           workspace_swipe_min_speed_to_force = 10;
       };
 
-
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, F, exec, $browser"
@@ -115,10 +88,10 @@ in
         "$mainMod, T, exec, $messager"
       
         "$mainMod, C, killactive,"
-        "$mainMod, P, pseudo,"
+
         "$mainMod, O, togglesplit,"
-        "$mainMod Shift, T, togglefloating,"
-        "$mainMod Shift, F, fullscreen, 0"
+        "$mainMod, M, togglefloating,"
+        "$mainMod, I, fullscreen, 0"
       
         "$mainMod Shift, S, exec, grim -g \"$(slurp)\" - | magick - -shave 1x1 PNG:- | swappy -f -"
         "$mainMod Shift, W, exec, grim -g \"$(slurp)\" - | magick - -shave 1x1 PNG:- | wl-copy"
@@ -184,7 +157,6 @@ in
       windowrule = [
         "float, ^(pinta)$"
       ];
-
     };
   };
 }

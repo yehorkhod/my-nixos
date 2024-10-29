@@ -10,8 +10,13 @@ in
     settings = {
       bar = {
         layer = "top";
+
+        margin-top = 5;
+        margin-left = 5;
+        margin-right = 5;
+
         modules-left = [ "battery" "memory" ];
-        modules-right = [ "custom/lock" "clock" "custom/power-menu" ];
+        modules-right = [ "custom/lock" "clock" ];
   
         memory = {
           interval = 30;
@@ -49,23 +54,18 @@ in
             };
           };
         };
-  
-        "custom/power-menu" = {
-          format = "⏻ POWER";
-          on-click = "bash ${directory}/powermenu/powermenu.sh &";
-        }; 
       };
     };
 
     style = ''
       * {
         font-family: JetBrainsMono Nerd Font, Iosevka Nerd Font;
-        font-size: 19px;
+        font-size: 16px;
       }
       
       #waybar {
-          background-color: rgba(51, 51, 51, 0.0);
-          color: #ffffff;
+        background-color: rgba(255, 255, 255, .5);
+        border-radius: 16px;
       }
       
       #memory,
@@ -75,22 +75,18 @@ in
       
       #battery,
       #battery.critical:not(.charging) {
-          background-color: #f53c3c;
-          color: #ffffff;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
+        color: #ffffff;
+
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
       }
       
       #custom-lock,
       #custom-lock {
         color: #ecd3a0;
-        padding: 0 15px 0 15px;
-        margin-left: 7px;
-        margin-top: 7px;
-        margin-bottom: 7px;
       }
       
       #clock,
@@ -98,25 +94,18 @@ in
         color: #8a909e;
         font-family: Iosevka Nerd Font;
         font-weight: bold;
-        margin-top: 7px;
-        margin-bottom: 7px;
       }
       
-      #custom-power-menu,
-      #custom-power-menu {
-        color: #e78284;
-        margin-right: 12px;
-        border-radius: 12px;
-        padding: 0 6px 0 3px;
-        margin-top: 7px;
-        margin-bottom: 7px;
-      }
-      
-      #memory, #battery, #custom-lock, #clock, #custom-power-menu {
-        padding: 5px 10px;
-        margin: 0 5px;
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+      #memory, #battery, #custom-lock, #clock {
+        padding: 0 10px 0 10px;
+
+        margin-top: 2px;
+        margin-bottom: 2px;
+        margin-left: 2px;
+        margin-right: 2px;
+
+        border-radius: 16px;
+        background-color: rgba(0, 0, 0, 0.7);
         transition: background-color 0.3s ease;
       }
     '';
