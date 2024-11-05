@@ -6,15 +6,17 @@ let
 in
 {
   imports = [
-    ../../homeModules/neovim/neovim.nix
+    ../../homeModules/git/git.nix
+    ../../homeModules/tmux/tmux.nix
+    ../../homeModules/bash/bash.nix
+    ../../homeModules/waybar/waybar.nix
     ../../homeModules/terminals/kitty.nix
     ../../homeModules/hyprland/hyprland.nix
-    ../../homeModules/shells/bash.nix
-    ../../homeModules/versionControl/git.nix
-    ../../homeModules/waybar/waybar.nix
     ../../homeModules/starship/starship.nix
     ../../homeModules/swaylock/swaylock.nix
-    ../../homeModules/tmux/tmux.nix
+
+    ../../homeModules/editors/helix/helix.nix
+    ../../homeModules/editors/neovim/neovim.nix
   ];
 
   home.username = username;
