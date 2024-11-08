@@ -9,8 +9,7 @@ in
 
     settings = {
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty ~/Desktop";
-      "$fileManager" = "thunar";
+      "$terminal" = "kitty conda-shell";
       "$menu" = "rofi -show run";
       "$browser" = "zen";
       "$messager" = "telegram-desktop";
@@ -36,7 +35,7 @@ in
           rounding = 10;
       
           active_opacity = 1.0;
-          inactive_opacity = 0.95;
+          inactive_opacity = 1.0;
       
           drop_shadow = false;
       
@@ -66,7 +65,7 @@ in
           kb_layout = "us, ua";
           kb_options = "caps:escape, grp:win_space_toggle";
       
-          follow_mouse = 1;
+          follow_mouse = 0;
       
           sensitivity = 0;
       
@@ -83,7 +82,6 @@ in
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, F, exec, $browser"
-        "$mainMod, E, exec, $fileManager"
         "$mainMod, D, exec, $menu"
         "$mainMod, T, exec, $messager"
       

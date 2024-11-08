@@ -40,11 +40,10 @@ in
     };
   };
 
-  programs = { # TODO
+  programs = {
     neovim.enable = true;
     firefox.enable = true;
     tmux.enable = true;
-    thunar.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -71,7 +70,7 @@ in
     btop
 
     # Version control and development
-    git devenv conda
+    git conda
 
     # Shell and terminal
     starship kitty zoxide fzf tmux wget
@@ -143,11 +142,6 @@ in
       wireplumber.enable = true;
     };
 
-    ollama = {
-      enable=true;
-      acceleration = "cuda";
-    };
-
     openssh.enable = true;
   };
 
@@ -162,13 +156,11 @@ in
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ "https://devenv.cachix.org" ];
-      trusted-public-keys = [ "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" ];
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 14d";
     };
   };
 

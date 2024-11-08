@@ -1,10 +1,7 @@
-# Define the list of options
 options=("default" "performance" "balance_performance" "balance_power" "power")
 
-# Use fzf to let the user choose an option
 selected_option=$(printf "%s\n" "${options[@]}" | fzf --prompt="Choose a performance mode: " --height=10 --border --reverse)
 
-# Check if the user selected an option
 if [ -n "$selected_option" ]; then
 for cpu_path in /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference; do
   echo "$selected_option" > "$cpu_path"

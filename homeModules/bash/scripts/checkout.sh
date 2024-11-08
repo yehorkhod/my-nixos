@@ -1,12 +1,8 @@
-# Get remote branches without the "origin/" prefix
 branches=$(git branch -r | sed 's|origin/||' | sort -u)
 
-# Use fzf to let the user choose a branch
 selected_branch=$(printf "%s\n" "${branches}" | fzf --prompt="Choose a branch to checkout: " --height=10 --border --reverse)
 
-# Check if the user selected a branch
 if [ -n "$selected_branch" ]; then
-  # Checkout the selected branch with "origin/" prefix
   git checkout $selected_branch
   echo "Checked out to branch $selected_branch"
 else
