@@ -1,10 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, username, hostname, ... }:
 
 let
-  username = "yehorkhod";
   userDescription = "Yehor Khodysko";
   homeDirectory = "/home/${username}";
-  hostName = "lemon";
   timeZone = "Europe/Kyiv";
 in
 {
@@ -19,7 +17,7 @@ in
   };
 
   networking = {
-    hostName = hostName;
+    hostName = hostname;
     networkmanager.enable = true;
   };
 
@@ -147,7 +145,7 @@ in
 
   hardware = {
     pulseaudio.enable = false;
-    opengl.enable = true;
+    graphics.enable = true;
   };
 
   security.rtkit.enable = true;

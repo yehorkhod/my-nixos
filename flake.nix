@@ -12,22 +12,24 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      username = "yehorkhod";
+      hostname = "lemon";
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in 
     {
       nixosConfigurations = {
-        lemon = lib.nixosSystem {
+        ${hostname} = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/lemon/configuration.nix ];
-          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/${hostname}/configuration.nix ];
+         specialArgs = { inherit inputs username hostname; };
         };
       };
       homeConfigurations = {
-        yehorkhod = home-manager.lib.homeManagerConfiguration {
+        ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./hosts/lemon/home.nix ];
+          modules = [ ./hosts/${hostname}/home.nix ];
         };
       };
   };
