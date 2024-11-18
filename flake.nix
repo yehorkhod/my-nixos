@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -23,13 +24,14 @@
         ${hostname} = lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/${hostname}/configuration.nix ];
-         specialArgs = { inherit inputs username hostname; };
+          specialArgs = { inherit inputs username hostname; };
         };
       };
       homeConfigurations = {
         ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./hosts/${hostname}/home.nix ];
+          extraSpecialArgs = { inherit inputs username; };
         };
       };
   };
