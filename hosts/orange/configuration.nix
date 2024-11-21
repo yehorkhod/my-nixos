@@ -9,6 +9,7 @@ in
   imports = [
     ../../hardware-configuration.nix
     ../../nixosModules/nvidia.nix
+    inputs.xremap-flake.nixosModules.default
   ];
 
   boot.loader = {
@@ -53,11 +54,6 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
-  };
-
   environment.systemPackages = with pkgs; [
     # Text editors
     neovim helix
@@ -82,7 +78,7 @@ in
     libreoffice-qt
 
     # File management and archives
-    unzip
+    zip unzip
 
     # Fancy stuff
     pinta neofetch
@@ -90,10 +86,6 @@ in
     # System utils
     brightnessctl ripgrep libnotify libgcc swappy
     alsa-utils alsa-tools pamixer light imagemagick
-
-    # Wayland specific
-    grim slurp waybar dunst wl-clipboard swaylock
-    swaynotificationcenter swaybg rofi-wayland
   ];
 
   users.extraGroups.docker.members = [ "yehorkhod" ];
@@ -130,6 +122,13 @@ in
       };
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
+      windowManager.awesome = {
+        enable = true;
+        luaModules = with pkgs.luaPackages; [
+          luarocks
+          luadbi-mysql
+        ];
+      };
     };
 
     printing.enable = true;
@@ -146,6 +145,21 @@ in
     };
 
     openssh.enable = true;
+
+    xremap = {
+      withX11 = true;
+      userName = username;
+      yamlConfig = ''
+      modmap:
+        - name: main remaps
+          remap:
+            CapsLock:
+              held: Super_L
+              alone: esc
+      '';
+    };
+
+    picom.enable = true;
   };
 
   hardware = {
@@ -165,11 +179,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
   };
 
   system.stateVersion = "24.05";

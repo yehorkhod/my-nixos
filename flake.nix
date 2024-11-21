@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
+    xremap-flake.url = "github:xremap/nix-flake";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +14,7 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       username = "yehorkhod";
-      hostname = "lemon";
+      hostname = "orange";
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};

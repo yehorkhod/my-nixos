@@ -8,7 +8,7 @@
       size = 14;
     };
     extraConfig = ''
-      background_opacity 0.8
+      background_opacity 0.95
       background            #1f1c27
       foreground            #b6a0ff
       cursor                #ff9738

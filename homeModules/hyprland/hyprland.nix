@@ -9,7 +9,7 @@ in
 
     settings = {
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty conda-shell";
+      "$terminal" = "kitty";
       "$menu" = "rofi -show run";
       "$browser" = "zen";
       "$messager" = "telegram-desktop";
