@@ -86,6 +86,9 @@ in
     # System utils
     brightnessctl ripgrep libnotify libgcc swappy
     alsa-utils alsa-tools pamixer light imagemagick
+
+    # X11
+    scrot xclip
   ];
 
   users.extraGroups.docker.members = [ "yehorkhod" ];

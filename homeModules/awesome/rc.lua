@@ -54,6 +54,8 @@ awful.layout.layouts = {
     awful.layout.suit.spiral.dwindle,
 }
 
+awful.spawn.with_shell("setxkbmap -layout us,ua -option grp:win_space_toggle")
+
 -------------------------------- MENU  --------------------------------
 -- Create a launcher widget and a main menu
 myawesomemenu = {
@@ -64,22 +66,26 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+mymainmenu = awful.menu({
+    items = {
+        { "awesome", myawesomemenu, beautiful.awesome_icon },
+        { "open terminal", terminal }
+    }
+})
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({
+    image = beautiful.awesome_icon,
+    menu = mymainmenu
+})
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
+-------------------------------- WIBAR  --------------------------------
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
--------------------------------- WIBAR  --------------------------------
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
@@ -202,11 +208,22 @@ root.buttons(gears.table.join(
 -------------------------------- KEY BINDINGS  --------------------------------
 globalkeys = gears.table.join(
     awful.key(
-        { modkey, },
-        "s",
-        hotkeys_popup.show_help,
-        { description="show help", group="awesome" }
+        { modkey, "Shift" }, 
+        "s", 
+        function() 
+            awful.spawn.with_shell("scrot -s - | xclip -selection clipboard -t image/png")
+        end,
+        { description = "take selection screenshot", group = "screenshot" }
     ),
+    awful.key(
+        {}, 
+        "Print", 
+        function() 
+            awful.spawn.with_shell("scrot - | xclip -selection clipboard -t image/png")
+        end,
+        { description = "take full screenshot", group = "screenshot" }
+    ),
+
     awful.key(
         { modkey, },
         "Left", 
@@ -463,7 +480,6 @@ clientbuttons = gears.table.join(
 
 -- Set keys
 root.keys(globalkeys)
--- }}}
 
 -------------------------------- RULES  --------------------------------
 -- Rules to apply to new clients (through the "manage" signal).
