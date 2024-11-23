@@ -84,8 +84,9 @@ in
     pinta neofetch
 
     # System utils
-    brightnessctl ripgrep libnotify libgcc swappy
-    alsa-utils alsa-tools pamixer light imagemagick
+    brightnessctl
+    alsa-utils alsa-tools pamixer
+    ripgrep libnotify libgcc
 
     # X11
     scrot xclip
@@ -124,7 +125,6 @@ in
         variant = "";
       };
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
       windowManager.awesome = {
         enable = true;
         luaModules = with pkgs.luaPackages; [

@@ -207,6 +207,61 @@ root.buttons(gears.table.join(
 
 -------------------------------- KEY BINDINGS  --------------------------------
 globalkeys = gears.table.join(
+    -- Volume
+    awful.key(
+        { },
+        "XF86AudioRaiseVolume",
+        function ()
+            awful.spawn.with_shell([[
+            pamixer -i 10 && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
+            ]])
+        end,
+        { description = "Increase Volume", group = "volume" }
+    ),
+    awful.key(
+        { },
+        "XF86AudioLowerVolume",
+        function ()
+            awful.spawn.with_shell([[
+            pamixer -d 10 && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
+            ]])
+        end,
+        { description = "Dencrease Volume", group = "volume" }
+    ),
+    awful.key(
+        { },
+        "XF86AudioMute",
+        function ()
+            awful.spawn.with_shell([[
+            pamixer -t && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
+            ]])
+        end,
+        { description = "Volume Mute", group = "volume" }
+    ),
+
+    -- Brightness
+    awful.key(
+        { },
+        "XF86MonBrightnessUp",
+        function ()
+            awful.spawn.with_shell([[
+            brightnessctl s 10%+ && notify-send -t 1000 "Brightness is set to $(brightnessctl i | grep -oP '\(\K[0-9]+(?=%\))')%"
+            ]])
+        end,
+        { description = "Increase Brightness", group = "brightness" }
+    ),
+    awful.key(
+        { },
+        "XF86MonBrightnessDown",
+        function ()
+            awful.spawn.with_shell([[
+            brightnessctl s 10%- && notify-send -t 1000 "Brightness is set to $(brightnessctl i | grep -oP '\(\K[0-9]+(?=%\))')%"
+            ]])
+        end,
+        { description = "Dencrease Brightness", group = "brightness" }
+    ),
+
+    -- Screenshot
     awful.key(
         { modkey, "Shift" }, 
         "s", 
@@ -224,6 +279,7 @@ globalkeys = gears.table.join(
         { description = "take full screenshot", group = "screenshot" }
     ),
 
+    -- Move focus
     awful.key(
         { modkey, },
         "Left", 
@@ -235,12 +291,6 @@ globalkeys = gears.table.join(
         "Right",
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
-    ),
-    awful.key(
-        { modkey, },
-        "Escape",
-        awful.tag.history.restore,
-        { description = "go back", group = "tag" }
     ),
 
     awful.key(
@@ -280,18 +330,6 @@ globalkeys = gears.table.join(
         { description = "swap with previous client by index", group = "client" }
     ),
     awful.key(
-        { modkey, "Control" },
-        "j",
-        function () awful.screen.focus_relative(1) end,
-        { description = "focus the next screen", group = "screen" }
-    ),
-    awful.key(
-        { modkey, "Control" },
-        "k",
-        function () awful.screen.focus_relative(-1) end,
-        { description = "focus the previous screen", group = "screen" }
-    ),
-    awful.key(
         { modkey, },
         "Tab",
         function ()
@@ -303,7 +341,7 @@ globalkeys = gears.table.join(
         { description = "go back", group = "client" }
     ),
 
-    -- Standard program
+    -- Programs
     awful.key(
         { modkey, },
         "Return",
@@ -322,6 +360,13 @@ globalkeys = gears.table.join(
         function () awful.spawn(messanger) end,
         { description = "open a messanger", group = "launcher" }
     ),
+    awful.key(
+        { modkey, },
+        "d",
+        function () menubar.show() end,
+        { description = "show the menubar", group = "launcher" }
+    ),
+
     awful.key(
         { modkey, "Control" },
         "r",
@@ -358,26 +403,6 @@ globalkeys = gears.table.join(
         "l",
         function () awful.tag.incnmaster(-1, nil, true) end,
         { description = "decrease the number of master clients", group = "layout" }
-    ),
-    awful.key(
-        { modkey, "Control" },
-        "h",
-        function () awful.tag.incncol(1, nil, true) end,
-        { description = "increase the number of columns", group = "layout" }
-    ),
-    awful.key(
-        { modkey, "Control" },
-        "l",
-        function () awful.tag.incncol(-1, nil, true) end,
-        { description = "decrease the number of columns", group = "layout" }
-    ),
-
-    -- Menubar
-    awful.key(
-        { modkey, },
-        "d",
-        function () menubar.show() end,
-        { description = "show the menubar", group = "launcher" }
     )
 )
 
@@ -445,21 +470,6 @@ for i = 1, 9 do
                 end
             end,
             { description = "move focused client to tag #" .. i, group = "tag" }
-        ),
-
-        -- Toggle tag on focused client.
-        awful.key(
-            { modkey, "Control", "Shift" },
-            "#" .. i + 9,
-            function ()
-                if client.focus then
-                    local tag = client.focus.screen.tags[i]
-                    if tag then
-                        client.focus:toggle_tag(tag)
-                    end
-                end
-            end,
-            { description = "toggle focused client on tag #" .. i, group = "tag" }
         )
     )
 end
@@ -527,15 +537,6 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
 
 -------------------------------- SYGNALS  --------------------------------
@@ -551,46 +552,6 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
