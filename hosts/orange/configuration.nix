@@ -59,7 +59,7 @@ in
 
   environment.systemPackages = with pkgs; [
     # Text editors
-    neovim helix
+    neovim helix jetbrains-toolbox
 
     # Browsers
     firefox
