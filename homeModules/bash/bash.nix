@@ -12,7 +12,7 @@ in
     shellAliases = {
       "venv" = "source venv/bin/activate";
       ":q" = "exit";
-      "py" = "conda activate $1; venv; pypath";
+      "py" = "conda activate $1 && venv && pypath";
       "pypath" = "export PYTHONPATH=$(pwd)";
       "numa" = "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
       "cpu" = "sudo ${directory}/scripts/cpu_performance.sh";

@@ -86,16 +86,20 @@
       nvim-web-devicons
       plenary-nvim
       nui-nvim
-      (nvim-treesitter.withPlugins (p: [
-        p.tree-sitter-python
-        p.tree-sitter-bash
-        p.tree-sitter-nix
-        p.tree-sitter-lua
-        p.tree-sitter-r
-        p.tree-sitter-c
-        p.tree-sitter-toml
-        p.tree-sitter-json
-      ]))
+      {
+        plugin = (nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-python
+          p.tree-sitter-bash
+          p.tree-sitter-nix
+          p.tree-sitter-lua
+          p.tree-sitter-r
+          p.tree-sitter-c
+          p.tree-sitter-toml
+          p.tree-sitter-json
+        ]));
+        config = toLua "require('nvim-treesitter.configs').setup { highlight = { enable = true } }";
+      }
+      
     ];
   };
 }

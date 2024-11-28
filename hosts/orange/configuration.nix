@@ -39,6 +39,9 @@ in
     };
   };
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   programs = {
     neovim.enable = true;
     firefox.enable = true;
@@ -148,6 +151,8 @@ in
     };
 
     openssh.enable = true;
+
+    blueman.enable = true;
 
     xremap = {
       withX11 = true;
