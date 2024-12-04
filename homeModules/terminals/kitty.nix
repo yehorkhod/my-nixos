@@ -9,27 +9,56 @@
     };
     extraConfig = ''
       background_opacity 0.95
-      background            #1f1c27
-      foreground            #b6a0ff
-      cursor                #ff9738
-      selection_background  #353146
-      color0                #1f1c27
-      color8                #353146
-      color1                #d8393d
-      color9                #d8393d
-      color2                #2dcc72
-      color10               #2dcc72
-      color3                #d8b76e
-      color11               #d8b76e
-      color4                #ffc183
-      color12               #ffc183
-      color5                #dd8d40
-      color13               #dd8d40
-      color6                #2388ff
-      color14               #2388ff
-      color7                #b6a0ff
-      color15               #e9e4ff
-      selection_foreground #1f1c27
+
+      foreground               #e0def4
+      background               #191724
+      selection_foreground     #e0def4
+      selection_background     #403d52
+
+      cursor                   #524f67
+      cursor_text_color        #e0def4
+
+      url_color                #c4a7e7
+
+      active_tab_foreground    #e0def4
+      active_tab_background    #26233a
+      inactive_tab_foreground  #6e6a86
+      inactive_tab_background  #191724
+
+      active_border_color      #31748f
+      inactive_border_color    #403d52
+
+      # black
+      color0   #26233a
+      color8   #6e6a86
+
+      # red
+      color1   #eb6f92
+      color9   #eb6f92
+
+      # green
+      color2   #31748f
+      color10  #31748f
+
+      # yellow
+      color3   #f6c177
+      color11  #f6c177
+
+      # blue
+      color4   #9ccfd8
+      color12  #9ccfd8
+
+      # magenta
+      color5   #c4a7e7
+      color13  #c4a7e7
+
+      # cyan
+      color6   #ebbcba
+      color14  #ebbcba
+
+      # white
+      color7   #e0def4
+      color15  #e0def4
     '';
   };
 }

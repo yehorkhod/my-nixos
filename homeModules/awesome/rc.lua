@@ -68,14 +68,9 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({
     items = {
-        { "awesome", myawesomemenu, beautiful.awesome_icon },
+        { "awesome", myawesomemenu },
         { "open terminal", terminal }
     }
-})
-
-mylauncher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = mymainmenu
 })
 
 -- Menubar configuration
@@ -83,6 +78,31 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -------------------------------- WIBAR  --------------------------------
+-- Battery widget
+local battery_widget = wibox.widget {
+    widget = wibox.widget.textbox,
+    align = "center",
+    valign = "center"
+}
+
+local function update_battery()
+    awful.spawn.easy_async_with_shell("cat /sys/class/power_supply/BAT1/capacity && cat /sys/class/power_supply/BAT1/status", function(out)
+        local battery_level, status = out:match("(%d+)%s+(%a+)")
+        battery_level = tonumber(battery_level) or 0
+
+        local icon = (status == "Charging") and "⚡" or "🔋"
+        battery_widget.markup = string.format("%s %d%%", icon, battery_level)
+    end)
+end
+
+-- Update the widget periodically
+gears.timer {
+    timeout = 30, -- Update every 30 seconds
+    call_now = true,
+    autostart = true,
+    callback = update_battery
+}
+
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -153,14 +173,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
@@ -183,17 +196,16 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            battery_widget,
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
         },
     }
 end)

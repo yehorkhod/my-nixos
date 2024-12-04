@@ -10,51 +10,60 @@ theme.wallpaper = "/home/yehorkhod/.config/awesome/background.png"
 theme.font      = "sans 8"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
-theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
-theme.bg_urgent  = "#3F3F3F"
-theme.bg_systray = theme.bg_normal
+theme.fg_normal  = "#e0def4" -- Soft foreground
+theme.fg_focus   = "#c4a7e7" -- Highlighted foreground
+theme.fg_urgent  = "#eb6f92" -- Urgent foreground
+theme.bg_normal  = "#191724" -- Base background
+theme.bg_focus   = "#26233a" -- Focused background
+theme.bg_urgent  = "#403d52" -- Urgent background
+theme.bg_systray = theme.bg_normal -- Systray background
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(0) -- Small gap for spacing
 theme.border_width  = dpi(2)
-theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#6F6F6F"
-theme.border_marked = "#CC9393"
+theme.border_normal = "#403d52" -- Inactive border
+theme.border_focus  = "#31748f" -- Active border
+theme.border_marked = "#eb6f92" -- Marked border
 -- }}}
 
 -- {{{ Titlebars
-theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+theme.titlebar_bg_focus  = "#26233a" -- Titlebar for focused windows
+theme.titlebar_bg_normal = "#191724" -- Titlebar for normal windows
 -- }}}
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- [taglist|tasklist]_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- titlebar_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- Example:
---theme.taglist_bg_focus = "#CC9393"
+-- {{{ Taglist
+theme.taglist_bg_focus = "#9ccfd8" -- Background of active tags
+theme.taglist_fg_focus = "#191724" -- Foreground of active tags
+theme.taglist_bg_urgent = "#eb6f92" -- Background of urgent tags
+theme.taglist_fg_urgent = "#191724" -- Foreground of urgent tags
+theme.taglist_bg_empty = "#26233a" -- Background of empty tags
+theme.taglist_fg_empty = "#6e6a86" -- Foreground of empty tags
+-- }}}
+
+-- {{{ Tasklist
+theme.tasklist_bg_focus = "#26233a" -- Tasklist focus background
+theme.tasklist_fg_focus = "#e0def4" -- Tasklist focus foreground
 -- }}}
 
 -- {{{ Widgets
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
---theme.fg_widget        = "#AECF96"
---theme.fg_center_widget = "#88A175"
---theme.fg_end_widget    = "#FF5656"
---theme.bg_widget        = "#494B4F"
---theme.border_widget    = "#3F3F3F"
+theme.fg_widget        = "#c4a7e7"
+theme.fg_center_widget = "#9ccfd8"
+theme.fg_end_widget    = "#f6c177"
+theme.bg_widget        = "#26233a"
+theme.border_widget    = "#403d52"
+-- }}}
+
+-- {{{ Tooltips
+theme.tooltip_fg_color = "#e0def4"
+theme.tooltip_bg_color = "#26233a"
+theme.tooltip_border_color = "#31748f"
+theme.tooltip_border_width = dpi(1)
+theme.tooltip_opacity = 0.8
 -- }}}
 
 -- {{{ Mouse finder
-theme.mouse_finder_color = "#CC9393"
+theme.mouse_finder_color = "#eb6f92"
 -- mouse_finder_[timeout|animate_timeout|radius|factor]
 -- }}}
 
@@ -76,25 +85,6 @@ theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
 -- {{{ Misc
 theme.awesome_icon           = themes_path .. "zenburn/awesome-icon.png"
 theme.menu_submenu_icon      = themes_path .. "default/submenu.png"
--- }}}
-
--- {{{ Layout
-theme.layout_tile       = themes_path .. "zenburn/layouts/tile.png"
-theme.layout_tileleft   = themes_path .. "zenburn/layouts/tileleft.png"
-theme.layout_tilebottom = themes_path .. "zenburn/layouts/tilebottom.png"
-theme.layout_tiletop    = themes_path .. "zenburn/layouts/tiletop.png"
-theme.layout_fairv      = themes_path .. "zenburn/layouts/fairv.png"
-theme.layout_fairh      = themes_path .. "zenburn/layouts/fairh.png"
-theme.layout_spiral     = themes_path .. "zenburn/layouts/spiral.png"
-theme.layout_dwindle    = themes_path .. "zenburn/layouts/dwindle.png"
-theme.layout_max        = themes_path .. "zenburn/layouts/max.png"
-theme.layout_fullscreen = themes_path .. "zenburn/layouts/fullscreen.png"
-theme.layout_magnifier  = themes_path .. "zenburn/layouts/magnifier.png"
-theme.layout_floating   = themes_path .. "zenburn/layouts/floating.png"
-theme.layout_cornernw   = themes_path .. "zenburn/layouts/cornernw.png"
-theme.layout_cornerne   = themes_path .. "zenburn/layouts/cornerne.png"
-theme.layout_cornersw   = themes_path .. "zenburn/layouts/cornersw.png"
-theme.layout_cornerse   = themes_path .. "zenburn/layouts/cornerse.png"
 -- }}}
 
 -- {{{ Titlebar

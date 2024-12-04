@@ -154,6 +154,11 @@ in
 
     blueman.enable = true;
 
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
+
     xremap = {
       withX11 = true;
       userName = username;
