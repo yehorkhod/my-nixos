@@ -2,6 +2,7 @@
 
 let
   directory = ./.;
+  wallpapers-directory = ../../wallpapers;
 in
 {
   wayland.windowManager.hyprland = {
@@ -19,7 +20,7 @@ in
       exec-once = [
         "waybar"
         "dunst"
-        "swaybg -o \\* -i ${directory}/wallpapers/space.png -m fill"
+        "swaybg -o \\* -i ${wallpapers-directory}/space.png -m fill"
       ];
 
       general = {

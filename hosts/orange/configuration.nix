@@ -83,6 +83,9 @@ in
     # File management and archives
     zip unzip
 
+    # Videos
+    vlc obs-studio
+
     # Fancy stuff
     pinta neofetch
 
