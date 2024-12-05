@@ -19,6 +19,7 @@
     '';
 
     plugins = with pkgs.vimPlugins; [
+      vim-sleuth
       copilot-vim
       {
         plugin = rose-pine;

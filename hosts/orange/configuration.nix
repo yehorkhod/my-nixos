@@ -95,7 +95,7 @@ in
     ripgrep libnotify libgcc
 
     # X11
-    scrot xclip
+    xclip shotgun hacksaw
   ];
 
   users.extraGroups.docker.members = [ "yehorkhod" ];

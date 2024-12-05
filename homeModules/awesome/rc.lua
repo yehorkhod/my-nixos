@@ -278,7 +278,7 @@ globalkeys = gears.table.join(
         { modkey, "Shift" }, 
         "s", 
         function() 
-            awful.spawn.with_shell("scrot -s - | xclip -selection clipboard -t image/png")
+            awful.spawn.with_shell("shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png")
         end,
         { description = "take selection screenshot", group = "screenshot" }
     ),
@@ -286,7 +286,7 @@ globalkeys = gears.table.join(
         {}, 
         "Print", 
         function() 
-            awful.spawn.with_shell("scrot - | xclip -selection clipboard -t image/png")
+            awful.spawn.with_shell("shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png")
         end,
         { description = "take full screenshot", group = "screenshot" }
     ),
