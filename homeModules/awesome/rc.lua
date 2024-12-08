@@ -291,20 +291,19 @@ globalkeys = gears.table.join(
         { description = "take full screenshot", group = "screenshot" }
     ),
 
-    -- Move focus
+    -- Layout
     awful.key(
         { modkey, },
-        "Left", 
+        "h", 
         awful.tag.viewprev,
         { description = "view previous", group = "tag" }
     ),
     awful.key(
         { modkey, },
-        "Right",
+        "l",
         awful.tag.viewnext,
         { description = "view next", group = "tag" }
     ),
-
     awful.key(
         { modkey, },
         "j",
@@ -322,14 +321,6 @@ globalkeys = gears.table.join(
         { description = "focus previous by index", group = "client" }
     ),
     awful.key(
-        { modkey, },
-        "w",
-        function () mymainmenu:show() end,
-        { description = "show main menu", group = "awesome" }
-    ),
-
-    -- Layout manipulation
-    awful.key(
         { modkey, "Shift" },
         "j",
         function () awful.client.swap.byidx(1)    end,
@@ -340,17 +331,6 @@ globalkeys = gears.table.join(
         "k",
         function () awful.client.swap.byidx(-1)    end,
         { description = "swap with previous client by index", group = "client" }
-    ),
-    awful.key(
-        { modkey, },
-        "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        { description = "go back", group = "client" }
     ),
 
     -- Programs
@@ -378,6 +358,12 @@ globalkeys = gears.table.join(
         function () menubar.show() end,
         { description = "show the menubar", group = "launcher" }
     ),
+    awful.key(
+        { modkey, },
+        "r",
+        function () awful.screen.focused().mypromptbox:run() end,
+        { description = "run prompt", group = "launcher" }
+    ),
 
     awful.key(
         { modkey, "Control" },
@@ -390,31 +376,6 @@ globalkeys = gears.table.join(
         "q",
         awesome.quit,
         { description = "quit awesome", group = "awesome" }
-    ),
-
-    awful.key(
-        { modkey, },
-        "l",
-        function () awful.tag.incmwfact(0.05) end,
-        { description = "increase master width factor", group = "layout" }
-    ),
-    awful.key(
-        { modkey, },
-        "h",
-        function () awful.tag.incmwfact(-0.05) end,
-        { description = "decrease master width factor", group = "layout" }
-    ),
-    awful.key(
-        { modkey, "Shift" },
-        "h",
-        function () awful.tag.incnmaster(1, nil, true) end,
-        { description = "increase the number of master clients", group = "layout" }
-    ),
-    awful.key(
-        { modkey, "Shift" },
-        "l",
-        function () awful.tag.incnmaster(-1, nil, true) end,
-        { description = "decrease the number of master clients", group = "layout" }
     )
 )
 

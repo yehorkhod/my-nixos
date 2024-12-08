@@ -63,6 +63,7 @@ in
 
     # Browsers
     firefox
+    surf
     inputs.zen-browser.packages."${system}".default
 
     # Communication
