@@ -63,7 +63,9 @@ in
 
     # Browsers
     firefox
-    surf
+    (surf.overrideAttrs (old: {
+      patches = [ ../../patches/surf-bookmarks.diff ];
+    }))
     inputs.zen-browser.packages."${system}".default
 
     # Communication

@@ -8,6 +8,7 @@ in
     enable = true;
     bashrcExtra = ''
       eval "$(starship init bash)"
+      export MANPAGER='nvim +Man!'
     '';
     shellAliases = {
       "venv" = "source venv/bin/activate";
