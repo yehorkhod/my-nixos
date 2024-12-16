@@ -8,7 +8,7 @@ in
 {
   imports = [
     ../../hardware-configuration.nix
-    ../../nixosModules/nvidia.nix
+    ../../nixos-modules/nvidia.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -43,8 +43,8 @@ in
   hardware.bluetooth.powerOnBoot = true;
 
   programs = {
+    gnupg.agent.enable = true;
     neovim.enable = true;
-    firefox.enable = true;
     tmux.enable = true;
   };
 
@@ -62,11 +62,10 @@ in
     neovim helix jetbrains-toolbox
 
     # Browsers
-    firefox
+    inputs.zen-browser.packages."${system}".default
     (surf.overrideAttrs (old: {
       patches = [ ../../patches/surf-bookmarks.diff ];
     }))
-    inputs.zen-browser.packages."${system}".default
 
     # Communication
     telegram-desktop discord zoom-us
@@ -75,16 +74,13 @@ in
     btop
 
     # Version control and development
-    git conda
+    git conda docker-compose
 
     # Shell and terminal
-    starship kitty zoxide fzf tmux wget
+    starship kitty fzf tmux wget
 
     # Office
     libreoffice-qt
-
-    # File management and archives
-    zip unzip
 
     # Videos
     vlc obs-studio
@@ -92,13 +88,11 @@ in
     # Fancy stuff
     pinta neofetch
 
-    # System utils
-    brightnessctl
+    # Utils
+    brightnessctl zip unzip
     alsa-utils alsa-tools pamixer
     ripgrep libnotify libgcc
-
-    # X11
-    xclip shotgun hacksaw
+    xclip shotgun hacksaw pass
   ];
 
   users.extraGroups.docker.members = [ "yehorkhod" ];
@@ -108,10 +102,7 @@ in
       enable = true;
       setSocketVariable = true;
     };
-    daemon.settings = {
-      data-root = "/home/yehorkhod/docker-data";
-      userland-proxy = false;
-    };
+    daemon.settings.userland-proxy = false;
   };
 
   fonts.packages = with pkgs; [

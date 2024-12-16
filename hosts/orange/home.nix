@@ -5,14 +5,14 @@ let
 in
 {
   imports = [
-    ../../homeModules/git/git.nix
-    ../../homeModules/tmux/tmux.nix
-    ../../homeModules/bash/bash.nix
-    ../../homeModules/terminals/kitty.nix
-    ../../homeModules/starship/starship.nix
+    ../../home-modules/git/git.nix
+    ../../home-modules/tmux/tmux.nix
+    ../../home-modules/bash/bash.nix
+    ../../home-modules/terminals/kitty.nix
+    ../../home-modules/starship/starship.nix
 
-    ../../homeModules/editors/helix/helix.nix
-    ../../homeModules/editors/neovim/neovim.nix
+    ../../home-modules/editors/helix/helix.nix
+    ../../home-modules/editors/neovim/neovim.nix
   ];
 
   home.username = username;
@@ -35,7 +35,7 @@ in
 
   home.file = {
     ".config/awesome" = {
-      source = ../../homeModules/awesome;
+      source = ../../home-modules/awesome;
       recursive = true;
     };
   };

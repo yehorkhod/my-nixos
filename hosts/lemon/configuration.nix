@@ -8,7 +8,7 @@ in
 {
   imports = [
     ../../hardware-configuration.nix
-    ../../nixosModules/nvidia.nix
+    ../../nixos-modules/nvidia.nix
   ];
 
   boot.loader = {
@@ -205,7 +205,7 @@ in
       base0F = "524f67";
     };
 
-    image = ../homeModules/awesome/background.png;
+    image = ../home-modules/awesome/background.png;
   };
 
   system.stateVersion = "24.05";
