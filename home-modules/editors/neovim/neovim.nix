@@ -14,8 +14,7 @@
     vimdiffAlias = true;
 
     extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-      ${builtins.readFile ./remaps.lua}
+      ${builtins.readFile ./configs.lua}
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -75,6 +74,10 @@
       {
         plugin = harpoon;
         config = toLuaFile ./configs/harpoon.lua;
+      }
+      {
+        plugin = oil-nvim;
+        config = toLuaFile ./configs/oil.lua;
       }
       {
         plugin = vim-fugitive;

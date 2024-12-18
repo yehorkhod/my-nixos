@@ -2,6 +2,5 @@ vim.g.mapleader = ' '
 
 local trouble = require('trouble')
 
-vim.keymap.set('n', '<leader>T', function()
-  trouble.toggle()
-end)
+trouble.setup()
+vim.keymap.set('n', '<leader>T', ':Trouble diagnostics<CR>')
