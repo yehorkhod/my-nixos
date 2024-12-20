@@ -91,7 +91,7 @@ in
     # Utils
     brightnessctl zip unzip
     alsa-utils alsa-tools pamixer
-    ripgrep libnotify libgcc
+    ripgrep libnotify libgcc bc
     xclip shotgun hacksaw pass
   ];
 
