@@ -46,6 +46,13 @@ in
     gnupg.agent.enable = true;
     neovim.enable = true;
     tmux.enable = true;
+
+    # Games
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -57,44 +64,53 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    # Text editors
-    neovim helix jetbrains-toolbox
+  environment = {
+    systemPackages = with pkgs; [
+      # Text editors
+      neovim helix jetbrains-toolbox
 
-    # Browsers
-    inputs.zen-browser.packages."${system}".default
-    (surf.overrideAttrs (old: {
-      patches = [ ../../patches/surf-bookmarks.diff ];
-    }))
+      # Browsers
+      inputs.zen-browser.packages."${system}".default
+      (surf.overrideAttrs (old: {
+        patches = [ ../../patches/surf-bookmarks.diff ];
+      }))
 
-    # Communication
-    telegram-desktop discord zoom-us
+      # Communication
+      telegram-desktop discord zoom-us
 
-    # System monitoring and management
-    btop
+      # System monitoring and management
+      btop
 
-    # Version control and development
-    git conda docker-compose
+      # Version control and development
+      git conda docker-compose
 
-    # Shell and terminal
-    starship kitty fzf tmux wget
-    (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
+      # Shell and terminal
+      starship kitty fzf tmux wget
+      (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
 
-    # Office
-    libreoffice-qt
+      # Office
+      libreoffice-qt
 
-    # Videos
-    vlc obs-studio
+      # Videos
+      vlc obs-studio
 
-    # Fancy stuff
-    pinta neofetch
+      # Fancy stuff
+      pinta neofetch
 
-    # Utils
-    brightnessctl zip unzip
-    alsa-utils alsa-tools pamixer
-    ripgrep libnotify libgcc bc
-    xclip shotgun hacksaw pass
-  ];
+      # Utils
+      brightnessctl zip unzip
+      alsa-utils alsa-tools pamixer
+      ripgrep libnotify libgcc bc
+      xclip shotgun hacksaw pass
+
+      # Games
+      mangohud protonup
+    ];
+    sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
+    };
+  };
+
 
   users.extraGroups.docker.members = [ "yehorkhod" ];
   virtualisation.docker = {

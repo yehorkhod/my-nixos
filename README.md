@@ -6,3 +6,24 @@
 6. Install home-manager;
 7. Run: `home-manager switch --flake ./System/`;
 8. You're good to go!
+
+# Games
+After installing OS, run `protonup`.
+
+If game has problems with resolution, screen size, upscaling, etc, run:
+
+```bash
+gamesscope ...
+```
+
+To monitor stuff, run:
+
+```bash
+mangohud ...
+```
+
+To improve performance, run:
+
+```bash
+gamemoderun ...
+```
