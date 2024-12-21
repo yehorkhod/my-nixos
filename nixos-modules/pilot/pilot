@@ -32,15 +32,34 @@ select_directory() {
     exit 1
   fi
 
-  selected_dir=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a destination: " --height=10 --border --reverse)
+  selected_directory=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a destination: " --height=10 --border --reverse)
 
-  if [ -n "$selected_dir" ]; then
-    session_name=$(basename "$selected_dir")
+  if [ -n "$selected_directory" ]; then
+    session_name=$(basename "$selected_directory")
 
-    cd "$selected_dir" || exit
+    cd "$selected_directory" || exit
     tmux new-session -s "$session_name"
 
-    echo "Started a tmux session in $selected_dir."
+    echo "Started a tmux session in $selected_directory."
+  else
+    echo "No directory selected. Exiting."
+  fi
+}
+
+remove_directory_from_destinations() {
+  # Read directories from destinations file
+  if [ ! -s "$DESTINATIONS_FILE" ]; then
+    echo "No destinations to remove. Add directories first with \`pilot add <path>\`."
+    exit 1
+  fi
+
+  # Use fzf to select a directory to remove
+  directory_to_remove=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a directory to remove: " --height=10 --border --reverse)
+
+  if [ -n "$directory_to_remove" ]; then
+    # Remove the selected directory from the destinations file
+    sed -i "\|$directory_to_remove|d" "$DESTINATIONS_FILE"
+    echo "Removed directory: $directory_to_remove"
   else
     echo "No directory selected. Exiting."
   fi
@@ -56,7 +75,10 @@ case "$1" in
   add)
     add_directory_to_destinations "$2"
     ;;
+  rm)
+    remove_directory_from_destinations
+    ;;
   *)
-    echo "Invalid command. Use 'pilot' to start a session or 'pilot add <path>' to add a directory."
+    echo "Invalid command. Use 'pilot' to start a session, 'pilot add <path>' to add a directory, or 'pilot rm' to remove a directory."
     ;;
 esac
