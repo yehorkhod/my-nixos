@@ -1,0 +1,62 @@
+# --------------------------------
+# ------------ Paths -------------
+# --------------------------------
+CONFIG_DIRECTORY="$HOME/.config/.pilot"
+DESTINATIONS_FILE="$CONFIG_DIRECTORY/destinations.txt"
+
+# Ensure config directory and destinations file exist
+mkdir -p "$CONFIG_DIRECTORY"
+touch "$DESTINATIONS_FILE"
+
+# --------------------------------
+# ---------- Functions -----------
+# --------------------------------
+add_directory_to_destinations() {
+  local dir_to_add="$1"
+  # Convert to absolute path
+  dir_to_add=$(realpath "$dir_to_add")
+
+  # Check if directory is already in the destinations file
+  if grep -Fxq "$dir_to_add" "$DESTINATIONS_FILE"; then
+    echo "Already there!"
+  else
+    echo "$dir_to_add" >> "$DESTINATIONS_FILE"
+    echo "Added directory: $dir_to_add"
+  fi
+}
+
+select_directory() {
+  # Read directories from destinations file
+  if [ ! -s "$DESTINATIONS_FILE" ]; then
+    echo "No destinations found. Add directories first with \`pilot add <path>\`."
+    exit 1
+  fi
+
+  selected_dir=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a destination: " --height=10 --border --reverse)
+
+  if [ -n "$selected_dir" ]; then
+    session_name=$(basename "$selected_dir")
+
+    cd "$selected_dir" || exit
+    tmux new-session -s "$session_name"
+
+    echo "Started a tmux session in $selected_dir."
+  else
+    echo "No directory selected. Exiting."
+  fi
+}
+
+# --------------------------------
+# ------------ Main --------------
+# --------------------------------
+case "$1" in
+  "")
+    select_directory
+    ;;
+  add)
+    add_directory_to_destinations "$2"
+    ;;
+  *)
+    echo "Invalid command. Use 'pilot' to start a session or 'pilot add <path>' to add a directory."
+    ;;
+esac

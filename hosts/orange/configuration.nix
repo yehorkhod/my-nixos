@@ -78,6 +78,7 @@ in
 
     # Shell and terminal
     starship kitty fzf tmux wget
+    (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
 
     # Office
     libreoffice-qt
