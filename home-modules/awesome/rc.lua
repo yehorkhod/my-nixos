@@ -20,9 +20,11 @@ require("awful.hotkeys_popup.keys")
 
 -------------------------------- ERROR HANDLING --------------------------------
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+    naughty.notify({
+        preset = naughty.config.presets.critical,
+        title = "Oops, there were errors during startup!",
+        text = awesome.startup_errors
+    })
 end
 
 do
@@ -32,9 +34,11 @@ do
         if in_error then return end
         in_error = true
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
+        naughty.notify({
+            preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = tostring(err)
+        })
         in_error = false
     end)
 end
@@ -111,43 +115,43 @@ mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey, }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey, }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+    awful.button({ }, 1, function(t) t:view_only() end),
+    awful.button({ modkey, }, 1, function(t)
+        if client.focus then
+            client.focus:move_to_tag(t)
+        end
+    end),
+    awful.button({ }, 3, awful.tag.viewtoggle),
+    awful.button({ modkey, }, 3, function(t)
+        if client.focus then
+            client.focus:toggle_tag(t)
+        end
+    end),
+    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
+awful.button({ }, 1, function (c)
+    if c == client.focus then
+        c.minimized = true
+    else
+        c:emit_signal(
+            "request::activate",
+            "tasklist",
+            {raise = true}
+        )
+    end
+end),
+awful.button({ }, 3, function()
+    awful.menu.client_list({ theme = { width = 250 } })
+end),
+awful.button({ }, 4, function ()
+    awful.client.focus.byidx(1)
+end),
+awful.button({ }, 5, function ()
+    awful.client.focus.byidx(-1)
+end))
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -204,7 +208,6 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             battery_widget,
             mykeyboardlayout,
-            wibox.widget.systray(),
             mytextclock,
         },
     }
@@ -468,48 +471,54 @@ root.keys(globalkeys)
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
-     }
+    {
+        rule = { },
+        properties = {
+            border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
+            focus = awful.client.focus.filter,
+            raise = true,
+            keys = clientkeys,
+            buttons = clientbuttons,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+         }
     },
 
     -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
+    {
+        rule_any = {
+            instance = {
+                "DTA",  -- Firefox addon DownThemAll.
+                "copyq",  -- Includes session name in class.
+                "pinentry",
+            },
+            class = {
+                "Arandr",
+                "Blueman-manager",
+                "Gpick",
+                "Kruler",
+                "MessageWin",  -- kalarm.
+                "Sxiv",
+                "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+                "Wpa_gui",
+                "veromix",
+                "xtightvncviewer"
+            },
 
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-          "Event Tester",  -- xev.
+            -- Note that the name property shown in xprop might be set slightly after creation of the client
+            -- and the name shown there might not match defined rules here.
+            name = {
+                "Event Tester",  -- xev.
+            },
+            role = {
+                "AlarmWindow",  -- Thunderbird's calendar.
+                "ConfigManager",  -- Thunderbird's about:config.
+                "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+            }
         },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
+        properties = { floating = true }
+    },
 }
 
 -------------------------------- SYGNALS  --------------------------------
