@@ -29,3 +29,13 @@ vim.opt.updatetime = 60
 vim.opt.scrolloff = 12
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
+
+-- Treat extentionless files as bash scripts
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*",
+    callback = function()
+        if vim.fn.expand("%:e") == "" then
+            vim.bo.filetype = "sh"
+        end
+    end,
+})
