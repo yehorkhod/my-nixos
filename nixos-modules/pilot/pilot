@@ -39,8 +39,6 @@ select_directory() {
 
     cd "$selected_directory" || exit
     tmux new-session -s "$session_name"
-
-    echo "Started a tmux session in $selected_directory."
   else
     echo "No directory selected. Exiting."
   fi
