@@ -39,9 +39,6 @@ in
     };
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   programs = {
     gnupg.agent.enable = true;
     neovim.enable = true;
@@ -192,6 +189,11 @@ in
   hardware = {
     pulseaudio.enable = false;
     graphics.enable = true;
+
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   security.rtkit.enable = true;

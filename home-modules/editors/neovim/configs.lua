@@ -17,25 +17,22 @@ vim.keymap.set('n', '<C-m>k', '<C-W>k')
 vim.keymap.set('n', '<C-m>l', '<C-W>l')
 
 -- Options
+vim.opt.guicursor = ''
+vim.opt.termguicolors = true
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.smartindent = true
 
-vim.opt.termguicolors = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+vim.opt.undodir = os.getenv('HOME') .. '/.undodir'
+vim.opt.undofile = true
 
 vim.opt.updatetime = 60
 
 vim.opt.scrolloff = 12
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
-
--- Treat extentionless files as bash scripts
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-    pattern = "*",
-    callback = function()
-        if vim.fn.expand("%:e") == "" then
-            vim.bo.filetype = "sh"
-        end
-    end,
-})
