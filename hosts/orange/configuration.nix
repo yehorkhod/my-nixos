@@ -99,6 +99,7 @@ in
       alsa-utils alsa-tools pamixer
       ripgrep libnotify libgcc bc
       xclip shotgun hacksaw pass
+      pavucontrol
 
       # Games
       mangohud protonup
