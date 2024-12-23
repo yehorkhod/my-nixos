@@ -75,31 +75,21 @@ in
       # Communication
       telegram-desktop discord zoom-us
 
-      # System monitoring and management
-      btop
-
-      # Version control and development
+      # Work
       git conda docker-compose
-
-      # Shell and terminal
-      starship kitty fzf tmux wget
+      kitty tmux btop
       (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
 
-      # Office
-      libreoffice-qt
-
-      # Videos
-      vlc obs-studio
-
-      # Fancy stuff
-      pinta neofetch
+      # Apps
+      libreoffice-qt pavucontrol
+      vlc obs-studio pinta slides
 
       # Utils
       brightnessctl zip unzip
       alsa-utils alsa-tools pamixer
       ripgrep libnotify libgcc bc
       xclip shotgun hacksaw pass
-      pavucontrol
+      wget starship fzf neofetch
 
       # Games
       mangohud protonup
@@ -108,7 +98,6 @@ in
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
     };
   };
-
 
   users.extraGroups.docker.members = [ "yehorkhod" ];
   virtualisation.docker = {
