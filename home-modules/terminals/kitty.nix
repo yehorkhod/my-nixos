@@ -8,6 +8,8 @@
       size = 14;
     };
     extraConfig = ''
+      enable_audio_bell no
+
       background_opacity 0.95
 
       foreground               #e0def4
