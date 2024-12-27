@@ -6,7 +6,7 @@
     userName = "yehorkhod";
     userEmail = "e.khodysko@gmail.com";
     aliases = {
-      tree = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
+      tree = "log --graph --abbrev-commit --decorate --format=format:'%C(#9ccfd8)%h%C(reset) - %C(#c4a7e7)%aD%C(reset) %C(#31748f)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(#e0def4)%s%C(reset) %C(#6e6a86)- %an%C(reset)'";
     };
     extraConfig = {
       credential = {
@@ -17,6 +17,12 @@
       };
       rerere = {
         enabled = true;
+      };
+      push = {
+        autoSetupRemote = true;
+      };
+      pull = {
+        rebase = "false";
       };
     };
   };
