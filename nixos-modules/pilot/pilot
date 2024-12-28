@@ -18,7 +18,7 @@ check_destinations_file() {
   fi
 }
 
-select_dir() {
+fuzzy_find_directory() {
   local message="$1"
 
   cat "$DESTINATIONS_FILE" | fzf \
@@ -44,7 +44,7 @@ connect_to_session() {
 select_destination() {
   check_destinations_file
   local selected_directory=$(
-    select_dir "Choose a destination: "
+    fuzzy_find_directory "Choose a destination: "
   )
 
   if [ -n "$selected_directory" ]; then
@@ -81,7 +81,7 @@ add_destination() {
 remove_destination() {
   check_destinations_file
   local directory_to_remove=$(
-    select_dir "Choose a directory to remove: "
+    fuzzy_find_directory "Choose a directory to remove: "
   )
 
   if [ -n "$directory_to_remove" ]; then
