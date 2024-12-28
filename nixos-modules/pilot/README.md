@@ -28,6 +28,6 @@ pilot rm
 - [x] Implement the `pilot add` command
 - [x] Implement the `pilot rm` command
 - [ ] Make the `pilot` command work in tmux session
-- [ ] Implement `pilot list` command
-- [ ] Implement `pilot --help` command
+- [x] Implement `pilot list` command
+- [x] Implement `pilot --help` command
 

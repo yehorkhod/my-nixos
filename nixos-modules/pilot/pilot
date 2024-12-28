@@ -35,7 +35,12 @@ check_destinations_file() {
 
 select_dir() {
   local message="$1"
-  cat "$DESTINATIONS_FILE" | fzf --prompt="$message" --height=10 --border --reverse
+
+  cat "$DESTINATIONS_FILE" | fzf \
+    --prompt="$message" \
+    --height=10 \
+    --border \
+    --reverse
 }
 
 # ----------------------------------------------------------------
@@ -86,6 +91,11 @@ remove_directory_from_destinations() {
   fi
 }
 
+list_destinations() {
+  check_destinations_file
+  cat "$DESTINATIONS_FILE" | nl -w2 -s': '
+}
+
 # ----------------------------------------------------------------
 # ----------------------------- Main -----------------------------
 # ----------------------------------------------------------------
@@ -100,6 +110,10 @@ case "$1" in
 
   rm)
     remove_directory_from_destinations
+    ;;
+
+  list)
+    list_destinations
     ;;
 
   --help)
