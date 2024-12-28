@@ -9,7 +9,7 @@ mkdir -p "$CONFIG_DIRECTORY"
 touch "$DESTINATIONS_FILE"
 
 # ----------------------------------------------------------------
-# ---------------------------- Info ------------------------------
+# ----------------------------- Info -----------------------------
 # ----------------------------------------------------------------
 show_help() {
   echo "Usage:"
@@ -21,6 +21,21 @@ show_help() {
 invalid_command() {
   echo "Invalid command. See 'pilot --help' for usage."
   exit 1
+}
+
+# ----------------------------------------------------------------
+# ---------------------------- Utils -----------------------------
+# ----------------------------------------------------------------
+check_destinations_file() {
+  if [ ! -s "$DESTINATIONS_FILE" ]; then
+    echo "No destinations found. Add directories first with 'pilot add <path>'."
+    exit 1
+  fi
+}
+
+select_dir() {
+  local message="$1"
+  cat "$DESTINATIONS_FILE" | fzf --prompt="$message" --height=10 --border --reverse
 }
 
 # ----------------------------------------------------------------
@@ -41,18 +56,9 @@ add_directory_to_destinations() {
 }
 
 select_directory() {
-  # Read directories from destinations file
-  if [ ! -s "$DESTINATIONS_FILE" ]; then
-    echo "No destinations found. See 'pilot --help' for usage."
-    exit 1
-  fi
-
+  check_destinations_file
   selected_directory=$(
-    cat "$DESTINATIONS_FILE" | fzf \
-      --prompt="Choose a destination: " \
-      --height=10 \
-      --border \
-      --reverse
+    select_dir "Choose a destination: "
   )
 
   if [ -n "$selected_directory" ]; then
@@ -66,19 +72,9 @@ select_directory() {
 }
 
 remove_directory_from_destinations() {
-  # Read directories from destinations file
-  if [ ! -s "$DESTINATIONS_FILE" ]; then
-    echo "No destinations found. See 'pilot --help' for usage."
-    exit 1
-  fi
-
-  # Use fzf to select a directory to remove
+  check_destinations_file
   directory_to_remove=$(
-    cat "$DESTINATIONS_FILE" | fzf \
-      --prompt="Choose a directory to remove: " \
-      --height=10 \
-      --border \
-      --reverse
+    select_dir "Choose a directory to remove: "
   )
 
   if [ -n "$directory_to_remove" ]; then
@@ -91,7 +87,7 @@ remove_directory_from_destinations() {
 }
 
 # ----------------------------------------------------------------
-# ---------------------------- Main ------------------------------
+# ----------------------------- Main -----------------------------
 # ----------------------------------------------------------------
 case "$1" in
   "")
