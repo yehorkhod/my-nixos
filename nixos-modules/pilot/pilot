@@ -9,22 +9,6 @@ mkdir -p "$CONFIG_DIRECTORY"
 touch "$DESTINATIONS_FILE"
 
 # ----------------------------------------------------------------
-# ----------------------------- Info -----------------------------
-# ----------------------------------------------------------------
-show_help() {
-  echo "Usage:"
-  echo "  pilot:             Start a session in a directory"
-  echo "  pilot add <path>:  Add a directory to the list of destinations"
-  echo "  pilot rm:          Remove a directory from the list of destinations"
-  echo "  pilot list:        List all destinations"
-}
-
-invalid_command() {
-  echo "Invalid command. See 'pilot --help' for usage."
-  exit 1
-}
-
-# ----------------------------------------------------------------
 # ---------------------------- Utils -----------------------------
 # ----------------------------------------------------------------
 check_destinations_file() {
@@ -57,7 +41,7 @@ connect_to_session() {
 # ----------------------------------------------------------------
 # -------------------------- Functions ---------------------------
 # ----------------------------------------------------------------
-select_directory() {
+select_destination() {
   check_destinations_file
   local selected_directory=$(
     select_dir "Choose a destination: "
@@ -82,21 +66,19 @@ select_directory() {
   fi
 }
 
-add_directory_to_destinations() {
-  local dir_to_add="$1"
-  # Convert to absolute path
-  local dir_to_add=$(realpath "$dir_to_add")
+add_destination() {
+  local directory_to_add=$(realpath "$1")
 
   # Check if directory is already in the destinations file
-  if grep -Fxq "$dir_to_add" "$DESTINATIONS_FILE"; then
+  if grep -Fxq "$directory_to_add" "$DESTINATIONS_FILE"; then
     echo "Already there!"
   else
-    echo "$dir_to_add" >> "$DESTINATIONS_FILE"
-    echo "Added directory: $dir_to_add"
+    echo "$directory_to_add" >> "$DESTINATIONS_FILE"
+    echo "Added directory: $directory_to_add"
   fi
 }
 
-remove_directory_from_destinations() {
+remove_destination() {
   check_destinations_file
   local directory_to_remove=$(
     select_dir "Choose a directory to remove: "
@@ -116,31 +98,27 @@ list_destinations() {
   cat "$DESTINATIONS_FILE" | nl -w2 -s': '
 }
 
+show_help() {
+  echo "Usage:"
+  echo "  pilot:             Start a session in a directory"
+  echo "  pilot add <path>:  Add a directory to the list of destinations"
+  echo "  pilot rm:          Remove a directory from the list of destinations"
+  echo "  pilot list:        List all destinations"
+}
+
+invalid_command() {
+  echo "Invalid command. See 'pilot --help' for usage."
+  exit 1
+}
+
 # ----------------------------------------------------------------
 # ----------------------------- Main -----------------------------
 # ----------------------------------------------------------------
 case "$1" in
-  "")
-    select_directory
-    ;;
-
-  add)
-    add_directory_to_destinations "$2"
-    ;;
-
-  rm)
-    remove_directory_from_destinations
-    ;;
-
-  list)
-    list_destinations
-    ;;
-
-  --help)
-    show_help
-    ;;
-
-  *)
-    invalid_command
-    ;;
+  "")      select_destination    ;;
+  add)     add_destination "$2"  ;;
+  rm)      remove_destination    ;;
+  list)    list_destinations     ;;
+  --help)  show_help             ;;
+  *)       invalid_command       ;;
 esac
