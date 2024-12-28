@@ -9,6 +9,21 @@ mkdir -p "$CONFIG_DIRECTORY"
 touch "$DESTINATIONS_FILE"
 
 # ----------------------------------------------------------------
+# ---------------------------- Info ------------------------------
+# ----------------------------------------------------------------
+show_help() {
+  echo "Usage:"
+  echo "  pilot: Start a session in a directory"
+  echo "  pilot add <path>: Add a directory to the list of destinations"
+  echo "  pilot rm: Remove a directory from the list of destinations"
+}
+
+invalid_command() {
+  echo "Invalid command. See 'pilot --help' for usage."
+  exit 1
+}
+
+# ----------------------------------------------------------------
 # -------------------------- Functions ---------------------------
 # ----------------------------------------------------------------
 add_directory_to_destinations() {
@@ -28,11 +43,17 @@ add_directory_to_destinations() {
 select_directory() {
   # Read directories from destinations file
   if [ ! -s "$DESTINATIONS_FILE" ]; then
-    echo "No destinations found. Add directories first with \`pilot add <path>\`."
+    echo "No destinations found. See 'pilot --help' for usage."
     exit 1
   fi
 
-  selected_directory=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a destination: " --height=10 --border --reverse)
+  selected_directory=$(
+    cat "$DESTINATIONS_FILE" | fzf \
+      --prompt="Choose a destination: " \
+      --height=10 \
+      --border \
+      --reverse
+  )
 
   if [ -n "$selected_directory" ]; then
     session_name=$(basename "$selected_directory")
@@ -47,12 +68,18 @@ select_directory() {
 remove_directory_from_destinations() {
   # Read directories from destinations file
   if [ ! -s "$DESTINATIONS_FILE" ]; then
-    echo "No destinations to remove. Add directories first with \`pilot add <path>\`."
+    echo "No destinations found. See 'pilot --help' for usage."
     exit 1
   fi
 
   # Use fzf to select a directory to remove
-  directory_to_remove=$(cat "$DESTINATIONS_FILE" | fzf --prompt="Choose a directory to remove: " --height=10 --border --reverse)
+  directory_to_remove=$(
+    cat "$DESTINATIONS_FILE" | fzf \
+      --prompt="Choose a directory to remove: " \
+      --height=10 \
+      --border \
+      --reverse
+  )
 
   if [ -n "$directory_to_remove" ]; then
     # Remove the selected directory from the destinations file
@@ -70,13 +97,20 @@ case "$1" in
   "")
     select_directory
     ;;
+
   add)
     add_directory_to_destinations "$2"
     ;;
+
   rm)
     remove_directory_from_destinations
     ;;
+
+  --help)
+    show_help
+    ;;
+
   *)
-    echo "Invalid command. Use 'pilot' to start a session, 'pilot add <path>' to add a directory, or 'pilot rm' to remove a directory."
+    invalid_command
     ;;
 esac
