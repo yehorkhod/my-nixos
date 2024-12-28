@@ -47,6 +47,31 @@ select_dir() {
 # ----------------------------------------------------------------
 # -------------------------- Functions ---------------------------
 # ----------------------------------------------------------------
+select_directory() {
+  check_destinations_file
+  selected_directory=$(
+    select_dir "Choose a destination: "
+  )
+
+  if [ -n "$selected_directory" ]; then
+    session_name=$(basename "$selected_directory")
+
+    tmux new-session \
+      -d \
+      -s "$session_name" \
+      -c "$selected_directory"
+
+    if [ -n "$TMUX" ]; then
+      tmux switch-client -t "$session_name"
+    else
+      tmux attach-session -t "$session_name"
+    fi
+
+  else
+    echo "No directory selected. Exiting."
+  fi
+}
+
 add_directory_to_destinations() {
   local dir_to_add="$1"
   # Convert to absolute path
@@ -58,22 +83,6 @@ add_directory_to_destinations() {
   else
     echo "$dir_to_add" >> "$DESTINATIONS_FILE"
     echo "Added directory: $dir_to_add"
-  fi
-}
-
-select_directory() {
-  check_destinations_file
-  selected_directory=$(
-    select_dir "Choose a destination: "
-  )
-
-  if [ -n "$selected_directory" ]; then
-    session_name=$(basename "$selected_directory")
-
-    cd "$selected_directory" || exit
-    tmux new-session -s "$session_name"
-  else
-    echo "No directory selected. Exiting."
   fi
 }
 

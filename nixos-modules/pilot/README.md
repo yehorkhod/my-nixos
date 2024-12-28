@@ -27,7 +27,7 @@ pilot rm
 - [x] Implement the `pilot` command
 - [x] Implement the `pilot add` command
 - [x] Implement the `pilot rm` command
-- [ ] Make the `pilot` command work in tmux session
+- [x] Make the `pilot` command work in tmux session
 - [x] Implement `pilot list` command
 - [x] Implement `pilot --help` command
-
+- [ ] Implement check whether there is already a tmux session running, if so, attach to it
