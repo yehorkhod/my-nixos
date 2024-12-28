@@ -13,9 +13,10 @@ touch "$DESTINATIONS_FILE"
 # ----------------------------------------------------------------
 show_help() {
   echo "Usage:"
-  echo "  pilot: Start a session in a directory"
-  echo "  pilot add <path>: Add a directory to the list of destinations"
-  echo "  pilot rm: Remove a directory from the list of destinations"
+  echo "  pilot:             Start a session in a directory"
+  echo "  pilot add <path>:  Add a directory to the list of destinations"
+  echo "  pilot rm:          Remove a directory from the list of destinations"
+  echo "  pilot list:        List all destinations"
 }
 
 invalid_command() {
