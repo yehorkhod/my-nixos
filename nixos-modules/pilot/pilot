@@ -44,27 +44,37 @@ select_dir() {
     --reverse
 }
 
+connect_to_session() {
+  local session_name="$1"
+
+  if [ -n "$TMUX" ]; then
+    tmux switch-client -t "$session_name"
+  else
+    tmux attach-session -t "$session_name"
+  fi
+}
+
 # ----------------------------------------------------------------
 # -------------------------- Functions ---------------------------
 # ----------------------------------------------------------------
 select_directory() {
   check_destinations_file
-  selected_directory=$(
+  local selected_directory=$(
     select_dir "Choose a destination: "
   )
 
   if [ -n "$selected_directory" ]; then
-    session_name=$(basename "$selected_directory")
+    local session_name=$(basename "$selected_directory")
 
-    tmux new-session \
-      -d \
-      -s "$session_name" \
-      -c "$selected_directory"
-
-    if [ -n "$TMUX" ]; then
-      tmux switch-client -t "$session_name"
+    if tmux list-sessions | grep -q "^$session_name:"; then
+      connect_to_session "$session_name"
     else
-      tmux attach-session -t "$session_name"
+      tmux new-session \
+        -d \
+        -s "$session_name" \
+        -c "$selected_directory"
+
+      connect_to_session "$session_name"
     fi
 
   else
@@ -75,7 +85,7 @@ select_directory() {
 add_directory_to_destinations() {
   local dir_to_add="$1"
   # Convert to absolute path
-  dir_to_add=$(realpath "$dir_to_add")
+  local dir_to_add=$(realpath "$dir_to_add")
 
   # Check if directory is already in the destinations file
   if grep -Fxq "$dir_to_add" "$DESTINATIONS_FILE"; then
@@ -88,7 +98,7 @@ add_directory_to_destinations() {
 
 remove_directory_from_destinations() {
   check_destinations_file
-  directory_to_remove=$(
+  local directory_to_remove=$(
     select_dir "Choose a directory to remove: "
   )
 
