@@ -323,6 +323,7 @@ globalkeys = gears.table.join(
         end,
         { description = "focus previous by index", group = "client" }
     ),
+
     awful.key(
         { modkey, "Shift" },
         "j",
@@ -368,6 +369,7 @@ globalkeys = gears.table.join(
         { description = "run prompt", group = "launcher" }
     ),
 
+    -- Awesome
     awful.key(
         { modkey, "Control" },
         "r",
