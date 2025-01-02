@@ -67,10 +67,8 @@ in
       neovim helix jetbrains-toolbox
 
       # Browsers
+      qutebrowser
       inputs.zen-browser.packages."${system}".default
-      (surf.overrideAttrs (old: {
-        patches = [ ../../patches/surf-bookmarks.diff ];
-      }))
 
       # Communication
       telegram-desktop discord zoom-us
