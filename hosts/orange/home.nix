@@ -38,6 +38,10 @@ in
       source = ../../home-modules/awesome;
       recursive = true;
     };
+    ".config/qutebrowser" = {
+      source = ../../home-modules/qutebrowser;
+      recursive = true;
+    };
   };
 
   home.stateVersion = "24.05";

@@ -48,7 +48,7 @@ beautiful.init("/home/yehorkhod/.config/awesome/theme.lua")
 
 terminal = "kitty"
 editor = "nvim"
-browser = "zen"
+browser = "qutebrowser"
 messanger = "telegram-desktop"
 editor_cmd = terminal .. " -e " .. editor
 
