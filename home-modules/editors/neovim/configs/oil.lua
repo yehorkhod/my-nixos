@@ -1,7 +1,3 @@
-require("oil").setup({
-  keymaps = {
-    ["cm"] = { "actions.select", mode = "n" },
-  }
-})
+require("oil").setup()
 
 vim.keymap.set('n', 'mc', ':Oil<CR>')
