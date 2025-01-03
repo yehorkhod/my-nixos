@@ -87,6 +87,10 @@
         plugin = gitsigns-nvim;
         config = toLuaFile ./configs/gitsigns.lua;
       }
+      {
+        plugin = iron-nvim;
+        config = toLuaFile ./configs/iron.lua;
+      }
       nvim-web-devicons
       plenary-nvim
       nui-nvim
