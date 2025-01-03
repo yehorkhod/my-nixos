@@ -68,7 +68,6 @@ in
 
       # Browsers
       qutebrowser
-      inputs.zen-browser.packages."${system}".default
 
       # Communication
       telegram-desktop discord zoom-us

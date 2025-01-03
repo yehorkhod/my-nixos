@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, username, hostname, ... }:
+{ config, pkgs, username, hostname, ... }:
 
 let
   userDescription = "My configuration";
@@ -67,7 +67,6 @@ in
 
     # Browsers
     firefox
-    inputs.zen-browser.packages."${system}".default
 
     # Communication
     telegram-desktop discord zoom-us
