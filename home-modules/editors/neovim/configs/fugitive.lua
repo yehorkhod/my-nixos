@@ -1,5 +1,4 @@
-vim.g.mapleader = ' '
-
-vim.keymap.set('n', '<leader>gg', vim.cmd.Git)
-vim.keymap.set('n', '<leader>gc', ':Git commit -m ""<Left>')
-vim.keymap.set('n', '<leader>gp', ':Git push<CR>')
+-- Keymaps
+vim.keymap.set('n', '<Space>gg', vim.cmd.Git)
+vim.keymap.set('n', '<Space>gc', ':Git commit -m ""<Left>')
+vim.keymap.set('n', '<Space>gp', ':Git push<CR>')

@@ -1,4 +1,7 @@
-require("cloak").setup({
+local cloak = require("cloak")
+
+-- Setup
+cloak.setup({
   enabled = true,
   cloak_character = "*",
   highlight_group = "Comment",

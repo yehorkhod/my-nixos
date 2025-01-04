@@ -1,3 +1,2 @@
-vim.g.mapleader = ' '
-
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+-- Keymaps
+vim.keymap.set('n', '<Space>u', vim.cmd.UndotreeToggle)

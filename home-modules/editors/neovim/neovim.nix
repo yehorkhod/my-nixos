@@ -19,7 +19,10 @@
 
     plugins = with pkgs.vimPlugins; [
       vim-sleuth
-      copilot-vim
+      {
+        plugin = copilot-vim;
+        config = toLua "vim.g.copilot_filetypes = { ['*'] = false, python = true, }";
+      }
       {
         plugin = rose-pine;
         config = toLuaFile ./configs/rose-pine.lua;

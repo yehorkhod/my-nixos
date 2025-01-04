@@ -1,6 +1,8 @@
-vim.g.mapleader = ' '
-
 local gitsigns = require('gitsigns')
+
+-- Setup
 gitsigns.setup()
-vim.keymap.set('n', '<leader>gd', gitsigns.diffthis)
-vim.keymap.set('n', '<leader>gb', gitsigns.blame_line)
+
+-- Keymaps
+vim.keymap.set('n', '<Space>gd', gitsigns.diffthis)
+vim.keymap.set('n', '<Space>gb', gitsigns.blame_line)

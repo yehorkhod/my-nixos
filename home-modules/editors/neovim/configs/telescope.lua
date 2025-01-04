@@ -1,8 +1,10 @@
-vim.g.mapleader = ' '
-
-require('telescope').setup({})
-
+local telescope = require('telescope')
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files)
-vim.keymap.set('n', '<leader>fl', builtin.live_grep)
-vim.keymap.set('n', '<leader>fg', builtin.git_files)
+
+-- Setup
+telescope.setup()
+
+-- Keymaps
+vim.keymap.set('n', '<Space>ff', builtin.find_files)
+vim.keymap.set('n', '<Space>fl', builtin.live_grep)
+vim.keymap.set('n', '<Space>fg', builtin.git_files)

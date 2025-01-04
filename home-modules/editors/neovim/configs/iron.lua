@@ -1,9 +1,8 @@
-vim.g.mapleader = ' '
-
 local view = require("iron.view")
 local iron = require("iron.core")
+local file_types_common = require("iron.fts.common")
 
----------------- Setup -----------------
+-- Setup
 iron.setup({
   config = {
     scratch_repl = true,
@@ -11,25 +10,25 @@ iron.setup({
       sh = { command = {"bash"} },
       python = {
         command = { "ipython", "--no-autoindent", "-i", },
-        format = require("iron.fts.common").bracketed_paste_python
+        format = file_types_common.bracketed_paste_python
       }
     },
     repl_open_cmd = view.split.vertical.botright(0.5),
   },
   keymaps = {
-    visual_send = "<leader>is",  -- iron send
-    send_file = "<leader>if",  -- iron file
-    send_line = "<leader>il",  -- iron line
-    send_until_cursor = "<leader>iu",  -- iron until cursor
-    cr = "<leader>i<CR>",  -- iron cr
-    interrupt = "<leader>ii",  -- iron interrupt
-    clear = "<leader>ic",  -- iron clear
+    visual_send = "<Space>is",  -- iron send
+    send_file = "<Space>if",  -- iron file
+    send_line = "<Space>il",  -- iron line
+    send_until_cursor = "<Space>iu",  -- iron until cursor
+    cr = "<Space>i<CR>",  -- iron cr
+    interrupt = "<Space>ii",  -- iron interrupt
+    clear = "<Space>ic",  -- iron clear
   },
   highlight = { italic = true },
   ignore_blank_lines = true,
 })
 
--------------- Functions ---------------
+-- Functions
 local repl_initialized = {}
 
 local iron_start = function()
@@ -52,8 +51,8 @@ local iron_restart = function()
   repl_initialized[file_type] = true
 end
 
---------------- Keymaps ----------------
-vim.keymap.set('n', '<leader>iS', iron_start)  -- iron Start
-vim.keymap.set('n', '<leader>iR', iron_restart)  -- iron Restart
-vim.keymap.set('n', '<leader>iF', ':IronFocus<CR>')  -- iron Focus
-vim.keymap.set('n', '<leader>iH', ':IronHide<CR>')  -- iron Hide
+-- Keymaps
+vim.keymap.set('n', '<Space>iS', iron_start)  -- iron Start
+vim.keymap.set('n', '<Space>iR', iron_restart)  -- iron Restart
+vim.keymap.set('n', '<Space>iF', ':IronFocus<CR>')  -- iron Focus
+vim.keymap.set('n', '<Space>iH', ':IronHide<CR>')  -- iron Hide

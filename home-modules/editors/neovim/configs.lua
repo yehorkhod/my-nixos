@@ -1,11 +1,9 @@
-vim.g.mapleader = ' '
-
 -- Clipboard
-vim.keymap.set('n', '<leader>y', '"+y')
-vim.keymap.set('v', '<leader>y', '"+y')
+vim.keymap.set('n', '<Space>y', '"+y')
+vim.keymap.set('v', '<Space>y', '"+y')
 
-vim.keymap.set('n', '<leader>p', '"+p')
-vim.keymap.set('v', '<leader>p', '"+p')
+vim.keymap.set('n', '<Space>p', '"+p')
+vim.keymap.set('v', '<Space>p', '"+p')
 
 -- Options
 vim.opt.guicursor = ''
