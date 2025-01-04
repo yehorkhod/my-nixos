@@ -27,3 +27,12 @@ vim.opt.updatetime = 60
 vim.opt.scrolloff = 12
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
+
+-- Terminal
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    vim.opt.nu = false
+    vim.opt.relativenumber = false
+  end
+})

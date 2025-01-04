@@ -1,3 +1,3 @@
 require("oil").setup()
 
-vim.keymap.set('n', 'mc', ':Oil<CR>')
+vim.keymap.set('n', '-', ':Oil<CR>')
