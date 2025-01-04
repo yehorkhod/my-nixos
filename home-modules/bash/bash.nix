@@ -10,6 +10,7 @@ in
       eval "$(starship init bash)"
       export MANPAGER='nvim +Man!'
       export EDITOR=nvim
+      set -o vi
     '';
     shellAliases = {
       "venv" = "source venv/bin/activate";
