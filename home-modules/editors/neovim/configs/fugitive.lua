@@ -5,7 +5,7 @@ vim.keymap.set('n', '<Space>gc', function()
   if commit_message ~= '' then
     vim.cmd('Git commit -m "' .. commit_message .. '"')
   else
-    print('Commit message cannot be empty')
+    print('Commit message cannot be empty!')
   end
 end)
 vim.keymap.set('n', '<Space>gp', function() vim.cmd("Git push") end)
