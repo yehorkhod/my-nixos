@@ -12,16 +12,18 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      username = "yehorkhod";
-      hostname = "grapefruit";
-      system = "x86_64-linux";
+      configs = import ./configs.nix;
+      username = configs.username;
+      hostname = configs.hostname;
+      system = configs.system;
+
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in 
     {
       nixosConfigurations = {
         ${hostname} = lib.nixosSystem {
-          inherit system;
+          inherit (configs) system;
           modules = [ ./hosts/${hostname}/configuration.nix ];
           specialArgs = { inherit inputs username hostname; };
         };
