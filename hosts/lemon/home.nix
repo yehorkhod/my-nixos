@@ -1,7 +1,8 @@
-{ config, pkgs, inputs, username, ... }:
+{ config, pkgs, inputs, configs, ... }:
 
 let
-  homeDirectory = "/home/${username}";
+  username = configs.username;
+  homeDirectory = "/home/${configs.username}";
 in
 {
   imports = [

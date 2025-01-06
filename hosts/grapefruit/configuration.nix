@@ -1,6 +1,8 @@
-{ config, pkgs, inputs, username, hostname, ... }:
+{ config, pkgs, inputs, configs, ... }:
 
 let
+  username = configs.username;
+  hostname = configs.hostname;
   userDescription = "My configuration";
   homeDirectory = "/home/${username}";
   timeZone = "Europe/Kyiv";
