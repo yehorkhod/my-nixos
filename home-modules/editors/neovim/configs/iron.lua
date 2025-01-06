@@ -54,5 +54,5 @@ end
 -- Keymaps
 vim.keymap.set('n', '<Space>iS', iron_start)  -- iron Start
 vim.keymap.set('n', '<Space>iR', iron_restart)  -- iron Restart
-vim.keymap.set('n', '<Space>iF', ':IronFocus<CR>')  -- iron Focus
-vim.keymap.set('n', '<Space>iH', ':IronHide<CR>')  -- iron Hide
+vim.keymap.set('n', '<Space>iF', function() vim.cmd("IronFocus") end)  -- iron Focus
+vim.keymap.set('n', '<Space>iH', function() vim.cmd("IronHide") end)  -- iron Hide

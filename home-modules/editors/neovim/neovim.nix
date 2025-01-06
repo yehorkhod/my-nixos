@@ -99,6 +99,7 @@
       nui-nvim
       {
         plugin = (nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-haskell
           p.tree-sitter-python
           p.tree-sitter-bash
           p.tree-sitter-nix
@@ -107,6 +108,7 @@
           p.tree-sitter-c
           p.tree-sitter-toml
           p.tree-sitter-json
+          p.tree-sitter-yaml
         ]));
         config = toLua "require('nvim-treesitter.configs').setup { highlight = { enable = true } }";
       }

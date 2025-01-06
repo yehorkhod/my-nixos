@@ -87,6 +87,7 @@ in
       ripgrep libnotify libgcc bc
       xclip shotgun hacksaw pass
       wget starship fzf neofetch
+      feh
 
       # Games
       mangohud protonup
@@ -130,13 +131,7 @@ in
         xmonad = {
           enable = true;
           enableContribAndExtras = true;
-        };
-        awesome = {
-          enable = true;
-          luaModules = with pkgs.luaPackages; [
-            luarocks
-            luadbi-mysql
-          ];
+          extraPackages = haskellPackages: [ ];
         };
       };
     };
