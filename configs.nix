@@ -10,5 +10,8 @@
   # --------- Your System ----------
   system = "x86_64-linux";
   # ------------ Theme -------------
+  # Available options:
+  #    rose-pine
+  #    everforest
   theme = "everforest";
 }
