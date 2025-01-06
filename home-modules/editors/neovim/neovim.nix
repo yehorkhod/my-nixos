@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, configs, ... }:
 
+let
+  theme = configs.theme;
+in
 {
   programs.neovim =
   let
-    toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLua = string: "lua << EOF\n${string}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
   in
   {
@@ -17,86 +20,33 @@
       ${builtins.readFile ./configs.lua}
     '';
 
-    plugins = with pkgs.vimPlugins; [
-      vim-sleuth
-      {
-        plugin = copilot-vim;
-        config = toLua "vim.g.copilot_filetypes = { ['*'] = false, python = true, }";
-      }
-      {
-        plugin = rose-pine;
-        config = toLuaFile ./configs/rose-pine.lua;
-      }
-      {
-        plugin = undotree;
-        config = toLuaFile ./configs/undotree.lua;
-      }
-      {
-        plugin = mason-nvim;
-        config = toLua "require('mason').setup()";
-      }
-      {
-        plugin = mason-lspconfig-nvim;
-        config = toLuaFile ./configs/mason-lspconfig.lua;
-      }
-      {
-        plugin = nvim-lspconfig;
-        config = toLuaFile ./configs/nvim-lspconfig.lua;
-      }
-      luasnip
-      cmp_luasnip
-      friendly-snippets
-      cmp-nvim-lsp
-      {
-        plugin = nvim-cmp;
-        config = toLuaFile ./configs/snippets.lua;
-      }
-      nvim-dap-ui
-      nvim-dap-python
-      nvim-nio
-      {
-        plugin = nvim-dap;
-        config = toLuaFile ./configs/dap.lua;
-      }
-      {
-        plugin = cloak-nvim;
-        config = toLuaFile ./configs/cloak.lua;
-      }
-      {
-        plugin = telescope-nvim;
-        config = toLuaFile ./configs/telescope.lua;
-      }
-      {
-        plugin = trouble-nvim;
-        config = toLuaFile ./configs/trouble.lua;
-      }
-      {
-        plugin = ChatGPT-nvim;
-        config = toLuaFile ./configs/chatgpt.lua;
-      }
-      {
-        plugin = harpoon;
-        config = toLuaFile ./configs/harpoon.lua;
-      }
-      {
-        plugin = oil-nvim;
-        config = toLuaFile ./configs/oil.lua;
-      }
-      {
-        plugin = vim-fugitive;
-        config = toLuaFile ./configs/fugitive.lua;
-      }
-      {
-        plugin = gitsigns-nvim;
-        config = toLuaFile ./configs/gitsigns.lua;
-      }
-      {
-        plugin = iron-nvim;
-        config = toLuaFile ./configs/iron.lua;
-      }
-      nvim-web-devicons
-      plenary-nvim
-      nui-nvim
+    plugins = with pkgs.vimPlugins;
+    let
+      theme-plugin = 
+        if theme == "rose-pine" then
+          { plugin = rose-pine;  config = toLuaFile ./configs/themes/rose-pine.lua;  }
+        else
+          { plugin = everforest; config = toLuaFile ./configs/themes/everforest.lua; };
+    in
+    [
+      theme-plugin vim-sleuth luasnip cmp_luasnip friendly-snippets cmp-nvim-lsp
+      nvim-dap-ui nvim-dap-python nvim-nio nvim-web-devicons plenary-nvim nui-nvim
+      { plugin = copilot-vim;          config = toLua "vim.g.copilot_filetypes = { ['*'] = false, python = true, }"; }
+      { plugin = mason-nvim;           config = toLua "require('mason').setup()";                                    }
+      { plugin = mason-lspconfig-nvim; config = toLuaFile ./configs/mason-lspconfig.lua;                             }
+      { plugin = nvim-lspconfig;       config = toLuaFile ./configs/nvim-lspconfig.lua;                              }
+      { plugin = nvim-cmp;             config = toLuaFile ./configs/snippets.lua;                                    }
+      { plugin = nvim-dap;             config = toLuaFile ./configs/dap.lua;                                         }
+      { plugin = cloak-nvim;           config = toLuaFile ./configs/cloak.lua;                                       }
+      { plugin = undotree;             config = toLuaFile ./configs/undotree.lua;                                    }
+      { plugin = telescope-nvim;       config = toLuaFile ./configs/telescope.lua;                                   }
+      { plugin = trouble-nvim;         config = toLuaFile ./configs/trouble.lua;                                     }
+      { plugin = ChatGPT-nvim;         config = toLuaFile ./configs/chatgpt.lua;                                     }
+      { plugin = harpoon;              config = toLuaFile ./configs/harpoon.lua;                                     }
+      { plugin = oil-nvim;             config = toLuaFile ./configs/oil.lua;                                         }
+      { plugin = vim-fugitive;         config = toLuaFile ./configs/fugitive.lua;                                    }
+      { plugin = gitsigns-nvim;        config = toLuaFile ./configs/gitsigns.lua;                                    }
+      { plugin = iron-nvim;            config = toLuaFile ./configs/iron.lua;                                        }
       {
         plugin = (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-haskell
@@ -112,7 +62,6 @@
         ]));
         config = toLua "require('nvim-treesitter.configs').setup { highlight = { enable = true } }";
       }
-      
     ];
   };
 }

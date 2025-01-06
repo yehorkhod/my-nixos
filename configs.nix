@@ -9,4 +9,6 @@
   hostname = "grapefruit";
   # --------- Your System ----------
   system = "x86_64-linux";
+  # ------------ Theme -------------
+  theme = "everforest";
 }
