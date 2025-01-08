@@ -89,7 +89,7 @@ in
       ripgrep libnotify libgcc bc
       xclip shotgun hacksaw pass
       wget starship fzf neofetch
-      feh
+      feh dmenu polybar
 
       # Games
       mangohud protonup

@@ -47,6 +47,14 @@ in
   };
 
   home.file = {
+    ".xmonad" = {
+      source = ../../home-modules/xmonad;
+      recursive = true;
+    };
+    ".config/polybar" = {
+      source = ../../home-modules/polybar;
+      recursive = true;
+    };
     ".config/awesome" = {
       source = ../../home-modules/awesome;
       recursive = true;
