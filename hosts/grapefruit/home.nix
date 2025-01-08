@@ -48,15 +48,11 @@ in
 
   home.file = {
     ".xmonad" = {
-      source = ../../home-modules/xmonad;
+      source = ../../home-modules/window-managers/xmonad;
       recursive = true;
     };
     ".config/polybar" = {
       source = ../../home-modules/polybar;
-      recursive = true;
-    };
-    ".config/awesome" = {
-      source = ../../home-modules/awesome;
       recursive = true;
     };
     ".config/qutebrowser" = {

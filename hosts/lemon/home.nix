@@ -11,12 +11,13 @@ in
     ../../home-modules/bash/bash.nix
     ../../home-modules/waybar/waybar.nix
     ../../home-modules/terminals/kitty.nix
-    ../../home-modules/hyprland/hyprland.nix
     ../../home-modules/starship/starship.nix
     ../../home-modules/swaylock/swaylock.nix
 
     ../../home-modules/editors/helix/helix.nix
     ../../home-modules/editors/neovim/neovim.nix
+
+    ../../home-modules/window-managers/hyprland/hyprland.nix
   ];
 
   home.username = username;

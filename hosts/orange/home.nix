@@ -48,7 +48,7 @@ in
 
   home.file = {
     ".config/awesome" = {
-      source = ../../home-modules/awesome;
+      source = ../../home-modules/window-managers/awesome;
       recursive = true;
     };
     ".config/qutebrowser" = {
