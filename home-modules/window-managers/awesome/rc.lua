@@ -371,8 +371,8 @@ globalkeys = gears.table.join(
 
     -- Awesome
     awful.key(
-        { modkey, "Control" },
-        "r",
+        { modkey, },
+        "q",
         awesome.restart,
         { description = "reload awesome", group = "awesome" }
     ),

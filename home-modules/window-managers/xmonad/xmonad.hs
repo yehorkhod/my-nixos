@@ -5,6 +5,7 @@ import System.Exit
 import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Actions.CycleWS (nextWS, prevWS)
+import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
@@ -16,8 +17,10 @@ appLauncher          = "dmenu_run"
 myBorderWidth        = 2
 myModMask            = mod4Mask
 myWorkspaces         = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#374247"
+myFocusedBorderColor = "#dbbc7f"
+screenshotScript     = "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
+cropAndScreenshot    = "shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -26,74 +29,42 @@ myClickJustFocuses = False
 
 ------------------------- KEY BINDINGS -------------------------
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ 
-    -- close focused window
-      ((modm, xK_c), kill)
-    -- -- Toggle the status bar gap
-    -- -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- -- See also the statusBar function from Hooks.DynamicLog.
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-    -- -- launch gmrun
-    -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
-    -- -- Increment the number of windows in the master area
-    -- , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-    -- -- Deincrement the number of windows in the master area
-    -- , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
-    -- --  Reset the layouts on the current workspace to default
-    -- , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-    -- -- Resize viewed windows to the correct size
-    -- , ((modm,               xK_n     ), refresh)
-    -- -- Move focus to the next window
-    -- , ((modm,               xK_Tab   ), windows W.focusDown)
-    -- -- Move focus to the master window
-    -- , ((modm,               xK_m     ), windows W.focusMaster  )
-    -- -- Swap the focused window and the master window
-    -- , ((modm,               xK_Return), windows W.swapMaster)
-    -- -- Shrink the master area
-    -- , ((modm,               xK_h     ), sendMessage Shrink)
-    -- -- Expand the master area
-    -- , ((modm,               xK_l     ), sendMessage Expand)
+    [ ((modm, xK_c), kill)  -- close focused window
     ------------ Volume ------------
-    -- pamixer -i 10 && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
-    -- pamixer -d 10 && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
-    -- pamixer -t && notify-send -t 1000 "Volume is set to $(pamixer --get-volume-human)"
+    , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 10")  -- Lower Volume
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 10")  -- Raise Volume
+    , ((0, xF86XK_AudioMute       ), spawn "pamixer -t"   )  -- Mute Volume
     ---------- Brightness ----------
-    -- -- Brightness Up
-    -- , ((0, xK_XF86MonBrightnessUp), spawn "brightnessctl s 10%+ && notify-send -t 1000 \"Brightness is set to $(brightnessctl i | grep -oP '\(\K[0-9]+(?=%\))')%\"")
-    -- -- Brightness Down
-    -- , ((0, xK_XF86MonBrightnessDown), spawn "brightnessctl s 10%- && notify-send -t 1000 \"Brightness is set to $(brightnessctl i | grep -oP '\(\K[0-9]+(?=%\))')%\"")
+    , ((0, xF86XK_MonBrightnessUp  ), spawn "brightnessctl s 10%+")  -- Raise Brightness
+    , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 10%-")  -- Lower Brightness
     ---------- Screenshot ----------
-    -- Screenshot of whole screen
-    , ((0, xK_Print), spawn "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png")
-    -- Crop`N`Screenshot
-    , ((modm .|. shiftMask, xK_s), spawn "shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png")
+    , ((0,                  xK_Print), spawn screenshotScript )  -- Screenshot of whole screen
+    , ((modm .|. shiftMask, xK_s    ), spawn cropAndScreenshot)  -- Crop`N`Screenshot
+    ---------- Workspaces ----------
+    , ((modm, xK_l), nextWS)  -- Move to the next workspace
+    , ((modm, xK_h), prevWS)  -- Move to the previous workspace
     ------------ Layout ------------
-    -- Rotate through the available layout algorithms
-    , ((modm, xK_o), sendMessage NextLayout)
-    -- Push window back into tiling
-    , ((modm, xK_p), withFocused $ windows . W.sink)
-    -- Move to the next workspace
-    , ((modm, xK_l), nextWS)
-    -- Move to the previous workspace
-    , ((modm, xK_h), prevWS)
-    -- Move focus to the next window
-    , ((modm, xK_j), windows W.focusDown)
-    -- Move focus to the previous window
-    , ((modm, xK_k), windows W.focusUp)
-    -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j), windows W.swapDown)
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k), windows W.swapUp)
+    , ((modm,               xK_period), sendMessage (IncMasterN ( 1))     )  -- Increment the number of windows in the master area
+    , ((modm,               xK_comma ), sendMessage (IncMasterN (-1))     )  -- Deincrement the number of windows in the master area
+    , ((modm,               xK_o     ), sendMessage NextLayout            )  -- Rotate through the available layout algorithms
+    , ((modm,               xK_p     ), withFocused $ windows . W.sink    )  -- Push window back into tiling
+    , ((modm,               xK_j     ), windows W.focusDown               )  -- Move focus to the next window
+    , ((modm,               xK_k     ), windows W.focusUp                 )  -- Move focus to the previous window
+    , ((modm,               xK_f     ), windows W.focusMaster             )  -- Move focus to the master window
+    , ((modm .|. shiftMask, xK_f     ), windows W.swapMaster              )  -- Swap the focused window and the master window
+    , ((modm .|. shiftMask, xK_h     ), sendMessage Shrink                )  -- Shrink the master area
+    , ((modm .|. shiftMask, xK_l     ), sendMessage Expand                )  -- Expand the master area
+    , ((modm .|. shiftMask, xK_o     ), setLayout $ XMonad.layoutHook conf)  -- Reset the layouts on the current workspace to default
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown                )  -- Swap the focused window with the next window
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp                  )  -- Swap the focused window with the previous window
     ----------- Programs -----------
-    , ((modm, xK_d     ), spawn appLauncher)
-    , ((modm, xK_Return), spawn myTerminal )
-    , ((modm, xK_f     ), spawn myBrowser  )
-    , ((modm, xK_t     ), spawn myMessanger)
+    , ((modm, xK_d        ), spawn appLauncher)
+    , ((modm, xK_Return   ), spawn myTerminal )
+    , ((modm, xK_backslash), spawn myBrowser  )
+    , ((modm, xK_t        ), spawn myMessanger)
     ------------ Xmonad ------------
-    -- Restart xmonad
-    , ((modm .|. controlMask, xK_r), spawn "xmonad --recompile; xmonad --restart")
-    -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ((modm,               xK_q), spawn "xmonad --recompile; xmonad --restart")  -- Restart xmonad
+    , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)                   )  -- Quit xmonad
     ]
     ++
     -- mod-[1..9], Switch to workspace N
