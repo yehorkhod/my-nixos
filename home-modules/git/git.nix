@@ -15,9 +15,6 @@
       core = {
         editor = "nvim";
       };
-      rerere = {
-        enabled = true;
-      };
       push = {
         autoSetupRemote = true;
       };
