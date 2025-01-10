@@ -4,6 +4,7 @@ import Data.Monoid
 import System.Exit
 import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.WindowSwallowing
 import XMonad.Actions.CycleWS (nextWS, prevWS)
 import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
@@ -139,7 +140,7 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook = swallowEventHook (className =? "kitty") (return True)
 
 ------------------------- LOGGING HOOK -------------------------
 -- Status bars and logging
