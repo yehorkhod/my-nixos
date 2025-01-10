@@ -1,2 +1,2 @@
 -- Keymaps
-vim.keymap.set('n', '<Space>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<Space>u', function() vim.cmd('UndotreeToggle') end)

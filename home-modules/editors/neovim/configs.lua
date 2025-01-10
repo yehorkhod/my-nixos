@@ -1,9 +1,7 @@
 -- Clipboard
-vim.keymap.set('n', '<Space>y', '"+y')
-vim.keymap.set('v', '<Space>y', '"+y')
-
-vim.keymap.set('n', '<Space>p', '"+p')
-vim.keymap.set('v', '<Space>p', '"+p')
+vim.keymap.set({ 'n', 'v' }, '<Space>y', '"+y')
+vim.keymap.set({ 'n', 'v' }, '<Space>p', '"+p')
+vim.keymap.set({ 'n', 'v' }, '<Space>x', '"+x')
 
 -- Options
 vim.opt.guicursor = ''

@@ -47,6 +47,7 @@ in
       { plugin = mason-lspconfig-nvim; config = toLuaFile ./configs/mason-lspconfig.lua;                             }
       { plugin = nvim-lspconfig;       config = toLuaFile ./configs/nvim-lspconfig.lua;                              }
       { plugin = nvim-cmp;             config = toLuaFile ./configs/snippets.lua;                                    }
+      { plugin = vimtex;               config = toLuaFile ./configs/vimtex.lua;                                      }
       { plugin = nvim-colorizer-lua;   config = builtins.readFile ./configs/colorizer;                               }
       {
         plugin = (nvim-treesitter.withPlugins (p: [

@@ -64,7 +64,15 @@ in
   };
 
   environment = {
-    systemPackages = with pkgs; [
+    systemPackages = with pkgs;
+    let
+      tex = (pkgs.texlive.combine
+        { inherit (pkgs.texlive) scheme-basic latexmk; });
+      pilot = (callPackage
+        ../../nixos-modules/pilot/default.nix
+        { inherit pkgs; });
+    in
+    [
       # Text editors
       neovim helix jetbrains-toolbox
 
@@ -76,20 +84,20 @@ in
 
       # Work
       git conda docker-compose
-      kitty tmux btop
-      (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
+      kitty tmux btop pilot
 
       # Apps
       libreoffice-qt pavucontrol
       vlc obs-studio pinta slides
+      zathura
 
       # Utils
       brightnessctl zip unzip
       alsa-utils alsa-tools pamixer
-      ripgrep libnotify libgcc bc
-      xclip shotgun hacksaw pass
-      wget starship fzf neofetch
-      feh dmenu polybar
+      ripgrep libgcc bc xclip wget
+      shotgun hacksaw pass starship
+      fzf neofetch feh dmenu polybar
+      tex
 
       # Games
       mangohud protonup
