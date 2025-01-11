@@ -12,6 +12,8 @@ in
     ../../nixos-modules/users.nix
     ../../nixos-modules/networking.nix
     ../../nixos-modules/locale.nix
+    ../../nixos-modules/security.nix
+    ../../nixos-modules/nix.nix
   ];
 
   programs = {
@@ -129,20 +131,6 @@ in
     bluetooth = {
       enable = true;
       powerOnBoot = true;
-    };
-  };
-
-  security.rtkit.enable = true;
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
     };
   };
 
