@@ -3,7 +3,6 @@
 let
   username = configs.username;
   hostname = configs.hostname;
-  userDescription = "My configuration";
   homeDirectory = "/home/${username}";
   timeZone = "Europe/Kyiv";
 in
@@ -13,6 +12,7 @@ in
     ../../nixos-modules/nvidia.nix
     ../../nixos-modules/boot.nix
     ../../nixos-modules/fonts.nix
+    ../../nixos-modules/users.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -52,13 +52,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  # User
-  users.users.${username} = {
-    isNormalUser = true;
-    description = userDescription;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-  };
 
   environment = {
     systemPackages = with pkgs;
@@ -103,7 +96,6 @@ in
     };
   };
 
-  users.extraGroups.docker.members = [ "yehorkhod" ];
   virtualisation.docker = {
     enable = true;
     rootless = {
