@@ -14,6 +14,7 @@ in
     ../../nixos-modules/locale.nix
     ../../nixos-modules/security.nix
     ../../nixos-modules/nix.nix
+    ../../nixos-modules/hardware.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -137,16 +138,6 @@ in
     };
 
     picom.enable = true;
-  };
-
-  hardware = {
-    pulseaudio.enable = false;
-    graphics.enable = true;
-
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
   };
 
   system.stateVersion = "24.05";
