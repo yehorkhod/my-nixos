@@ -2,7 +2,6 @@
 
 let
   username = configs.username;
-  homeDirectory = "/home/${username}";
 in
 {
   imports = [
