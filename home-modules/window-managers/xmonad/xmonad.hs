@@ -3,6 +3,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.WindowSwallowing
 import XMonad.Actions.CycleWS (nextWS, prevWS)
@@ -131,6 +132,9 @@ myManageHook = composeAll
     , className =? "TelegramDesktop" --> doFloat
     , className =? "Matplotlib"      --> doFloat
     , className =? "Gimp"            --> doFloat
+    , className =? "kitty"           --> doShift "1"
+    , className =? "qutebrowser"     --> doShift "2"
+    , className =? "TelegramDesktop" --> doShift "3"
     , resource  =? "desktop_window"  --> doIgnore
     , resource  =? "kdesktop"        --> doIgnore ]
 
@@ -156,6 +160,9 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
+    spawnOnce myTerminal 
+    spawnOnce myBrowser  
+    spawnOnce myMessanger
     spawn "feh --bg-fill /home/yehorkhod/System/wallpapers/eva.jpg"
     spawn "setxkbmap -layout us,ua -option grp:win_space_toggle"
 
