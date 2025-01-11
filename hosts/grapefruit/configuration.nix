@@ -16,6 +16,7 @@ in
     ../../nixos-modules/nix.nix
     ../../nixos-modules/hardware.nix
     ../../nixos-modules/services.nix
+    ../../nixos-modules/virtualization.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -77,15 +78,6 @@ in
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-    daemon.settings.userland-proxy = false;
-  };
-
   services.xserver = {
     enable = true;
     xkb = {
@@ -114,7 +106,6 @@ in
             alone: esc
     '';
   };
-
 
   system.stateVersion = "24.05";
 }

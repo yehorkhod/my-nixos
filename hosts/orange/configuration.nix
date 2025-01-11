@@ -16,6 +16,7 @@ in
     ../../nixos-modules/nix.nix
     ../../nixos-modules/hardware.nix
     ../../nixos-modules/services.nix
+    ../../nixos-modules/virtualization.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -75,15 +76,6 @@ in
     sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
     };
-  };
-
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-    daemon.settings.userland-proxy = false;
   };
 
   services.xserver = {
