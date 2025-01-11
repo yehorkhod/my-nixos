@@ -2,9 +2,7 @@
 
 let
   username = configs.username;
-  hostname = configs.hostname;
   homeDirectory = "/home/${username}";
-  timeZone = "Europe/Kyiv";
 in
 {
   imports = [
@@ -13,30 +11,10 @@ in
     ../../nixos-modules/boot.nix
     ../../nixos-modules/fonts.nix
     ../../nixos-modules/users.nix
+    ../../nixos-modules/networking.nix
+    ../../nixos-modules/locale.nix
     inputs.xremap-flake.nixosModules.default
   ];
-
-  networking = {
-    hostName = hostname;
-    networkmanager.enable = true;
-  };
-
-  time.timeZone = timeZone;
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "uk_UA.UTF-8";
-      LC_IDENTIFICATION = "uk_UA.UTF-8";
-      LC_MEASUREMENT = "uk_UA.UTF-8";
-      LC_MONETARY = "uk_UA.UTF-8";
-      LC_NAME = "uk_UA.UTF-8";
-      LC_NUMERIC = "uk_UA.UTF-8";
-      LC_PAPER = "uk_UA.UTF-8";
-      LC_TELEPHONE = "uk_UA.UTF-8";
-      LC_TIME = "uk_UA.UTF-8";
-    };
-  };
 
   programs = {
     neovim.enable = true;
