@@ -11,13 +11,10 @@ in
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
+    ../../nixos-modules/boot.nix
+    ../../nixos-modules/fonts.nix
     inputs.xremap-flake.nixosModules.default
   ];
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
 
   networking = {
     hostName = hostname;
@@ -42,8 +39,8 @@ in
   };
 
   programs = {
-    gnupg.agent.enable = true;
     neovim.enable = true;
+    gnupg.agent.enable = true;
     tmux.enable = true;
 
     # Games
@@ -64,34 +61,42 @@ in
   };
 
   environment = {
-    systemPackages = with pkgs; [
+    systemPackages = with pkgs;
+    let
+      tex = (pkgs.texlive.combine
+        { inherit (pkgs.texlive) scheme-basic latexmk; });
+      pilot = (callPackage
+        ../../nixos-modules/pilot/default.nix
+        { inherit pkgs; });
+    in
+    [
       # Text editors
       neovim helix jetbrains-toolbox
-
-      # Browsers
-      qutebrowser
 
       # Communication
       telegram-desktop discord zoom-us
 
       # Work
       git conda docker-compose
-      kitty tmux btop
-      (callPackage ../../nixos-modules/pilot/default.nix { inherit pkgs; })
+      kitty tmux btop pilot
 
       # Apps
-      libreoffice-qt pavucontrol
-      vlc obs-studio pinta slides
+      libreoffice-qt vlc obs-studio
+      pinta slides qutebrowser zathura
 
-      # Utils
-      brightnessctl zip unzip
+      # Global Utils
+      brightnessctl zip unzip bc
+      starship fzf neofetch wget 
       alsa-utils alsa-tools pamixer
-      ripgrep libnotify libgcc bc
-      xclip shotgun hacksaw pass
-      wget starship fzf neofetch
+      pass tex ripgrep libgcc
 
       # Games
       mangohud protonup
+
+      # Specifics
+      xclip shotgun hacksaw
+      libnotify
+      pavucontrol
     ];
     sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
@@ -108,18 +113,6 @@ in
     daemon.settings.userland-proxy = false;
   };
 
-  fonts.packages = with pkgs; [
-    corefonts
-    vistafonts
-    (nerdfonts.override {
-      fonts = [
-        "Iosevka"
-        "JetBrainsMono"
-        "3270"
-      ];
-    })
-  ];
-  
   services = {
     xserver = {
       enable = true;

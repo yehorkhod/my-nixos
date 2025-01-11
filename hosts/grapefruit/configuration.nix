@@ -11,13 +11,10 @@ in
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
+    ../../nixos-modules/boot.nix
+    ../../nixos-modules/fonts.nix
     inputs.xremap-flake.nixosModules.default
   ];
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
 
   networking = {
     hostName = hostname;
@@ -42,8 +39,8 @@ in
   };
 
   programs = {
-    gnupg.agent.enable = true;
     neovim.enable = true;
+    gnupg.agent.enable = true;
     tmux.enable = true;
 
     # Games
@@ -76,9 +73,6 @@ in
       # Text editors
       neovim helix jetbrains-toolbox
 
-      # Browsers
-      qutebrowser
-
       # Communication
       telegram-desktop discord zoom-us
 
@@ -87,20 +81,22 @@ in
       kitty tmux btop pilot
 
       # Apps
-      libreoffice-qt pavucontrol
-      vlc obs-studio pinta slides
-      zathura
+      libreoffice-qt vlc obs-studio
+      pinta slides qutebrowser zathura
 
-      # Utils
-      brightnessctl zip unzip
+      # Global Utils
+      brightnessctl zip unzip bc
+      starship fzf neofetch wget
       alsa-utils alsa-tools pamixer
-      ripgrep libgcc bc xclip wget
-      shotgun hacksaw pass starship
-      fzf neofetch feh dmenu polybar
-      tex
+      pass tex ripgrep libgcc
 
       # Games
       mangohud protonup
+
+      # Specifics
+      xclip shotgun hacksaw
+      feh dmenu polybar
+      pavucontrol
     ];
     sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
@@ -117,18 +113,6 @@ in
     daemon.settings.userland-proxy = false;
   };
 
-  fonts.packages = with pkgs; [
-    corefonts
-    vistafonts
-    (nerdfonts.override {
-      fonts = [
-        "Iosevka"
-        "JetBrainsMono"
-        "3270"
-      ];
-    })
-  ];
-  
   services = {
     xserver = {
       enable = true;

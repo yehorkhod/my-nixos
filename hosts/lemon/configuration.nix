@@ -11,12 +11,9 @@ in
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
+    ../../nixos-modules/boot.nix
+    ../../nixos-modules/fonts.nix
   ];
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
 
   networking = {
     hostName = hostname;
@@ -40,13 +37,22 @@ in
     };
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
   programs = {
     neovim.enable = true;
-    firefox.enable = true;
+    gnupg.agent.enable = true;
     tmux.enable = true;
+
+    # Games
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -58,47 +64,50 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
+  environment = {
+    systemPackages = with pkgs;
+    let
+      tex = (pkgs.texlive.combine
+        { inherit (pkgs.texlive) scheme-basic latexmk; });
+      pilot = (callPackage
+        ../../nixos-modules/pilot/default.nix
+        { inherit pkgs; });
+    in
+    [
+      # Text editors
+      neovim helix jetbrains-toolbox
+
+      # Communication
+      telegram-desktop discord zoom-us
+
+      # Work
+      git conda docker-compose
+      kitty tmux btop pilot
+
+      # Apps
+      libreoffice-qt vlc obs-studio
+      pinta slides qutebrowser zathura
+
+      # Global Utils
+      brightnessctl zip unzip bc
+      starship fzf neofetch wget 
+      alsa-utils alsa-tools pamixer
+      pass tex ripgrep libgcc
+
+      # Games
+      mangohud protonup
+
+      # Specifics
+      grim slurp waybar dunst wl-clipboard swaylock
+      swaynotificationcenter swaybg rofi-wayland
+      libnotify swappy light imagemagick
+    ];
+    sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    };
   };
-
-  environment.systemPackages = with pkgs; [
-    # Text editors
-    neovim helix
-
-    # Browsers
-    firefox
-
-    # Communication
-    telegram-desktop discord zoom-us
-
-    # System monitoring and management
-    btop
-
-    # Version control and development
-    git conda
-
-    # Shell and terminal
-    starship kitty zoxide fzf tmux wget
-
-    # Office
-    libreoffice-qt
-
-    # File management and archives
-    unzip
-
-    # Fancy stuff
-    pinta neofetch
-
-    # System utils
-    brightnessctl ripgrep libnotify libgcc swappy
-    alsa-utils alsa-tools pamixer light imagemagick
-
-    # Wayland specific
-    grim slurp waybar dunst wl-clipboard swaylock
-    swaynotificationcenter swaybg rofi-wayland
-  ];
 
   users.extraGroups.docker.members = [ "yehorkhod" ];
   virtualisation.docker = {
@@ -107,23 +116,8 @@ in
       enable = true;
       setSocketVariable = true;
     };
-    daemon.settings = {
-      data-root = "/home/yehorkhod/docker-data";
-      userland-proxy = false;
-    };
+    daemon.settings.userland-proxy = false;
   };
-
-  fonts.packages = with pkgs; [
-    corefonts
-    vistafonts
-    (nerdfonts.override {
-      fonts = [
-        "Iosevka"
-        "JetBrainsMono"
-        "3270"
-      ];
-    })
-  ];
   
   services = {
     xserver = {
@@ -152,11 +146,21 @@ in
     openssh.enable = true;
 
     blueman.enable = true;
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
   };
 
   hardware = {
     pulseaudio.enable = false;
     graphics.enable = true;
+
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
   };
 
   security.rtkit.enable = true;
@@ -171,42 +175,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  stylix = {
-    enable = true;
-    
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
-    };
-    
-    base16Scheme = {
-      base00 = "191724";
-      base01 = "1f1d2e";
-      base02 = "26233a";
-      base03 = "6e6a86";
-      base04 = "908caa";
-      base05 = "e0def4";
-      base06 = "e0def4";
-      base07 = "524f67";
-      base08 = "eb6f92";
-      base09 = "f6c177";
-      base0A = "ebbcba";
-      base0B = "31748f";
-      base0C = "9ccfd8";
-      base0D = "c4a7e7";
-      base0E = "f6c177";
-      base0F = "524f67";
-    };
-
-    image = ../home-modules/awesome/background.png;
   };
 
   system.stateVersion = "24.05";
