@@ -15,6 +15,7 @@ in
     ../../nixos-modules/security.nix
     ../../nixos-modules/nix.nix
     ../../nixos-modules/hardware.nix
+    ../../nixos-modules/services.nix
     inputs.xremap-flake.nixosModules.default
   ];
 
@@ -85,59 +86,33 @@ in
     daemon.settings.userland-proxy = false;
   };
 
-  services = {
-    xserver = {
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+    displayManager.gdm.enable = true;
+    windowManager.awesome = {
       enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      displayManager.gdm.enable = true;
-      windowManager.awesome = {
-        enable = true;
-        luaModules = with pkgs.luaPackages; [
-          luarocks
-          luadbi-mysql
-        ];
-      };
+      luaModules = with pkgs.luaPackages; [
+        luarocks
+        luadbi-mysql
+      ];
     };
-
-    printing.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
-      wireplumber.enable = true;
-    };
-
-    openssh.enable = true;
-
-    blueman.enable = true;
-
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
-
-    xremap = {
-      withX11 = true;
-      userName = username;
-      yamlConfig = ''
-      modmap:
-        - name: main remaps
-          remap:
-            CapsLock:
-              held: Super_L
-              alone: esc
-      '';
-    };
-
-    picom.enable = true;
+  };
+  services.picom.enable = true;
+  services.xremap = {
+    withX11 = true;
+    userName = username;
+    yamlConfig = ''
+    modmap:
+      - name: main remaps
+        remap:
+          CapsLock:
+            held: Super_L
+            alone: esc
+    '';
   };
 
   system.stateVersion = "24.05";

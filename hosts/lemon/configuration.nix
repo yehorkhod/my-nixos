@@ -15,6 +15,7 @@ in
     ../../nixos-modules/security.nix
     ../../nixos-modules/nix.nix
     ../../nixos-modules/hardware.nix
+    ../../nixos-modules/services.nix
   ];
 
   programs = {
@@ -91,38 +92,14 @@ in
     daemon.settings.userland-proxy = false;
   };
   
-  services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
     };
-
-    printing.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      jack.enable = true;
-      wireplumber.enable = true;
-    };
-
-    openssh.enable = true;
-
-    blueman.enable = true;
-
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-    };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   system.stateVersion = "24.05";
