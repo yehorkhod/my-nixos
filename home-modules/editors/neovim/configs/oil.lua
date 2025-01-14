@@ -4,4 +4,6 @@ local oil = require("oil")
 oil.setup({ view_options = { show_hidden = true } })
 
 -- Keymaps
-vim.keymap.set('n', '-', function() vim.cmd("Oil") end)
+vim.keymap.set("n", "-", function()
+	vim.cmd("Oil")
+end)

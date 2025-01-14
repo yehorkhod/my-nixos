@@ -6,16 +6,22 @@ in {
     enable = true;
 
     extraPackages = with pkgs; [
+      # Lua
+      lua-language-server
+      # Nix
       nil
       nixfmt-classic
-      (python3.withPackages (p: (with p; [ python-lsp-server ])))
+      # Python
+      (python3.withPackages
+        (p: (with p; [ ruff python-lsp-ruff python-lsp-server ])))
+      # Haskell
       haskell-language-server
       ghc
-      stylish-haskell
     ];
 
     settings = {
       theme = "custom_theme";
+      keys.insert = { "C-[" = "normal_mode"; };
       editor = {
         line-number = "relative";
         cursor-shape = {
@@ -38,13 +44,15 @@ in {
         language-servers = [ "nil" ];
       }
       {
+        name = "lua";
+        language-servers = [ "lua-language-server" ];
+      }
+      {
         name = "python";
         language-servers = [ "pylsp" ];
       }
       {
         name = "haskell";
-        auto-format = true;
-        formatter.command = "stylish-haskell";
         language-servers = [ "haskell-language-server" ];
       }
     ];

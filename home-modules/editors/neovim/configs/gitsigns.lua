@@ -1,8 +1,8 @@
-local gitsigns = require('gitsigns')
+local gitsigns = require("gitsigns")
 
 -- Setup
 gitsigns.setup()
 
 -- Keymaps
-vim.keymap.set('n', '<Space>gd', gitsigns.diffthis)
-vim.keymap.set('n', '<Space>gb', gitsigns.blame_line)
+vim.keymap.set("n", "<Space>gd", gitsigns.diffthis)
+vim.keymap.set("n", "<Space>gb", gitsigns.blame_line)

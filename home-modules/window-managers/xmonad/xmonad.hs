@@ -46,7 +46,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, xK_l), nextWS)  -- Move to the next workspace
     , ((modm, xK_h), prevWS)  -- Move to the previous workspace
     ------------ Layout ------------
-    , ((modm,               xK_period), sendMessage (IncMasterN ( 1))     )  -- Increment the number of windows in the master area
+    , ((modm,               xK_period), sendMessage (IncMasterN   1 )     )  -- Increment the number of windows in the master area
     , ((modm,               xK_comma ), sendMessage (IncMasterN (-1))     )  -- Deincrement the number of windows in the master area
     , ((modm,               xK_o     ), sendMessage NextLayout            )  -- Rotate through the available layout algorithms
     , ((modm,               xK_p     ), withFocused $ windows . W.sink    )  -- Push window back into tiling
