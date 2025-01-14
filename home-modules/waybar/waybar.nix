@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-let
-  directory = ./.;
-in
-{
+let directory = ./.;
+in {
   programs.waybar = {
     enable = true;
 
@@ -17,13 +15,13 @@ in
 
         modules-left = [ "battery" "memory" ];
         modules-right = [ "custom/lock" "clock" ];
-  
+
         memory = {
           interval = 30;
           format = "💾 {}%";
-          tooltip-format ="{used:0.1f}GB";
+          tooltip-format = "{used:0.1f}GB";
         };
-  
+
         battery = {
           bat = "BAT1";
           interval = 30;
@@ -33,17 +31,17 @@ in
             critical = 5;
           };
           format = "⚡ {capacity}%";
-  
+
           format-charging = "⚡ {capacity}% (charging)";
           format-plugged = "⚡ {capacity}% (plugged)";
         };
-  
+
         "custom/lock" = {
-          tooltip  = false;
+          tooltip = false;
           on-click = "swaylock";
-          format  = "LOCK";
+          format = "LOCK";
         };
-  
+
         clock = {
           format = "{:%H:%M}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";

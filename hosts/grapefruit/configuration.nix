@@ -3,8 +3,7 @@
 let
   username = configs.username;
   base-packages = import ../../nixos-modules/packages.nix { inherit pkgs; };
-in
-{
+in {
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
@@ -22,18 +21,17 @@ in
     ../../nixos-modules/session-variables.nix
     inputs.xremap-flake.nixosModules.default
   ];
-  
+
   system.stateVersion = "24.05";
-  environment.systemPackages =
-    base-packages ++ [
-      pkgs.xclip
-      pkgs.shotgun
-      pkgs.hacksaw
-      pkgs.feh
-      pkgs.dmenu
-      pkgs.polybar
-      pkgs.pavucontrol
-    ];
+  environment.systemPackages = base-packages ++ [
+    pkgs.xclip
+    pkgs.shotgun
+    pkgs.hacksaw
+    pkgs.feh
+    pkgs.dmenu
+    pkgs.polybar
+    pkgs.pavucontrol
+  ];
 
   services.xserver = {
     enable = true;
@@ -55,12 +53,12 @@ in
     withX11 = true;
     userName = username;
     yamlConfig = ''
-    modmap:
-      - name: main remaps
-        remap:
-          CapsLock:
-            held: Super_L
-            alone: esc
+      modmap:
+        - name: main remaps
+          remap:
+            CapsLock:
+              held: Super_L
+              alone: esc
     '';
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 pkgs.stdenv.mkDerivation {
   pname = "pilot";
@@ -6,10 +6,7 @@ pkgs.stdenv.mkDerivation {
 
   src = ./.;
 
-  buildInputs = [
-    pkgs.fzf
-    pkgs.tmux
-  ];
+  buildInputs = [ pkgs.fzf pkgs.tmux ];
 
   installPhase = ''
     mkdir -p $out/bin

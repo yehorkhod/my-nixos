@@ -1,15 +1,15 @@
 --------------------------- IMPORTS ----------------------------
-import XMonad
-import Data.Monoid
-import System.Exit
-import XMonad.Util.Run
-import XMonad.Util.SpawnOnce
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.WindowSwallowing
-import XMonad.Actions.CycleWS (nextWS, prevWS)
-import Graphics.X11.ExtraTypes.XF86
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import qualified Data.Map                      as M
+import           Data.Monoid
+import           Graphics.X11.ExtraTypes.XF86
+import           System.Exit
+import           XMonad
+import           XMonad.Actions.CycleWS        (nextWS, prevWS)
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.WindowSwallowing
+import qualified XMonad.StackSet               as W
+import           XMonad.Util.Run
+import           XMonad.Util.SpawnOnce
 
 --------------------------- CONFIGS ----------------------------
 myTerminal           = "kitty"
@@ -160,8 +160,8 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-    spawnOnce myTerminal 
-    spawnOnce myBrowser  
+    spawnOnce myTerminal
+    spawnOnce myBrowser
     spawnOnce myMessanger
     spawn "feh --bg-fill /home/yehorkhod/System/wallpapers/eva.jpg"
     spawn "setxkbmap -layout us,ua -option grp:win_space_toggle"

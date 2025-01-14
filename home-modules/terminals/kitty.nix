@@ -3,8 +3,7 @@
 let
   theme = configs.theme;
   themes = import ./themes.nix;
-in
-{
+in {
   programs.kitty = {
     enable = true;
     font = {
@@ -15,12 +14,7 @@ in
       enable_audio_bell no
 
       background_opacity 0.95
-      ${
-        if theme == "rose-pine" then
-          themes.rose-pine
-        else
-          themes.everforest
-      }
+      ${if theme == "rose-pine" then themes.rose-pine else themes.everforest}
     '';
   };
 }

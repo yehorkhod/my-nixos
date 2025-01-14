@@ -24,7 +24,8 @@
         style = "bright-black";
       };
       git_status = {
-        format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
+        format =
+          "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
         style = "cyan";
         conflicted = "​";
         untracked = "​";
@@ -36,7 +37,7 @@
       };
 
       git_state = {
-        format = "\([$state( $progress_current/$progress_total)]($style)\) ";
+        format = "([$state( $progress_current/$progress_total)]($style)) ";
         style = "bright-black";
       };
 

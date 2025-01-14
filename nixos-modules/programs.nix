@@ -1,9 +1,7 @@
 { config, lib, pkgs, configs, ... }:
 
-let
-  username = configs.username;
-in
-{
+let username = configs.username;
+in {
   programs = {
     neovim.enable = true;
     gnupg.agent.enable = true;

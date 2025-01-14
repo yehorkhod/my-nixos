@@ -26,6 +26,11 @@ vim.opt.isfname:append('@-@')
 
 -- Terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+for i, key in pairs({ 'h', 'j', 'k', 'l' }) do
+  vim.keymap.set('t', '<C-w>' .. key, '<C-\\><C-n><C-w>' .. key)
+end
+
 vim.api.nvim_create_autocmd('TermOpen', {
   callback = function()
     vim.opt.nu = false

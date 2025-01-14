@@ -3,8 +3,7 @@
 let
   username = configs.username;
   base-packages = import ../../nixos-modules/packages.nix { inherit pkgs; };
-in
-{
+in {
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
@@ -24,14 +23,8 @@ in
   ];
 
   system.stateVersion = "24.05";
-  environment.systemPackages =
-    base-packages ++ [
-      pkgs.xclip
-      pkgs.shotgun
-      pkgs.hacksaw
-      pkgs.libnotify
-      pkgs.pavucontrol
-    ];
+  environment.systemPackages = base-packages
+    ++ [ pkgs.xclip pkgs.libnotify pkgs.shotgun pkgs.hacksaw pkgs.pavucontrol ];
 
   services.xserver = {
     enable = true;
@@ -42,10 +35,7 @@ in
     displayManager.gdm.enable = true;
     windowManager.awesome = {
       enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-        luadbi-mysql
-      ];
+      luaModules = with pkgs.luaPackages; [ luarocks luadbi-mysql ];
     };
   };
   services.picom.enable = true;
@@ -53,12 +43,12 @@ in
     withX11 = true;
     userName = username;
     yamlConfig = ''
-    modmap:
-      - name: main remaps
-        remap:
-          CapsLock:
-            held: Super_L
-            alone: esc
+      modmap:
+        - name: main remaps
+          remap:
+            CapsLock:
+              held: Super_L
+              alone: esc
     '';
   };
 }

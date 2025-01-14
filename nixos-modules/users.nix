@@ -3,8 +3,7 @@
 let
   username = configs.username;
   userDescription = "ULTRA";
-in
-{
+in {
   users = {
     users.${username} = {
       isNormalUser = true;

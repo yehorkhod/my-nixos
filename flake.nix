@@ -15,8 +15,7 @@
       configs = import ./configs.nix;
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${configs.system};
-    in 
-    {
+    in {
       nixosConfigurations = {
         ${configs.hostname} = lib.nixosSystem {
           inherit (configs) system;
@@ -31,5 +30,5 @@
           extraSpecialArgs = { inherit inputs configs; };
         };
       };
-  };
+    };
 }

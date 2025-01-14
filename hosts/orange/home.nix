@@ -3,8 +3,7 @@
 let
   username = configs.username;
   homeDirectory = "/home/${configs.username}";
-in
-{
+in {
   imports = [
     ../../home-modules/git/git.nix
     ../../home-modules/tmux/tmux.nix
@@ -29,9 +28,7 @@ in
 
   programs.firefox = {
     enable = true;
-    policies = {
-      DisableAppUpdate = true;
-    };
+    policies = { DisableAppUpdate = true; };
   };
 
   xdg.mimeApps = {

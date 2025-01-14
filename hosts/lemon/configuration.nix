@@ -3,8 +3,7 @@
 let
   username = configs.username;
   base-packages = import ../../nixos-modules/packages.nix { inherit pkgs; };
-in
-{
+in {
   imports = [
     ../../hardware-configuration.nix
     ../../nixos-modules/nvidia.nix
@@ -23,22 +22,21 @@ in
   ];
 
   system.stateVersion = "24.05";
-  environment.systemPackages =
-    base-packages ++ [
-      pkgs.grim
-      pkgs.slurp
-      pkgs.waybar
-      pkgs.dunst
-      pkgs.wl-clipboard
-      pkgs.swaylock
-      pkgs.swaynotificationcenter
-      pkgs.swaybg
-      pkgs.rofi-wayland
-      pkgs.libnotify
-      pkgs.swappy
-      pkgs.light
-      pkgs.imagemagick
-    ];
+  environment.systemPackages = base-packages ++ [
+    pkgs.grim
+    pkgs.slurp
+    pkgs.waybar
+    pkgs.dunst
+    pkgs.wl-clipboard
+    pkgs.swaylock
+    pkgs.swaynotificationcenter
+    pkgs.swaybg
+    pkgs.rofi-wayland
+    pkgs.libnotify
+    pkgs.swappy
+    pkgs.light
+    pkgs.imagemagick
+  ];
 
   programs.hyprland = {
     enable = true;

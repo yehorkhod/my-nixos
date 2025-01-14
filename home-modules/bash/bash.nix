@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-let
-  directory = ./.;
-in
-{
+let directory = ./.;
+in {
   programs.bash = {
     enable = true;
     bashrcExtra = ''
@@ -17,10 +15,11 @@ in
       ":q" = "exit";
       "py" = "conda activate $1 && venv && pypath";
       "pypath" = "export PYTHONPATH=$(pwd)";
-      "numa" = "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
+      "numa" =
+        "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
       "cpu" = "sudo ${directory}/scripts/cpu_performance.sh";
       "co" = "${directory}/scripts/checkout.sh";
       "fd" = "pilot";
     };
   };
-} 
+}
