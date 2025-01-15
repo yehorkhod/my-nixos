@@ -37,3 +37,24 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.opt.relativenumber = false
 	end,
 })
+
+-- Latex
+-- Keybinding to compile the current file with xelatex
+vim.keymap.set('n', '<Space>l', function()
+  local file = vim.fn.expand('%:p') -- Get the full path of the current file
+  if file == "" then
+    print("No file to compile!")
+    return
+  end
+
+  local cmd = "xelatex " .. file
+  print("Running: " .. cmd)
+  vim.fn.system(cmd)
+
+  -- Check for compilation errors
+  if vim.v.shell_error ~= 0 then
+    print("Compilation failed! Check the output.")
+  else
+    print("Compilation successful!")
+  end
+end)

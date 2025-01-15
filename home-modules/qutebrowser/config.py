@@ -1,4 +1,4 @@
-import rosepine
+import theme
 
 # Make LSP stop complaining
 config = config  # type: ignore
@@ -9,7 +9,7 @@ c = c # type: ignore
 config.load_autoconfig(False)
 
 # Colors
-rosepine.setup(c)
+theme.setup(c)
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.

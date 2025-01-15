@@ -2,7 +2,9 @@
 
 with pkgs;
 let
-  tex = (pkgs.texlive.combine { inherit (pkgs.texlive) scheme-basic latexmk; });
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-full latexmk xetex;
+  });
   pilot = (callPackage ./pilot/default.nix { inherit pkgs; });
 in [
   # Text editors

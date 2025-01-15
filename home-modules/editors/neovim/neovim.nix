@@ -113,10 +113,6 @@ in {
           config = toLuaFile ./configs/snippets.lua;
         }
         {
-          plugin = vimtex;
-          config = toLuaFile ./configs/vimtex.lua;
-        }
-        {
           plugin = nvim-colorizer-lua;
           config = builtins.readFile ./configs/colorizer;
         }
