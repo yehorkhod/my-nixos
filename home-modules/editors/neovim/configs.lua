@@ -40,13 +40,17 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 -- Latex
 -- Keybinding to compile the current file with xelatex
+local zathura_launched = false
+
 vim.keymap.set('n', '<Space>l', function()
+  vim.cmd("w")
   local file = vim.fn.expand('%:p') -- Get the full path of the current file
   if file == "" then
     print("No file to compile!")
     return
   end
 
+  local pdf_file = vim.fn.expand('%:r') .. ".pdf" -- Get the PDF file path
   local cmd = "xelatex " .. file
   print("Running: " .. cmd)
   vim.fn.system(cmd)
@@ -56,5 +60,13 @@ vim.keymap.set('n', '<Space>l', function()
     print("Compilation failed! Check the output.")
   else
     print("Compilation successful!")
+
+    if zathura_launched == false then
+      -- Open Zathura with the generated PDF
+      local open_cmd = "zathura " .. pdf_file .. " &"
+      os.execute(open_cmd)
+      print("Opened PDF in Zathura!")
+      zathura_launched = true
+    end
   end
 end)

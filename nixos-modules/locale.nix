@@ -1,4 +1,4 @@
-{ config, lib, pkgs, configs, ... }:
+{ ... }:
 
 let timeZone = "Europe/Kyiv";
 in {

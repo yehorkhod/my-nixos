@@ -1,4 +1,4 @@
-{ config, pkgs, configs, ... }:
+{ configs, ... }:
 
 let
   theme = configs.theme;

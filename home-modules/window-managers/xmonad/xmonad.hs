@@ -1,11 +1,13 @@
 --------------------------- IMPORTS ----------------------------
 import qualified Data.Map                      as M
 import           Data.Monoid
-import           Graphics.X11.ExtraTypes.XF86
 import           System.Exit
+
+import           Graphics.X11.ExtraTypes.XF86
+
 import           XMonad
 import           XMonad.Actions.CycleWS        (nextWS, prevWS)
-import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageDocks      (docks, avoidStruts, ToggleStruts(..))
 import           XMonad.Hooks.WindowSwallowing
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.Run
@@ -59,6 +61,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_o     ), setLayout $ XMonad.layoutHook conf)  -- Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown                )  -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp                  )  -- Swap the focused window with the previous window
+    ------------ Layout ------------
+    , ((modm, xK_b), sendMessage ToggleStruts)
     ----------- Programs -----------
     , ((modm, xK_d        ), spawn appLauncher)
     , ((modm, xK_Return   ), spawn myTerminal )
@@ -84,13 +88,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------ MOUSE BINDINGS ------------------------
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
+    [ ((modm, button1), \w -> focus w >> mouseMoveWindow w
+                                       >> windows W.shiftMaster)
     -- mod-button2, Raise the window to the top of the stack
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
+    , ((modm, button3), \w -> focus w >> mouseResizeWindow w
+                                       >> windows W.shiftMaster)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 

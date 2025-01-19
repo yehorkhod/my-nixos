@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 let
   # `nix shell nixpkgs#pciutils -c lspci | grep ' VGA '` to check the bus id
