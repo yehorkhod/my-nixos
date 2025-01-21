@@ -132,15 +132,16 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"         --> doFloat
-    , className =? "TelegramDesktop" --> doFloat
-    , className =? "Matplotlib"      --> doFloat
-    , className =? "Gimp"            --> doFloat
-    , className =? "kitty"           --> doShift "1"
-    , className =? "qutebrowser"     --> doShift "2"
-    , className =? "TelegramDesktop" --> doShift "3"
-    , resource  =? "desktop_window"  --> doIgnore
-    , resource  =? "kdesktop"        --> doIgnore ]
+    [ className =? "MPlayer"                  --> doFloat
+    , className =? "TelegramDesktop"          --> doFloat
+    , className =? "Matplotlib"               --> doFloat
+    , className =? "Gimp"                     --> doFloat
+    , className =? ".blueman-manager-wrapped" --> doFloat
+    , className =? "kitty"                    --> doShift "1"
+    , className =? "qutebrowser"              --> doShift "2"
+    , className =? "TelegramDesktop"          --> doShift "3"
+    , resource  =? "desktop_window"           --> doIgnore
+    , resource  =? "kdesktop"                 --> doIgnore ]
 
 ------------------------ EVENT HANDLING ------------------------
 -- * EwmhDesktops users should change this to ewmhDesktopsEventHook
