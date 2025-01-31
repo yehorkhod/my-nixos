@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   programs = {
@@ -14,5 +14,8 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.polymc.overlay ];
+  };
 }

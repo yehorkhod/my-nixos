@@ -53,6 +53,7 @@ in [
   libgcc
 
   # Games
+  polymc
   mangohud
   protonup
 ]

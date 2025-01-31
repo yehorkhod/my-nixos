@@ -130,6 +130,7 @@ in {
             p.tree-sitter-lua
             p.tree-sitter-yaml
             p.tree-sitter-ini
+            p.tree-sitter-gleam
           ]));
           config = toLua
             "require('nvim-treesitter.configs').setup { highlight = { enable = true } }";

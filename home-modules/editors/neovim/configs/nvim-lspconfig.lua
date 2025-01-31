@@ -3,6 +3,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Setup
 lspconfig.pyright.setup({ capabilities = capabilities })
+lspconfig.gleam.setup({ capabilities = capabilities })
 
 -- Keymaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
