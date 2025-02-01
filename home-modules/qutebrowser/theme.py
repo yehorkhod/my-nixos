@@ -23,8 +23,8 @@ colors = {
         "stop-indicator": "#e67e80",
     },
     "hints": {
-        "background": "#7fbbb3",
-        "foreground": "#2b3339",
+        "background": "#2b3339",
+        "foreground": "#7fbbb3",
     },
     "completion": {
         "default": {
@@ -65,7 +65,7 @@ def setup(c):
 
     # Hints
     c.colors.hints.bg = colors["hints"]["background"]
-    c.colors.hints.fg =  colors["hints"]["background"]
+    c.colors.hints.fg = colors["hints"]["foreground"]
 
     # Completion
     c.colors.completion.even.bg = colors["completion"]["default"]["even-background"]
