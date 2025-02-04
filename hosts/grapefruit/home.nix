@@ -11,8 +11,7 @@ in {
     ../../home-modules/terminals/kitty.nix
     ../../home-modules/starship/starship.nix
 
-    ../../home-modules/editors/helix/helix.nix
-    ../../home-modules/editors/neovim/neovim.nix
+    ../../home-modules/neovim/neovim.nix
   ];
 
   home.username = username;

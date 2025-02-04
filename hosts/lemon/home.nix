@@ -13,8 +13,7 @@ in {
     ../../home-modules/starship/starship.nix
     ../../home-modules/swaylock/swaylock.nix
 
-    ../../home-modules/editors/helix/helix.nix
-    ../../home-modules/editors/neovim/neovim.nix
+    ../../home-modules/neovim/neovim.nix
 
     ../../home-modules/window-managers/hyprland/hyprland.nix
   ];
