@@ -13,7 +13,7 @@ iron.setup({
 				format = file_types_common.bracketed_paste_python,
 			},
 		},
-		repl_open_cmd = view.split.vertical.botright(0.5),
+		repl_open_cmd = view.split.rightbelow(0.3),
 	},
 	keymaps = {
 		visual_send = "<Space>is", -- iron send
@@ -23,6 +23,7 @@ iron.setup({
 		cr = "<Space>i<CR>", -- iron cr
 		interrupt = "<Space>ii", -- iron interrupt
 		clear = "<Space>ic", -- iron clear
+		exit = "<Space>iq", -- iron clear
 	},
 	highlight = { italic = true },
 	ignore_blank_lines = true,

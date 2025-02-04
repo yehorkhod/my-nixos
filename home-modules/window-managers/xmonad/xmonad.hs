@@ -64,10 +64,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ------------ Layout ------------
     , ((modm, xK_b), sendMessage ToggleStruts)
     ----------- Programs -----------
-    , ((modm, xK_d        ), spawn appLauncher)
-    , ((modm, xK_Return   ), spawn myTerminal )
-    , ((modm, xK_backslash), spawn myBrowser  )
-    , ((modm, xK_t        ), spawn myMessanger)
+    , ((modm, xK_d     ), spawn appLauncher)
+    , ((modm, xK_Return), spawn myTerminal )
+    , ((modm, xK_w     ), spawn myBrowser  )
+    , ((modm, xK_t     ), spawn myMessanger)
     ------------ Xmonad ------------
     , ((modm,               xK_q), spawn "xmonad --recompile; xmonad --restart")  -- Restart xmonad
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)                   )  -- Quit xmonad
@@ -77,7 +77,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, controlMask)]]
     ++
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3

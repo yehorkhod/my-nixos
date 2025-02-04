@@ -34,6 +34,8 @@ in [
   slides
   qutebrowser
   zathura
+  via
+  vial
 
   # Global Utils
   brightnessctl
