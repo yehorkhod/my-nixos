@@ -8,7 +8,7 @@ in {
     enable = true;
     font = {
       name = "3270 Nerd Font";
-      size = 14;
+      size = 22;
     };
     keybindings = {
       "ctrl+plus" = "change_font_size all +2.0";
