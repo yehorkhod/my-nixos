@@ -36,6 +36,7 @@ in [
   zathura
   via
   vial
+  ttyper
 
   # Global Utils
   brightnessctl

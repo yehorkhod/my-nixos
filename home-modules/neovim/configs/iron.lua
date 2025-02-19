@@ -20,10 +20,6 @@ iron.setup({
 		send_file = "<Space>if", -- iron file
 		send_line = "<Space>il", -- iron line
 		send_until_cursor = "<Space>iu", -- iron until cursor
-		cr = "<Space>i<CR>", -- iron cr
-		interrupt = "<Space>ii", -- iron interrupt
-		clear = "<Space>ic", -- iron clear
-		exit = "<Space>iq", -- iron clear
 	},
 	highlight = { italic = true },
 	ignore_blank_lines = true,

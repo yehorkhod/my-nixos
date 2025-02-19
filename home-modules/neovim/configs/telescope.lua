@@ -5,6 +5,6 @@ local builtin = require("telescope.builtin")
 telescope.setup()
 
 -- Keymaps
-vim.keymap.set("n", "<Space>ff", builtin.find_files)
-vim.keymap.set("n", "<Space>fl", builtin.live_grep)
-vim.keymap.set("n", "<Space>fg", builtin.git_files)
+vim.keymap.set("n", "<Space>f", builtin.find_files)
+vim.keymap.set("n", "<Space>/", builtin.live_grep)
+vim.keymap.set("n", "<Space>F", builtin.git_files)
