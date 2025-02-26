@@ -114,23 +114,25 @@ in {
         }
         {
           plugin = nvim-colorizer-lua;
-          config = builtins.readFile ./configs/colorizer;
+          config = builtins.readFile ./configs/colorizer.vim;
         }
         {
           plugin = (nvim-treesitter.withPlugins (p: [
             p.tree-sitter-haskell
-            p.tree-sitter-c
             p.tree-sitter-python
-            p.tree-sitter-r
-            p.tree-sitter-bash
-            p.tree-sitter-css
-            p.tree-sitter-toml
-            p.tree-sitter-nix
-            p.tree-sitter-json
-            p.tree-sitter-lua
-            p.tree-sitter-yaml
-            p.tree-sitter-ini
             p.tree-sitter-gleam
+            p.tree-sitter-html
+            p.tree-sitter-bash
+            p.tree-sitter-toml
+            p.tree-sitter-json
+            p.tree-sitter-yaml
+            p.tree-sitter-css
+            p.tree-sitter-lua
+            p.tree-sitter-nix
+            p.tree-sitter-ini
+            p.tree-sitter-cpp
+            p.tree-sitter-c
+            p.tree-sitter-r
           ]));
           config = toLua
             "require('nvim-treesitter.configs').setup { highlight = { enable = true } }";
