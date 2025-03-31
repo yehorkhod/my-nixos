@@ -4,6 +4,8 @@
   services = {
     printing.enable = true;
 
+    displayManager.ly.enable = true;
+
     pipewire = {
       enable = true;
       alsa = {

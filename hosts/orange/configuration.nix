@@ -32,7 +32,6 @@ in {
       layout = "us";
       variant = "";
     };
-    displayManager.gdm.enable = true;
     windowManager.awesome = {
       enable = true;
       luaModules = with pkgs.luaPackages; [ luarocks luadbi-mysql ];

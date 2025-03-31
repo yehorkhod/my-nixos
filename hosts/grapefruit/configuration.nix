@@ -39,7 +39,6 @@ in {
       layout = "us";
       variant = "";
     };
-    displayManager.gdm.enable = true;
     windowManager = {
       xmonad = {
         enable = true;
