@@ -150,7 +150,7 @@ myStartupHook = do
     spawnOnce myTerminal
     spawnOnce myBrowser
     spawnOnce myMessanger
-    spawn "feh --bg-fill /home/yehorkhod/System/wallpaper.png"
+    spawn "feh --bg-fill /home/yehorkhod/wallpaper.png"
     spawn "setxkbmap -layout us,ua -option grp:win_space_toggle"
 
 ------------------------- XMONAD STUFF -------------------------
