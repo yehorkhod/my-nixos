@@ -13,5 +13,5 @@
   # Available options:
   #    rose-pine
   #    everforest
-  theme = "everforest";
+  theme = "rose-pine";
 }

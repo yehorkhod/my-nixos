@@ -3,6 +3,7 @@
 let
   username = configs.username;
   homeDirectory = "/home/${configs.username}";
+  theme = configs.theme;
 in {
   imports = [
     ../../home-modules/git/git.nix
@@ -56,10 +57,9 @@ in {
       source = ../../home-modules/polybar;
       recursive = true;
     };
-    ".config/qutebrowser" = {
-      source = ../../home-modules/qutebrowser;
-      recursive = true;
-    };
+    ".config/qutebrowser/color_setup.py".source = ../../home-modules/qutebrowser/color_setup.py;
+    ".config/qutebrowser/config.py".source = ../../home-modules/qutebrowser/config.py;
+    ".config/qutebrowser/theme.py".source = ../../home-modules/qutebrowser/themes/${theme}.py;
   };
 
   home.stateVersion = "24.05";
