@@ -49,14 +49,16 @@ in {
   };
 
   home.file = {
-    ".xmonad" = {
-      source = ../../home-modules/window-managers/xmonad;
-      recursive = true;
-    };
+    ".xmonad/xmonad.hs".source = ../../home-modules/window-managers/xmonad/xmonad.hs;
+    ".xmonad/lib/Variables.hs".source = ../../home-modules/window-managers/xmonad/lib/Variables.hs;
+    ".xmonad/lib/Borders.hs".source = ../../home-modules/window-managers/xmonad/lib/${theme}-Borders.hs;
+
     ".config/polybar/config.ini".source = ../../home-modules/polybar/${theme}/config.ini;
+
     ".config/qutebrowser/color_setup.py".source = ../../home-modules/qutebrowser/color_setup.py;
     ".config/qutebrowser/config.py".source = ../../home-modules/qutebrowser/config.py;
     ".config/qutebrowser/theme.py".source = ../../home-modules/qutebrowser/themes/${theme}.py;
+
     "wallpaper.png".source = ../../wallpapers/${theme}/wallpaper.png;
   };
 

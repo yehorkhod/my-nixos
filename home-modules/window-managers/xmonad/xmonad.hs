@@ -14,6 +14,7 @@ import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
 
 import           Variables
+import           Borders
 
 ------------------------- KEY BINDINGS -------------------------
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $

@@ -1,6 +1,6 @@
 module Variables where
 
-import Graphics.X11.Xlib (KeyMask, mod4Mask, Dimension)
+import Graphics.X11.Xlib (KeyMask, mod4Mask)
 
 
 -- Apps
@@ -19,21 +19,10 @@ appLauncher = "dmenu_run"
 
 -- Screenshots
 screenshotScript :: String
-screenshotScript     = "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
+screenshotScript = "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
 
 cropAndScreenshot :: String
-cropAndScreenshot    = "shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
-
-
--- Borders
-myBorderWidth :: Dimension
-myBorderWidth = 2
-
-myNormalBorderColor :: String
-myNormalBorderColor = "#403d52" --  "#9da9a0"
-
-myFocusedBorderColor :: String
-myFocusedBorderColor = "#31748f" -- "#dbbc7f" 
+cropAndScreenshot = "shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
 
 
 -- Focus
