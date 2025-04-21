@@ -1,4 +1,4 @@
-def setup(c):
+def setup(c, colors):
     # Statusbar
     c.colors.statusbar.normal.bg = colors["statusbar"]["normal"]["background"]
     c.colors.statusbar.normal.fg = colors["statusbar"]["normal"]["foreground"]
