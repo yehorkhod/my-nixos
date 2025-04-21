@@ -66,8 +66,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ----------- Programs -----------
     , ((modm, xK_d     ), spawn appLauncher)
     , ((modm, xK_Return), spawn myTerminal )
-    , ((modm, xK_w     ), spawn myBrowser  )
-    , ((modm, xK_t     ), spawn myMessanger)
     ------------ Xmonad ------------
     , ((modm,               xK_q), spawn "xmonad --recompile; xmonad --restart")  -- Restart xmonad
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)                   )  -- Quit xmonad
@@ -168,7 +166,7 @@ myStartupHook = do
     spawnOnce myTerminal
     spawnOnce myBrowser
     spawnOnce myMessanger
-    spawn "feh --bg-fill /home/yehorkhod/System/wallpapers/eva.jpg"
+    spawn "feh --bg-fill /home/yehorkhod/System/wallpaper.png"
     spawn "setxkbmap -layout us,ua -option grp:win_space_toggle"
 
 ------------------------- XMONAD STUFF -------------------------

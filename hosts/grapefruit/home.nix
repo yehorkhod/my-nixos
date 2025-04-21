@@ -57,6 +57,7 @@ in {
     ".config/qutebrowser/color_setup.py".source = ../../home-modules/qutebrowser/color_setup.py;
     ".config/qutebrowser/config.py".source = ../../home-modules/qutebrowser/config.py;
     ".config/qutebrowser/theme.py".source = ../../home-modules/qutebrowser/themes/${theme}.py;
+    "wallpaper.png".source = ../../wallpapers/${theme}/wallpaper.png;
   };
 
   home.stateVersion = "24.05";
