@@ -49,8 +49,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ------------ Layout ------------
     , ((modm, xK_b), sendMessage ToggleStruts)
     ----------- Programs -----------
-    , ((modm, xK_d     ), spawn appLauncher)
-    , ((modm, xK_Return), spawn myTerminal )
+    , ((modm, xK_d), spawn appLauncher)
     ------------ Xmonad ------------
     , ((modm,               xK_q), spawn "xmonad --recompile; xmonad --restart")  -- Restart xmonad
     , ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)                   )  -- Quit xmonad
