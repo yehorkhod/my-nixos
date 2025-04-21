@@ -13,23 +13,7 @@ import qualified XMonad.StackSet               as W
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
 
---------------------------- CONFIGS ----------------------------
-myTerminal           = "kitty"
-myBrowser            = "qutebrowser"
-myMessanger          = "telegram-desktop"
-appLauncher          = "dmenu_run"
-myBorderWidth        = 2
-myModMask            = mod4Mask
-myWorkspaces         = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor  = "#9da9a0"
-myFocusedBorderColor = "#dbbc7f"
-screenshotScript     = "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
-cropAndScreenshot    = "shotgun -g $(hacksaw) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
-
-myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
-myClickJustFocuses :: Bool
-myClickJustFocuses = False
+import           Variables
 
 ------------------------- KEY BINDINGS -------------------------
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
