@@ -53,10 +53,7 @@ in {
       source = ../../home-modules/window-managers/xmonad;
       recursive = true;
     };
-    ".config/polybar" = {
-      source = ../../home-modules/polybar;
-      recursive = true;
-    };
+    ".config/polybar/config.ini".source = ../../home-modules/polybar/${theme}/config.ini;
     ".config/qutebrowser/color_setup.py".source = ../../home-modules/qutebrowser/color_setup.py;
     ".config/qutebrowser/config.py".source = ../../home-modules/qutebrowser/config.py;
     ".config/qutebrowser/theme.py".source = ../../home-modules/qutebrowser/themes/${theme}.py;
