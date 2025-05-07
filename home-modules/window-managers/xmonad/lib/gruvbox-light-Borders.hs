@@ -7,7 +7,7 @@ myBorderWidth :: Dimension
 myBorderWidth = 2
 
 myNormalBorderColor :: String
-myNormalBorderColor = "#403d52"
+myNormalBorderColor = "#928374"
 
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#31748f"
+myFocusedBorderColor = "#d79921"

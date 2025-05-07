@@ -18,7 +18,11 @@ in {
       enable_audio_bell no
 
       background_opacity 0.95
-      ${if theme == "rose-pine" then themes.rose-pine else themes.everforest}
+      ${
+        if theme == "everforest" then themes.everforest
+        else if theme == "gruvbox-light" then themes."gruvbox-light"
+        else themes."rose-pine"
+      }
     '';
   };
 }

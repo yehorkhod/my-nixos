@@ -16,5 +16,6 @@
   # Available options:
   #    rose-pine
   #    everforest
-  theme = "rose-pine";
+  #    gruvbox-light
+  theme = "gruvbox-light";
 }

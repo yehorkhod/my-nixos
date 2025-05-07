@@ -26,12 +26,15 @@ in {
 
     plugins = with pkgs.vimPlugins;
       let
-        theme-plugin = if theme == "rose-pine" then {
-          plugin = rose-pine;
-          config = toLuaFile ./configs/themes/rose-pine.lua;
-        } else {
+        theme-plugin = if theme == "everforest" then {
           plugin = everforest;
           config = toLuaFile ./configs/themes/everforest.lua;
+        } else if theme == "gruvbox-light" then {
+          plugin = gruvbox-nvim;
+          config = toLuaFile ./configs/themes/gruvbox-light.lua;
+        } else {
+          plugin = rose-pine;
+          config = toLuaFile ./configs/themes/rose-pine.lua;
         };
       in [
         theme-plugin
@@ -50,7 +53,7 @@ in {
         {
           plugin = copilot-vim;
           config =
-            toLua "vim.g.copilot_filetypes = { ['*'] = false, python = true, }";
+            toLua "vim.g.copilot_filetypes = { ['*'] = false, }";
         }
         {
           plugin = mason-nvim;
