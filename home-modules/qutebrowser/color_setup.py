@@ -32,4 +32,4 @@ def setup(c, colors):
     c.colors.completion.item.selected.bg = colors["completion"]["selected-item"]["background"]
     c.colors.completion.item.selected.fg = colors["completion"]["selected-item"]["foreground"]
 
-    c.colors.webpage.darkmode.enabled = True
+    c.colors.webpage.darkmode.enabled = colors["darkmode"]
