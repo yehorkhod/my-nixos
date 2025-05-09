@@ -26,11 +26,12 @@ iron.setup({
 })
 
 -- Keymaps
-vim.keymap.set("n", "<Space>iS", iron_start) -- iron Start
-vim.keymap.set("n", "<Space>iR", iron_restart) -- iron Restart
+vim.keymap.set("n", "<Space>iS", function()
+	vim.cmd("IronRepl")
+end)
 vim.keymap.set("n", "<Space>iF", function()
 	vim.cmd("IronFocus")
-end) -- iron Focus
+end)
 vim.keymap.set("n", "<Space>iH", function()
 	vim.cmd("IronHide")
-end) -- iron Hide
+end)
