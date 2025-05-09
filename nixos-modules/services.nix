@@ -25,6 +25,6 @@
       enable = true;
       acceleration = "cuda";
     };
-    udev.packages = with pkgs; [ vial via ];
+    udev.packages = with pkgs; [ vial ];
   };
 }

@@ -9,8 +9,6 @@ let
 in [
   # Text editors
   neovim
-  helix
-  jetbrains-toolbox
 
   # Communication
   telegram-desktop
@@ -34,15 +32,14 @@ in [
   slides
   qutebrowser
   zathura
-  via
   vial
-  ttyper
 
   # Global Utils
   brightnessctl
   zip
   unzip
   bc
+  jq
   starship
   fzf
   neofetch

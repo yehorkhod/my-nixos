@@ -11,7 +11,6 @@ in {
       set -o vi
     '';
     shellAliases = {
-      "ty" = "ttyper --language-file ~/System/typing/ttyper-dictionary.txt -w 10";
       "venv" = "source venv/bin/activate";
       ":q" = "exit";
       "py" = "conda activate $1 && venv && pypath";

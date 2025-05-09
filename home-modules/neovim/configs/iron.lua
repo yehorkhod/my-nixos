@@ -25,29 +25,6 @@ iron.setup({
 	ignore_blank_lines = true,
 })
 
--- Functions
-local repl_initialized = {}
-
-local iron_start = function()
-	local file_type = vim.bo.filetype
-	if not repl_initialized[file_type] then
-		vim.cmd("IronRepl")
-		local current_dir = vim.fn.expand("%:p:h")
-		iron.send(nil, { string.format("import os; os.chdir('%s')", current_dir) })
-		repl_initialized[file_type] = true
-	else
-		vim.cmd("IronRepl")
-	end
-end
-
-local iron_restart = function()
-	local file_type = vim.bo.filetype
-	vim.cmd("IronRestart")
-	local current_dir = vim.fn.expand("%:p:h")
-	iron.send(nil, { string.format("import os; os.chdir('%s')", current_dir) })
-	repl_initialized[file_type] = true
-end
-
 -- Keymaps
 vim.keymap.set("n", "<Space>iS", iron_start) -- iron Start
 vim.keymap.set("n", "<Space>iR", iron_restart) -- iron Restart
