@@ -25,11 +25,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 -- Terminal
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-
-for _, key in pairs({ "h", "j", "k", "l" }) do
-	vim.keymap.set("t", "<C-w>" .. key, "<C-\\><C-n><C-w>" .. key)
-end
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 vim.api.nvim_create_autocmd("TermOpen", {
 	callback = function()
