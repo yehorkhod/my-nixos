@@ -60,6 +60,8 @@ in {
     ".config/qutebrowser/theme.py".source = ../../home-modules/qutebrowser/themes/${theme}.py;
 
     "wallpaper.png".source = ../../wallpapers/${theme}/wallpaper.png;
+
+    ".config/git/template".source = ../../home-modules/git/template;
   };
 
   home.stateVersion = "24.05";

@@ -51,6 +51,7 @@ in [
   tex
   ripgrep
   libgcc
+  diff-so-fancy
 
   # Games
   polymc
