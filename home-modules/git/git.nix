@@ -28,30 +28,9 @@
         interHunkContext = 10;
       };
 
-      color = {
-        diff = {
-          meta = "black bold";
-          frag = "magenta";
-          context = "white";
-          whitespace = "yellow reverse";
-          old = "red";
-        };
-        decorate = {
-          HEAD = "red";
-          branch = "blue";
-          tag = "yellow";
-          remoteBranch = "magenta";
-        };
-      };
-
       interactive = {
         diffFilter = "diff-so-fancy --patch";
         singlekey = "true";
-      };
-
-      log = {
-        abbrevCommit = "true";
-        graphColors = "blue,yellow,cyan,magenta,green,red";
       };
     };
   };
