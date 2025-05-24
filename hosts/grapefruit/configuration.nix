@@ -2,7 +2,8 @@
 
 let
   username = configs.username;
-  base-packages = import ../../nixos-modules/packages.nix { inherit pkgs; };
+  cursor = inputs.cursor;
+  base-packages = import ../../nixos-modules/packages.nix { inherit pkgs cursor; };
 in {
   imports = [
     ../../hardware-configuration.nix

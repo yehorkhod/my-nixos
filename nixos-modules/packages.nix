@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, cursor }:
 
 with pkgs;
 let
@@ -9,6 +9,7 @@ let
 in [
   # Text editors
   neovim
+  cursor.packages.${pkgs.system}.default
 
   # Communication
   telegram-desktop
