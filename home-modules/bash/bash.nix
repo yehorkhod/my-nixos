@@ -11,22 +11,26 @@ in {
       set -o vi
     '';
     shellAliases = {
-      "venv" = "source venv/bin/activate";
       ":q" = "exit";
-      "py" = "conda activate $1 && venv && pypath";
       "pypath" = "export PYTHONPATH=$(pwd)";
-      "numa" =
-        "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
+      "numa" = "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
       "cpu" = "sudo ${directory}/scripts/cpu_performance.sh";
-      "co" = "${directory}/scripts/checkout.sh";
       "fd" = "pilot";
-      "gd" = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
-      "gp" = "git push";
-      "gu" = "git pull";
+
+      # Git
+      "gs" = "git status";
+      "gi" = "git add -N";
       "ga" = "git add --patch";
+      "gp" = "git push";
+      "gur" = "git pull --rebase";
+      "gum" = "git pull --merge";
+      "gr" = "git rebase";
+      "gm" = "git merge";
+      "gd" = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
+      "gsw" = "git switch";
+      "gb" = "git bransh";
       "gc" = "git commit";
       "gl" = "git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'";
-      "gs" = "git status";
     };
   };
 }
