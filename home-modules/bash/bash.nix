@@ -30,7 +30,7 @@ in {
       "gm" = "git merge";
       "gd" = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
       "gsw" = "git switch";
-      "gb" = "git bransh";
+      "gb" = "git branch";
       "gc" = "git commit";
       "gl" = "git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'";
     };
