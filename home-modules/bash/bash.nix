@@ -16,6 +16,8 @@ in {
       "numa" = "for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done";
       "cpu" = "sudo ${directory}/scripts/cpu_performance.sh";
       "fd" = "pilot";
+      "hm" = "home-manager switch --flake ~/System";
+      "nr" = "sudo nixos-rebuild switch --flake ~/System";
 
       # Git
       "gs" = "git status";
