@@ -9,6 +9,7 @@ let
 in [
   # Text editors
   neovim
+  helix
   cursor.packages.${pkgs.system}.default
 
   # Communication

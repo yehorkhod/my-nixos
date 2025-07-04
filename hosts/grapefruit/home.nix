@@ -13,6 +13,7 @@ in {
     ../../home-modules/starship/starship.nix
 
     ../../home-modules/neovim/neovim.nix
+    ../../home-modules/helix/helix.nix
   ];
 
   home.username = username;

@@ -33,6 +33,7 @@ in {
       "gb" = "git branch";
       "gc" = "git commit";
       "gl" = "git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'";
+      "gst" = "git stash";
     };
   };
 }
