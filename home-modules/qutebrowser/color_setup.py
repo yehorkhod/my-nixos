@@ -7,7 +7,9 @@ def setup(c, colors):
     c.colors.statusbar.command.fg = colors["statusbar"]["command"]["foreground"]
 
     # Tabs
-    c.colors.tabs.selected.even.bg = colors["tabs"]["even"]["selected-background"]
+    c.colors.tabs.selected.even.bg = colors["tabs"]["even"][
+        "selected-background"
+    ]
     c.colors.tabs.even.bg = colors["tabs"]["even"]["background"]
     c.colors.tabs.even.fg = colors["tabs"]["even"]["foreground"]
 
@@ -22,14 +24,26 @@ def setup(c, colors):
     c.colors.hints.fg = colors["hints"]["foreground"]
 
     # Completion
-    c.colors.completion.even.bg = colors["completion"]["default"]["even-background"]
-    c.colors.completion.odd.bg = colors["completion"]["default"]["even-background"]
+    c.colors.completion.even.bg = colors["completion"]["default"][
+        "even-background"
+    ]
+    c.colors.completion.odd.bg = colors["completion"]["default"][
+        "even-background"
+    ]
     c.colors.completion.fg = colors["completion"]["default"]["foreground"]
 
-    c.colors.completion.category.bg = colors["completion"]["category"]["background"]
-    c.colors.completion.category.fg = colors["completion"]["category"]["foreground"]
+    c.colors.completion.category.bg = colors["completion"]["category"][
+        "background"
+    ]
+    c.colors.completion.category.fg = colors["completion"]["category"][
+        "foreground"
+    ]
 
-    c.colors.completion.item.selected.bg = colors["completion"]["selected-item"]["background"]
-    c.colors.completion.item.selected.fg = colors["completion"]["selected-item"]["foreground"]
+    c.colors.completion.item.selected.bg = colors["completion"][
+        "selected-item"
+    ]["background"]
+    c.colors.completion.item.selected.fg = colors["completion"][
+        "selected-item"
+    ]["foreground"]
 
     c.colors.webpage.darkmode.enabled = colors["darkmode"]

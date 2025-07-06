@@ -9,8 +9,9 @@ in {
       nil
       nixfmt-classic
       pyright
-      haskell-language-server
+      ruff
       ghc
+      haskell-language-server
       stylish-haskell
     ];
 
@@ -39,6 +40,11 @@ in {
       }
       {
         name = "python";
+        auto-format = true;
+        formatter = {
+          command = "ruff";
+          args = [ "format" "--line-length" "80" "-" ];
+        };
         language-servers = [ "pyright" ];
       }
       {
