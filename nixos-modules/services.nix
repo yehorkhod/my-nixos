@@ -49,5 +49,6 @@ in {
     displayManager.ly.enable = true;
     udev.packages = with pkgs; [ vial ];
     picom.enable = true;
+    pulseaudio.enable = false;
   };
 }

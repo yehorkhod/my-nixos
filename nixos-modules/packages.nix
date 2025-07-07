@@ -10,7 +10,6 @@
       cursor = inputs.cursor;
     in [
       # Text editors
-      neovim
       helix
       cursor.packages.${pkgs.system}.default
 
@@ -24,7 +23,6 @@
       conda
       docker-compose
       kitty
-      alacritty
       tmux
       btop
       pilot
@@ -59,7 +57,7 @@
       diff-so-fancy
       xclip
       shotgun
-      hacksaw
+      slop
       feh
       dmenu
       polybar

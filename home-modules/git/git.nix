@@ -17,7 +17,7 @@
       commit.template = "~/.config/git/template";
 
       core = {
-        editor = "nvim";
+        editor = "hx";
         preloadindex = "true";
         whitespace = "error";
       };

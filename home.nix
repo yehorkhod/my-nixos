@@ -7,8 +7,8 @@ let
   stateVersion = configs.stateVersion;
 in {
   imports = [
+    ./home-modules/kitty/kitty.nix
     ./home-modules/bash/bash.nix
-    ./home-modules/alacritty.nix
     ./home-modules/starship.nix
     ./home-modules/git/git.nix
     ./home-modules/helix.nix

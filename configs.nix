@@ -16,5 +16,5 @@
   #    rose_pine
   #    rose_pine_dawn
   #    rose_pine_moon
-  theme = "rose_pine_moon";
+  theme = "rose_pine_dawn";
 }

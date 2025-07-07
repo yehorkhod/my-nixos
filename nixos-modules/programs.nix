@@ -2,7 +2,6 @@
 
 {
   programs = {
-    neovim.enable = true;
     gnupg.agent.enable = true;
     tmux.enable = true;
 
