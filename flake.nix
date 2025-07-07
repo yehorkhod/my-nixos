@@ -21,14 +21,14 @@
       nixosConfigurations = {
         ${configs.hostname} = lib.nixosSystem {
           inherit (configs) system;
-          modules = [ ./hosts/${configs.hostname}/configuration.nix ];
+          modules = [ ./configuration.nix ];
           specialArgs = { inherit inputs configs; };
         };
       };
       homeConfigurations = {
         ${configs.username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./hosts/${configs.hostname}/home.nix ];
+          modules = [ ./home.nix ];
           extraSpecialArgs = { inherit inputs configs; };
         };
       };

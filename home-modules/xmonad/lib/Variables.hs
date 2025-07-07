@@ -1,11 +1,11 @@
 module Variables where
 
-import Graphics.X11.Xlib (KeyMask, mod4Mask)
+import           Graphics.X11.Xlib (KeyMask, mod4Mask)
 
 
 -- Apps
 myTerminal :: String
-myTerminal = "kitty"
+myTerminal = "alacritty"
 
 myBrowser :: String
 myBrowser = "qutebrowser"

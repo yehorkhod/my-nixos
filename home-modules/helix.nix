@@ -57,12 +57,7 @@ in {
 
     themes = {
       custom_theme = {
-        "inherits" = if theme == "rose-pine" then
-          "rose_pine"
-        else if theme == "gruvbox-light" then
-          "gruvbox_light_hard"
-        else
-          "everforest_dark";
+        "inherits" = theme;
         "ui.background" = { };
       };
     };
