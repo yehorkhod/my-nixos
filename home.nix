@@ -7,6 +7,7 @@ let
   stateVersion = configs.stateVersion;
 in {
   imports = [
+    ./home-modules/qutebrowser/qutebrowser.nix
     ./home-modules/kitty/kitty.nix
     ./home-modules/bash/bash.nix
     ./home-modules/btop/btop.nix
@@ -55,15 +56,7 @@ in {
     ".xmonad/lib/Borders.hs".source =
       ./home-modules/xmonad/lib/rose-pine-Borders.hs;
 
-    ".config/polybar/config.ini".source =
-      ./home-modules/polybar/rose-pine/config.ini;
-
-    ".config/qutebrowser/color_setup.py".source =
-      ./home-modules/qutebrowser/color_setup.py;
-    ".config/qutebrowser/config.py".source =
-      ./home-modules/qutebrowser/config.py;
-    ".config/qutebrowser/theme.py".source =
-      ./home-modules/qutebrowser/themes/rose-pine.py;
+    ".config/polybar/config.ini".source = ./home-modules/polybar/${theme}.ini;
 
     "wallpaper.png".source = ./wallpapers/rose-pine/wallpaper.png;
 
