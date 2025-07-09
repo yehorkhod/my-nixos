@@ -1,13 +1,13 @@
 module Borders where
 
-import Graphics.X11.Xlib (Dimension)
+import           Graphics.X11.Xlib (Dimension)
 
 
 myBorderWidth :: Dimension
 myBorderWidth = 2
 
 myNormalBorderColor :: String
-myNormalBorderColor = "#928374"
+myNormalBorderColor = "#232136"
 
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#d79921"
+myFocusedBorderColor = "#e0def4"

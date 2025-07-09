@@ -172,7 +172,6 @@ def colors_setup(c, palette):
     c.colors.prompts.fg = palette["Text"]
     c.colors.prompts.selected.bg = palette["Overlay"]
     c.colors.prompts.selected.fg = palette["Text"]
-
     # }}}
 
     # Error, info and warning messages {{{
