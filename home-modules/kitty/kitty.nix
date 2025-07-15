@@ -7,7 +7,7 @@ in {
   programs.kitty = {
     enable = true;
     font = {
-      name = "3270 Nerd Font";
+      name = "FiraCode Nerd Font Mono";
       size = 18;
     };
     keybindings = {

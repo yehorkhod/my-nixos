@@ -25,9 +25,9 @@
       set -g status-left ""
       set -g status-right "#[fg=magenta,bright]#S"
 
-      set -g window-status-format "●"
+      set -g window-status-format "○"
       set -g window-status-style "fg=green"
-      set -g window-status-current-format "◎"
+      set -g window-status-current-format "●"
       set -g window-status-current-style "#{?window_zoomed_flag,fg=yellow,fg=magenta,nobold}"
       set -g window-status-bell-style "fg=red,nobold"
 

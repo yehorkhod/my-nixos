@@ -19,6 +19,8 @@ in {
       # Git
       "gs" = "git status";
       "gp" = "git push";
+      "gc" = "git commit";
+      "ga" = "git add --patch";
       "gd" = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
       "gl" =
         "git log --all --graph --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'";
