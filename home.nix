@@ -12,7 +12,6 @@ in {
     ./home-modules/bash/bash.nix
     ./home-modules/btop/btop.nix
     ./home-modules/starship.nix
-    ./home-modules/git/git.nix
     ./home-modules/helix.nix
     ./home-modules/tmux.nix
   ];
@@ -58,7 +57,6 @@ in {
 
     ".config/polybar/config.ini".source = ./home-modules/polybar/${theme}.ini;
     "wallpaper.png".source = ./wallpapers/rose-pine/wallpaper.png;
-    ".config/git/template".source = ./home-modules/git/template;
   };
 
   home.stateVersion = stateVersion;
