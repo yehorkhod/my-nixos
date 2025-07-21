@@ -13,7 +13,6 @@ in {
     ./home-modules/btop/btop.nix
     ./home-modules/starship.nix
     ./home-modules/helix.nix
-    ./home-modules/tmux.nix
   ];
 
   home.username = username;
