@@ -6,13 +6,8 @@ let
   theme = configs.theme;
   stateVersion = configs.stateVersion;
 in {
-  imports = [
-    ./home-modules/btop/btop.nix
-  ];
-
   home.username = username;
   home.homeDirectory = homeDirectory;
-
   programs.home-manager.enable = true;
   nixpkgs = {
     config = {
