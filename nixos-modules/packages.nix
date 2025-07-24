@@ -4,68 +4,58 @@
   environment.systemPackages = with pkgs;
     let
       tex = (pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-full latexmk xetex;
+        inherit (pkgs.texlive) scheme-basic latexmk xetex;
       });
       pilot = (callPackage ./pilot/default.nix { inherit pkgs; });
-      cursor = inputs.cursor;
+      cursor = inputs.cursor.packages.${pkgs.system}.default;
     in [
-      # Text editors
-      helix
-      cursor.packages.${pkgs.system}.default
-
-      # Communication
-      telegram-desktop
-      discord
-      zoom-us
-
-      # Work
-      git
-      conda
-      docker-compose
-      kitty
-      tmux
-      btop
-      pilot
-
-      # Apps
-      libreoffice-qt
-      vlc
-      obs-studio
-      pinta
-      slides
-      qutebrowser
-      zathura
-      vial
-
-      # Global Utils
-      brightnessctl
-      zip
-      unzip
       bc
       jq
-      starship
-      fzf
-      neofetch
-      wget
-      alsa-utils
-      alsa-tools
-      pamixer
-      pass
       tex
-      ripgrep
-      libgcc
-      diff-so-fancy
-      xclip
-      shotgun
-      slop
+      git
+      vlc
+      zip
+      fzf
       feh
+      slop
+      tmux
+      btop
+      vial
+      wget
+      pass
+      conda
+      kitty
+      pilot
+      helix
+      pinta
+      unzip
+      xclip
       dmenu
-      polybar
-      pavucontrol
-
-      # Games
+      slides
+      cursor
+      libgcc
       polymc
+      shotgun
+      polybar
+      discord
+      zoom-us
+      pamixer
+      ripgrep
+      zathura
+      chezmoi
       mangohud
       protonup
+      starship
+      neofetch
+      alsa-utils
+      alsa-tools
+      obs-studio
+      pavucontrol
+      qutebrowser
+      brightnessctl
+      diff-so-fancy
+      docker-compose
+      libreoffice-qt
+      telegram-desktop
     ];
 }

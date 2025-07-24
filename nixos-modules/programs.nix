@@ -2,6 +2,7 @@
 
 {
   programs = {
+    nano.enable = false;
     gnupg.agent.enable = true;
     tmux.enable = true;
 
