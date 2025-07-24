@@ -7,7 +7,6 @@ let
   stateVersion = configs.stateVersion;
 in {
   imports = [
-    ./home-modules/bash/bash.nix
     ./home-modules/btop/btop.nix
   ];
 
