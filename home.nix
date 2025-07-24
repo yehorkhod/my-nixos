@@ -38,8 +38,6 @@ in {
     ".xmonad/lib/Variables.hs".source = ./home-modules/xmonad/lib/Variables.hs;
     ".xmonad/lib/Borders.hs".source =
       ./home-modules/xmonad/lib/${theme}-Borders.hs;
-
-    ".config/polybar/config.ini".source = ./home-modules/polybar/${theme}.ini;
     "wallpaper.png".source = ./wallpapers/rose-pine/wallpaper.png;
   };
 
