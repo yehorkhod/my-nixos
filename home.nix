@@ -7,7 +7,6 @@ let
   stateVersion = configs.stateVersion;
 in {
   imports = [
-    ./home-modules/kitty/kitty.nix
     ./home-modules/bash/bash.nix
     ./home-modules/btop/btop.nix
     ./home-modules/starship.nix
@@ -22,11 +21,6 @@ in {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
     };
-  };
-
-  programs.firefox = {
-    enable = true;
-    policies = { DisableAppUpdate = true; };
   };
 
   xdg.mimeApps = {
