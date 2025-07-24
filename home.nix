@@ -16,13 +16,7 @@ in {
     };
   };
 
-  home.file = {
-    ".xmonad/xmonad.hs".source = ./home-modules/xmonad/xmonad.hs;
-    ".xmonad/lib/Variables.hs".source = ./home-modules/xmonad/lib/Variables.hs;
-    ".xmonad/lib/Borders.hs".source =
-      ./home-modules/xmonad/lib/${theme}-Borders.hs;
-    "wallpaper.png".source = ./wallpapers/rose-pine/wallpaper.png;
-  };
+  home.file = { "wallpaper.png".source = ./wallpapers/rose-pine/wallpaper.png; };
 
   home.stateVersion = stateVersion;
 }
