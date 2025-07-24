@@ -1,7 +1,6 @@
-{ configs, ... }:
+{ configs, hostname, ... }:
 
-let hostname = configs.hostname;
-in {
+{
   networking = {
     hostName = hostname;
     networkmanager.enable = true;

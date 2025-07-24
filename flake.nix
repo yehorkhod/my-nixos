@@ -1,35 +1,24 @@
 {
-  description = "System configuration";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     xremap-flake.url = "github:xremap/nix-flake";
     polymc.url = "github:PolyMC/PolyMC";
     cursor.url = "github:omarcresp/cursor-flake/main";
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      configs = import ./configs.nix;
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${configs.system};
+      username = "yehorkhod";
+      hostname = "grapefruit";
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
-        ${configs.hostname} = lib.nixosSystem {
-          inherit (configs) system;
+        ${hostname} = lib.nixosSystem {
+          inherit system;
           modules = [ ./configuration.nix ];
-          specialArgs = { inherit inputs configs; };
-        };
-      };
-      homeConfigurations = {
-        ${configs.username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          extraSpecialArgs = { inherit inputs configs; };
+          specialArgs = { inherit inputs username hostname; };
         };
       };
     };

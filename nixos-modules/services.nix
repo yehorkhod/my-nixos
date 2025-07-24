@@ -1,7 +1,6 @@
-{ configs, pkgs, ... }:
+{ configs, pkgs, username, ... }:
 
-let username = configs.username;
-in {
+{
   services = {
     xserver = {
       enable = true;

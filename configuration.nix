@@ -20,5 +20,5 @@ in {
     ./nixos-modules/session-variables.nix
     inputs.xremap-flake.nixosModules.default
   ];
-  system.stateVersion = stateVersion;
+  system.stateVersion = "24.05";
 }

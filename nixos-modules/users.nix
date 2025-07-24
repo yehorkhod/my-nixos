@@ -1,13 +1,10 @@
-{ configs, ... }:
+{ configs, username,... }:
 
-let
-  username = configs.username;
-  userDescription = "ULTRA";
-in {
+{
   users = {
     users.${username} = {
       isNormalUser = true;
-      description = userDescription;
+      description = "description";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
     };
     extraGroups.docker.members = [ username ];
