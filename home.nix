@@ -16,23 +16,6 @@ in {
     };
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-
-      # Browser things
-      "text/html" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-
-      # PDF files
-      "application/pdf" = "org.pwmt.zathura.desktop";
-    };
-  };
-
   home.file = {
     ".xmonad/xmonad.hs".source = ./home-modules/xmonad/xmonad.hs;
     ".xmonad/lib/Variables.hs".source = ./home-modules/xmonad/lib/Variables.hs;
