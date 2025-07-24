@@ -9,7 +9,6 @@ in {
   imports = [
     ./home-modules/bash/bash.nix
     ./home-modules/btop/btop.nix
-    ./home-modules/starship.nix
   ];
 
   home.username = username;
