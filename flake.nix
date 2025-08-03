@@ -4,6 +4,7 @@
     xremap-flake.url = "github:xremap/nix-flake";
     polymc.url = "github:PolyMC/PolyMC";
     cursor.url = "github:omarcresp/cursor-flake/main";
+    pilot.url = "github:yehorkhod/pilot";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -12,7 +13,6 @@
       username = "yehorkhod";
       hostname = "grapefruit";
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
         ${hostname} = lib.nixosSystem {

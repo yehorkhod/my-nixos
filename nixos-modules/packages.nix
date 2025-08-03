@@ -6,7 +6,7 @@
       tex = (pkgs.texlive.combine {
         inherit (pkgs.texlive) scheme-basic latexmk xetex;
       });
-      pilot = (callPackage ./pilot/default.nix { inherit pkgs; });
+      pilot = inputs.pilot.packages.${pkgs.system}.pilot;
       cursor = inputs.cursor.packages.${pkgs.system}.default;
     in [
       bc
@@ -17,12 +17,14 @@
       zip
       fzf
       feh
+      nil
       slop
       tmux
       btop
       vial
       wget
       pass
+      ruff
       conda
       kitty
       pilot
@@ -35,6 +37,7 @@
       cursor
       libgcc
       polymc
+      pyright
       shotgun
       polybar
       discord
@@ -54,6 +57,7 @@
       qutebrowser
       brightnessctl
       diff-so-fancy
+      nixfmt-classic
       docker-compose
       libreoffice-qt
       telegram-desktop
