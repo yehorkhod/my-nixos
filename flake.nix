@@ -8,13 +8,20 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       lib = nixpkgs.lib;
       username = "yehorkhod";
       hostname = "grapefruit";
       system = "x86_64-linux";
-    in {
+    in
+    {
       nixosConfigurations = {
         ${hostname} = lib.nixosSystem {
           inherit system;

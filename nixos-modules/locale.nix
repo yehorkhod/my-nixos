@@ -1,7 +1,9 @@
 { ... }:
 
-let timeZone = "Europe/Kyiv";
-in {
+let
+  timeZone = "Europe/Kyiv";
+in
+{
   time.timeZone = timeZone;
 
   i18n = {

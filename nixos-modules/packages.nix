@@ -16,7 +16,6 @@
     [
       # LSPs and Formaters
       nil
-      gcc
       ruff
       pyright
       lua-language-server
@@ -28,6 +27,7 @@
       fzf
       git
       zip
+      gcc
       tmux
       btop
       wget

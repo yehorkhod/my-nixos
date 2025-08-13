@@ -1,4 +1,4 @@
-{ configs, hostname, ... }:
+{ hostname, ... }:
 
 {
   networking = {

@@ -4,7 +4,8 @@ let
   # `nix shell nixpkgs#pciutils -c lspci | grep ' VGA '` to check the bus id
   intelBusId = "PCI:0:2:0";
   nvidiaBusId = "PCI:1:0:0";
-in {
+in
+{
   nixpkgs.config.cudaSupport = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
