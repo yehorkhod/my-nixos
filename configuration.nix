@@ -1,7 +1,6 @@
-{ configs, inputs, ... }:
+{ inputs, ... }:
 
-let stateVersion = configs.stateVersion;
-in {
+{
   imports = [
     ./nixos-modules/nix.nix
     ./nixos-modules/boot.nix

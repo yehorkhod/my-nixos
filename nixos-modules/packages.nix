@@ -1,65 +1,85 @@
 { pkgs, inputs, ... }:
 
 {
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     let
-      tex = (pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-basic latexmk xetex;
-      });
+      tex = (
+        pkgs.texlive.combine {
+          inherit (pkgs.texlive) scheme-basic latexmk xetex;
+        }
+      );
       pilot = inputs.pilot.packages.${pkgs.system}.pilot;
       cursor = inputs.cursor.packages.${pkgs.system}.default;
-    in [
+      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    in
+    [
+      # LSPs and Formaters
+      nil
+      gcc
+      ruff
+      pyright
+      lua-language-server
+
+      # Terminal Utilities
       bc
       jq
       tex
-      git
-      vlc
-      zip
       fzf
-      feh
-      nil
-      slop
+      git
+      zip
       tmux
       btop
-      vial
       wget
       pass
-      ruff
-      conda
-      kitty
       pilot
-      helix
-      pinta
       unzip
-      xclip
+      conda
+      ripgrep
+      starship
+      diff-so-fancy
+      brightnessctl
+      docker-compose
+
+      # Applications
+      feh
+      vlc
+      vial
       dmenu
+      kitty
+      pinta
       slides
-      cursor
-      libgcc
-      polymc
-      pyright
-      shotgun
       polybar
+      chezmoi
+      zathura
+      obs-studio
+      qutebrowser
+      libreoffice-qt
+
+      # Communication
       discord
       zoom-us
+      telegram-desktop
+
+      # Sound control
       pamixer
-      ripgrep
-      zathura
-      chezmoi
-      mangohud
-      protonup
-      starship
-      neofetch
       alsa-utils
       alsa-tools
-      obs-studio
       pavucontrol
-      qutebrowser
-      brightnessctl
-      diff-so-fancy
-      nixfmt-classic
-      docker-compose
-      libreoffice-qt
-      telegram-desktop
+
+      # Editors
+      helix
+      neovim
+      cursor
+
+      # Gaming
+      polymc
+      mangohud
+      protonup
+
+      # Screenshoting Utils
+      slop
+      xclip
+      shotgun
     ];
 }

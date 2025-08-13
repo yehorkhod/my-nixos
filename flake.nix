@@ -5,6 +5,7 @@
     polymc.url = "github:PolyMC/PolyMC";
     cursor.url = "github:omarcresp/cursor-flake/main";
     pilot.url = "github:yehorkhod/pilot";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
