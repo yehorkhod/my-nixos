@@ -4,11 +4,6 @@
   environment.systemPackages =
     with pkgs;
     let
-      tex = (
-        pkgs.texlive.combine {
-          inherit (pkgs.texlive) scheme-basic latexmk xetex;
-        }
-      );
       pilot = inputs.pilot.packages.${pkgs.system}.pilot;
       cursor = inputs.cursor.packages.${pkgs.system}.default;
       neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
@@ -17,13 +12,14 @@
       # LSPs and Formaters
       nil
       ruff
+      typst
       pyright
+      tinymist
       lua-language-server
 
       # Terminal Utilities
       bc
       jq
-      tex
       fzf
       git
       zip
@@ -68,7 +64,6 @@
       pavucontrol
 
       # Editors
-      helix
       neovim
       cursor
 
