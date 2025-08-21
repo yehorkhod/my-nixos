@@ -4,7 +4,6 @@
   environment.systemPackages =
     with pkgs;
     let
-      pilot = inputs.pilot.packages.${pkgs.system}.pilot;
       cursor = inputs.cursor.packages.${pkgs.system}.default;
       neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     in
@@ -28,7 +27,6 @@
       btop
       wget
       pass
-      pilot
       unzip
       conda
       ripgrep
