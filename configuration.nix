@@ -17,7 +17,6 @@
     ./nixos-modules/networking.nix
     ./nixos-modules/virtualization.nix
     ./nixos-modules/session-variables.nix
-    inputs.xremap-flake.nixosModules.default
   ];
   system.stateVersion = "24.05";
 }

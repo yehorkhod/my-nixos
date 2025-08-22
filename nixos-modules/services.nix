@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 
 {
   services = {
@@ -30,18 +30,6 @@
       enable = true;
       acceleration = "cuda";
     };
-    xremap = {
-      withX11 = true;
-      userName = username;
-      yamlConfig = ''
-        modmap:
-          - name: main remaps
-            remap:
-              CapsLock:
-                held: Super_L
-                alone: esc
-      '';
-    };
     openssh.enable = true;
     blueman.enable = true;
     printing.enable = true;
@@ -49,5 +37,21 @@
     udev.packages = with pkgs; [ vial ];
     picom.enable = true;
     pulseaudio.enable = false;
+    interception-tools =
+      let
+        itools = pkgs.interception-tools;
+        dualfn = pkgs.interception-tools-plugins.dual-function-keys;
+      in
+      {
+        enable = true;
+        plugins = [ dualfn ];
+        # requires explicit paths: https://github.com/NixOS/nixpkgs/issues/126681
+        udevmonConfig = pkgs.lib.mkDefault ''
+          - JOB: "${itools}/bin/intercept -g $DEVNODE | ${dualfn}/bin/dual-function-keys -c /etc/dualfn.yaml | ${itools}/bin/uinput -d $DEVNODE"
+            DEVICE:
+              EVENTS:
+                EV_KEY: [KEY_CAPSLOCK]
+        '';
+      };
   };
 }

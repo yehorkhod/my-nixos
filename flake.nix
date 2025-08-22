@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    xremap-flake.url = "github:xremap/nix-flake";
     polymc.url = "github:PolyMC/PolyMC";
     cursor.url = "github:omarcresp/cursor-flake/main";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
