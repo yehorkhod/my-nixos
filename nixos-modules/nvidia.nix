@@ -10,24 +10,27 @@ in
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.nvidia = {
-    open = false;
-    nvidiaSettings = true;
-    modesetting.enable = true;
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      open = false;
+      nvidiaSettings = true;
+      modesetting.enable = true;
 
-    powerManagement = {
-      enable = false;
-      finegrained = false;
-    };
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
 
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
 
-    prime = {
-      reverseSync.enable = true;
-      allowExternalGpu = false;
+      prime = {
+        reverseSync.enable = true;
+        allowExternalGpu = false;
 
-      intelBusId = intelBusId;
-      nvidiaBusId = nvidiaBusId;
+        intelBusId = intelBusId;
+        nvidiaBusId = nvidiaBusId;
+      };
     };
   };
 }

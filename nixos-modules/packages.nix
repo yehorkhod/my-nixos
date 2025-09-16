@@ -1,13 +1,20 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  username,
+  ...
+}:
 
 {
-  environment.systemPackages =
-    with pkgs;
-    let
-      cursor = inputs.cursor.packages.${pkgs.system}.default;
-      neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    in
-    [
+  environment = {
+    sessionVariables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
+    etc."dualfn.yaml".text = ''
+      MAPPINGS:
+        - KEY: KEY_CAPSLOCK
+          TAP: KEY_ESC
+          HOLD: KEY_LEFTMETA
+    '';
+    systemPackages = with pkgs; [
       # LSPs and Formaters
       nil
       ruff
@@ -29,8 +36,12 @@
       pass
       unzip
       conda
+      img2pdf
+      pamixer
       ripgrep
       starship
+      man-pages
+      man-pages-posix
       diff-so-fancy
       brightnessctl
       docker-compose
@@ -49,21 +60,12 @@
       obs-studio
       qutebrowser
       libreoffice-qt
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
 
       # Communication
       discord
       zoom-us
       telegram-desktop
-
-      # Sound control
-      pamixer
-      alsa-utils
-      alsa-tools
-      pavucontrol
-
-      # Editors
-      neovim
-      cursor
 
       # Gaming
       polymc
@@ -75,4 +77,23 @@
       xclip
       shotgun
     ];
+  };
+
+  programs = {
+    nano.enable = false;
+    gnupg.agent.enable = true;
+    tmux.enable = true;
+
+    # Games
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+  };
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.polymc.overlay ];
+  };
 }

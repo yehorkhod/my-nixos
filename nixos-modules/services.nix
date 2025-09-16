@@ -16,6 +16,7 @@
         };
       };
     };
+
     pipewire = {
       enable = true;
       alsa = {
@@ -26,17 +27,12 @@
       jack.enable = true;
       wireplumber.enable = true;
     };
+
     ollama = {
       enable = true;
       acceleration = "cuda";
     };
-    openssh.enable = true;
-    blueman.enable = true;
-    printing.enable = true;
-    displayManager.ly.enable = true;
-    udev.packages = with pkgs; [ vial ];
-    picom.enable = true;
-    pulseaudio.enable = false;
+
     interception-tools =
       let
         itools = pkgs.interception-tools;
@@ -45,7 +41,6 @@
       {
         enable = true;
         plugins = [ dualfn ];
-        # requires explicit paths: https://github.com/NixOS/nixpkgs/issues/126681
         udevmonConfig = pkgs.lib.mkDefault ''
           - JOB: "${itools}/bin/intercept -g $DEVNODE | ${dualfn}/bin/dual-function-keys -c /etc/dualfn.yaml | ${itools}/bin/uinput -d $DEVNODE"
             DEVICE:
@@ -53,5 +48,17 @@
                 EV_KEY: [KEY_CAPSLOCK]
         '';
       };
+
+    openssh.enable = true;
+
+    printing.enable = true;
+
+    displayManager.ly.enable = true;
+
+    udev.packages = with pkgs; [ vial ];
+
+    picom.enable = true;
+
+    pulseaudio.enable = false;
   };
 }
