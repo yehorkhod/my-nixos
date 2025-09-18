@@ -41,10 +41,10 @@
       ripgrep
       starship
       man-pages
-      man-pages-posix
       diff-so-fancy
       brightnessctl
       docker-compose
+      man-pages-posix
 
       # Applications
       feh
@@ -54,12 +54,10 @@
       kitty
       pinta
       slides
-      polybar
       chezmoi
       zathura
       obs-studio
       qutebrowser
-      libreoffice-qt
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
 
       # Communication
@@ -82,7 +80,6 @@
   programs = {
     nano.enable = false;
     gnupg.agent.enable = true;
-    tmux.enable = true;
 
     # Games
     gamemode.enable = true;
