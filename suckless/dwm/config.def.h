@@ -1,6 +1,6 @@
 #define MODKEY Mod4Mask
 static const char *tags[] = { "1", "2", "3", "4", "5" };
-static const Rule rules[] = {};
+static const Rule rules[] = { 0 };
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
