@@ -228,6 +228,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void adjustview(const Arg *arg);
+static void adjusttag(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2089,6 +2091,44 @@ zoom(const Arg *arg)
 	if (c == nexttiled(selmon->clients) && !(c = nexttiled(c->next)))
 		return;
 	pop(c);
+}
+
+void
+adjustview(const Arg *arg) {
+    int newtag = selmon->tagset[selmon->seltags];
+    if (arg->i > 0) {
+        newtag <<= 1;
+        if (newtag > (1 << (LENGTH(tags) - 1)))
+            newtag = 1;
+    } else {
+        newtag >>= 1;
+        if (newtag == 0)
+            newtag = 1 << (LENGTH(tags) - 1);
+    }
+    const Arg a = { .ui = newtag };
+    view(&a);
+}
+
+void
+adjusttag(const Arg *arg) {
+    if (!selmon->sel)
+        return;
+
+    int curtag = selmon->sel->tags;
+    int newtag;
+
+    if (arg->i > 0) {
+        newtag = curtag << 1;
+        if (newtag > (1 << (LENGTH(tags) - 1)))
+            newtag = 1;
+    } else {
+        newtag = curtag >> 1;
+        if (newtag == 0)
+            newtag = 1 << (LENGTH(tags) - 1);
+    }
+
+    selmon->sel->tags = newtag;
+    view(&(Arg){.ui = newtag});
 }
 
 int
