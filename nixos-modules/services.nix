@@ -2,21 +2,17 @@
 
 {
   services = {
+    picom.enable = true;
+    displayManager.ly.enable = true;
     xserver = {
       enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      windowManager = {
-        xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-          extraPackages = haskellPackages: [ ];
-        };
+      windowManager.dwm = {
+        enable = true;
+        package = pkgs.dwm.overrideAttrs { src = ../suckless/dwm; };
       };
     };
 
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa = {
@@ -26,11 +22,6 @@
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
-    };
-
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
     };
 
     interception-tools =
@@ -49,16 +40,13 @@
         '';
       };
 
-    openssh.enable = true;
-
-    printing.enable = true;
-
-    displayManager.ly.enable = true;
-
     udev.packages = with pkgs; [ vial ];
 
-    picom.enable = true;
+    openssh.enable = true;
 
-    pulseaudio.enable = false;
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
   };
 }
