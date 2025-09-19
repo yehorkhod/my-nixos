@@ -1,6 +1,23 @@
+// "shotgun /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
+// "shotgun -g $(slop) /tmp/image.png && xclip -selection clipboard -t image/png -i /tmp/image.png"
+// "pamixer -d 10"
+// "pamixer -i 10"
+// "pamixer -t"
+// "brightnessctl s 10%+"
+// "brightnessctl s 10%-"
+// super + o
+// move to st and surf
+// move windows up and down
+// super + p
+// battery and time on top bar
 #define MODKEY Mod4Mask
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 static const Rule rules[] = { 0 };
+static const char *autostart[] = {
+    "feh --bg-fill /home/yehorkhod/wallpaper.png",
+    "setxkbmap -layout us,ua -option grp:win_space_toggle",
+    NULL
+};
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -21,17 +38,12 @@ static const char *colors[][3]      = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster = 1;
+static const int resizehints = 1; /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-static const int refreshrate = 120;  /* refresh rate (per second) for client move/resize */
-static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
-};
+static const int refreshrate = 120;
+static const Layout layouts[] = { { "[]=", tile }, { "><>", NULL }, { "[M]", monocle } };
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
