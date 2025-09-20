@@ -28,7 +28,7 @@ static const Layout layouts[]   = { { "[]=", tile }, { "><>", NULL }, { "[M]", m
 
 /* commands */
 static char dmenumon[2] = "0";
-static const char *dmenucmd[]          = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_dim, "-sb", col_bg, "-sf", col_highlight, NULL };
+static const char *dmenucmd[]          = { "dmenu_run", "-m", dmenumon, "-l", "5", "-fn", dmenufont, "-nb", col_bg, "-nf", col_dim, "-sb", col_bg, "-sf", col_highlight, NULL };
 static const char *incrbrightnesscmd[] = { "brightnessctl", "s", "10%+", NULL };
 static const char *decrbrightnesscmd[] = { "brightnessctl", "s", "10%-", NULL };
 static const char *incrvolumecmd[]     = { "pamixer", "-i", "10", NULL };
@@ -53,9 +53,6 @@ static const Key keys[] = {
     { 0,                XK_Print,                 spawn,          { .v = fullscreenshotcmd } },
     { MODKEY|ShiftMask, XK_s,                     spawn,          { .v = partscreenshotcmd } },
 
-    { MODKEY,           XK_b,                     togglebar,      { 0 } },
-    { MODKEY,           XK_c,                     killclient,     { 0 } },
-
     { MODKEY,           XK_j,                     focusstack,     { .i = +1 } },
     { MODKEY,           XK_k,                     focusstack,     { .i = -1 } },
     { MODKEY|ShiftMask, XK_j,                     movestack,      { .i = +1 } },
@@ -69,9 +66,11 @@ static const Key keys[] = {
     { MODKEY,           XK_t,                     setlayout,      { .v = &layouts[0] } },
     { MODKEY,           XK_f,                     setlayout,      { .v = &layouts[1] } },
     { MODKEY,           XK_m,                     setlayout,      { .v = &layouts[2] } },
-    { MODKEY,           XK_space,                 setlayout,      { 0 } },
 
+    { MODKEY,           XK_b,                     togglebar,      { 0 } },
+    { MODKEY,           XK_c,                     killclient,     { 0 } },
     { MODKEY|ShiftMask, XK_q,                     quit,           { 0 } },
+
 };
 
 /* button definitions */
