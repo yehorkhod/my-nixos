@@ -1,0 +1,24 @@
+[[language]]
+name = "nix"
+auto-format = true
+language-servers = ["nil"]
+
+[language.formatter]
+command = "nixfmt"
+
+[[language]]
+name = "python"
+auto-format = true
+language-servers = ["pyright"]
+
+[language.formatter]
+command = "ruff"
+args = ["format", "--line-length", "80", "-"]
+
+[[language]]
+name = "haskell"
+auto-format = true
+language-servers = ["haskell-language-server"]
+
+[language.formatter]
+command = "stylish-haskell"

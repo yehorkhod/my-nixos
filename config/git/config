@@ -1,0 +1,43 @@
+[user]
+  name = yehorkhod
+  email = e.khodysko@gmail.com
+
+[core]
+  preloadindex = true
+  whitespace = error
+
+[credential]
+  helper = store
+
+[status]
+  showUntrackedFiles = true
+
+[pull]
+  rebase = true
+
+[push]
+  autoSetupRemote = true
+
+[tag]
+  sort = -taggerdate
+
+[branch]
+  sort = -committerdate
+
+[commit]
+  template = ~/.config/git/template
+
+[pager]
+  diff = diff-so-fancy | $PAGER
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+
+[diff "so-fancy"]
+  markEmptyLines = false
+
+[interactive]
+  diffFilter = diff-so-fancy --patch
+  singlekey = true

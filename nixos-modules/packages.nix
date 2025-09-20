@@ -93,4 +93,10 @@
     config.allowUnfree = true;
     overlays = [ inputs.polymc.overlay ];
   };
+
+  fonts.packages = with pkgs; [
+    corefonts
+    vistafonts
+    nerd-fonts.fira-code
+  ];
 }
