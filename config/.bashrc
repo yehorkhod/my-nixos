@@ -25,12 +25,9 @@ export FZF_DEFAULT_OPTS="
 get_directories() {
   echo "$HOME"
   echo "$HOME/System"
-  find "$HOME/Desktop" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
   find "$HOME/Desktop/Coding" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
-  find "$HOME/Desktop/University" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
-  echo "$HOME/.xmonad"
+  find "$HOME/Desktop/Notes" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
   echo "$HOME/exercism/gleam"
-  find "$HOME/.config" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
 }
 connect_to_session() {
   local session_name="$1"

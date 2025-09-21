@@ -1,12 +1,15 @@
-# FIX: btop && qutebrowser
-{ config, pkgs, ... }:
-
+{
+  config,
+  pkgs,
+  ...
+}:
 let
+  mk-symlink = config.lib.file.mkOutOfStoreSymlink;
   list-to-attrs =
     apps: recursive:
     builtins.mapAttrs
       (name: subpath: {
-        source = config.lib.file.mkOutOfStoreSymlink ./config/${subpath};
+        source = mk-symlink ./config/${subpath};
         recursive = recursive;
       })
       (
@@ -17,19 +20,24 @@ let
           }) apps
         )
       );
-  rec-apps = [
-    "btop"
+  xdg-rec-apps = [
     "git"
     "helix"
     "kitty"
     "nvim"
-    "qutebrowser"
     "tmux"
     "zathura"
   ];
-  non-rec-apps = [
+  xdg-non-rec-apps = [
+    "btop/btop.conf"
+    "btop/themes/rose_pine_moon.theme"
+    "qutebrowser/config.py"
     "mimeapps.list"
     "starship.toml"
+  ];
+  non-rec-apps = [
+    ".bashrc"
+    ".bash_profile"
   ];
 in
 {
@@ -37,10 +45,17 @@ in
     username = "yehorkhod";
     homeDirectory = "/home/yehorkhod";
     stateVersion = "24.05";
-    file = {
-      ".bashrc".source = ./config/.bashrc;
-      ".bash_profile".source = ./config/.bash_profile;
-    };
+    file = list-to-attrs non-rec-apps false;
+    packages = with pkgs; [
+      gcc
+      ripgrep
+      nil
+      ruff
+      pyright
+      typst
+      tinymist
+      lua-language-server
+    ];
   };
-  xdg.configFile = (list-to-attrs rec-apps true) // (list-to-attrs non-rec-apps false);
+  xdg.configFile = (list-to-attrs xdg-rec-apps true) // (list-to-attrs xdg-non-rec-apps false);
 }
