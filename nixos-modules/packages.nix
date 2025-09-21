@@ -15,30 +15,25 @@
           HOLD: KEY_LEFTMETA
     '';
     systemPackages = with pkgs; [
-      # LSPs and Formaters
-      nil
-      ruff
-      typst
-      pyright
-      tinymist
-      lua-language-server
-
-      # Terminal Utilities
+      # Utilities
       bc
       jq
       fzf
       git
       zip
-      gcc
+      feh
       tmux
       btop
       wget
       pass
+      slop
+      xclip
       unzip
       conda
+      dmenu
+      shotgun
       img2pdf
       pamixer
-      ripgrep
       starship
       man-pages
       diff-so-fancy
@@ -47,33 +42,24 @@
       man-pages-posix
 
       # Applications
-      feh
       vlc
       vial
-      dmenu
       kitty
       pinta
+      helix
       slides
-      chezmoi
       zathura
-      obs-studio
-      qutebrowser
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-
-      # Communication
       discord
       zoom-us
+      obs-studio
+      qutebrowser
       telegram-desktop
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
 
       # Gaming
       polymc
       mangohud
       protonup
-
-      # Screenshoting Utils
-      slop
-      xclip
-      shotgun
     ];
   };
 
