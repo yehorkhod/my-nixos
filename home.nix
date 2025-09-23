@@ -9,7 +9,7 @@ let
     apps: recursive:
     builtins.mapAttrs
       (name: subpath: {
-        source = mk-symlink ./config/${subpath};
+        source = mk-symlink "/home/yehorkhod/System/config/${subpath}";
         recursive = recursive;
       })
       (

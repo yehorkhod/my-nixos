@@ -90,21 +90,7 @@ pick.setup()
 vim.keymap.set("n", "<leader>f", pick.builtin.files)
 vim.keymap.set("n", "<leader>/", pick.builtin.grep_live)
 vim.keymap.set("n", "<leader>h", pick.builtin.help)
-vim.keymap.set("n", "<leader>m", function()
-    local section = pick.start({ source = {
-        items = {
-            "man1", "man2", "man3",
-            "man4", "man5", "man6",
-            "man7", "man8", "man9",
-        }
-    } })
-    local pages = vim.fn.readdir("/run/current-system/sw/share/man/" .. section)
-    for i, name in ipairs(pages) do
-        pages[i] = name:gsub("%.%d+%.gz$", "")
-    end
-    local page = pick.start({ source = { items = pages } })
-    vim.cmd("hor Man " .. section:gsub(".*(%d)$", "%1") .. " " .. page)
-end)
+vim.keymap.set("n", "<leader>b", pick.builtin.buffers)
 
 
 -- Git signs
@@ -124,12 +110,12 @@ vim.deprecate = old_deprecate
 -- Treesitter
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
-        "haskell", "bash", "lua", "nix",
-        "json", "yaml", "toml", "ini",
-        "gleam", "html", "css",
-        "python", "r",
-        "cpp", "c",
-        "typst",
+        "json", "yaml", "toml", "ini", "xml",
+        "gleam", "python", "c", "typst",
+        "bash", "lua", "nix",
+        "cpp", "java", "r",
+        "haskell", "zig",
+        "html", "css",
     },
     ignore_install = {},
     highlight = { enable = true },
