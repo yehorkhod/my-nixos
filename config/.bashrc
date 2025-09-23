@@ -27,7 +27,7 @@ get_directories() {
   echo "$HOME/System"
   find "$HOME/Desktop/Coding" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
   find "$HOME/Desktop/Notes" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
-  echo "$HOME/exercism/gleam"
+  find "$HOME/exercism" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
 }
 connect_to_session() {
   local session_name="$1"

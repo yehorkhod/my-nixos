@@ -111,11 +111,10 @@ vim.deprecate = old_deprecate
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "json", "yaml", "toml", "ini", "xml",
-        "gleam", "python", "c", "typst",
-        "bash", "lua", "nix",
-        "cpp", "java", "r",
-        "haskell", "zig",
-        "html", "css",
+        "bash", "lua", "nix", "typst",
+        "cpp", "java", "r", "zig",
+        "haskell", "html", "css",
+        "gleam", "python", "c",
     },
     ignore_install = {},
     highlight = { enable = true },
