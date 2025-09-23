@@ -162,15 +162,35 @@ vim.keymap.set({ "n", "v" }, "<leader>D", '"+D')
 vim.keymap.set({ "n", "v" }, "<leader>c", '"+c')
 vim.keymap.set({ "n", "v" }, "<leader>C", '"+C')
 
-vim.keymap.set({ "n" }, "<leader>M", function()
+-- Math mode
+local math_mode = false
+vim.keymap.set({ "n" }, "<leader>m", function()
     local file = vim.fn.expand('%:p')
     local pdf = file:gsub('%.typ$', '.pdf')
 
-    vim.cmd('new')
-    vim.cmd('term typst watch ' .. vim.fn.fnameescape(file))
-    vim.cmd('q')
+    if not math_mode then
+        vim.cmd('new')
+        vim.cmd('term typst watch ' .. vim.fn.fnameescape(file))
+        vim.cmd('q')
 
-    vim.cmd('new')
-    vim.cmd('term zathura ' .. vim.fn.fnameescape(pdf))
-    vim.cmd('q')
+        vim.cmd('new')
+        vim.cmd('term zathura ' .. vim.fn.fnameescape(pdf))
+        vim.cmd('q')
+
+        math_mode = true
+    else
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.api.nvim_buf_is_loaded(buf) then
+                local name = vim.api.nvim_buf_get_name(buf)
+                local bt = vim.bo[buf].buftype
+                if bt == "terminal"
+                    and (name:find("typst watch " .. vim.fn.fnameescape(file))
+                        or name:find("zathura " .. vim.fn.fnameescape(pdf))) then
+                    vim.api.nvim_buf_delete(buf, { force = true })
+                end
+            end
+        end
+
+        math_mode = false
+    end
 end)
