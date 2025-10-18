@@ -26,13 +26,14 @@
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./configuration.nix
+          ./configuration/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${username} = import ./home.nix;
+              users.${username} = import ./home/home.nix;
+              extraSpecialArgs = { inherit username; };
             };
           }
         ];

@@ -1,0 +1,13 @@
+theme = "theme"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "block"
+normal = "block"
+select = "block"
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
